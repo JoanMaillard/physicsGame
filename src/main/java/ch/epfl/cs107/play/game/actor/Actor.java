@@ -1,6 +1,8 @@
 package ch.epfl.cs107.play.game.actor;
 
-public interface Actor {
+import ch.epfl.cs107.play.math.Positionable;
+
+public interface Actor extends Positionable, Graphics {
 
 	/**
 	* Simulates a single time step.

@@ -27,39 +27,14 @@ public class CrateGame extends ActorGame implements Game{
     @Override
     public boolean begin(Window window, FileSystem fileSystem) {
     	
-    	image1 = new ImageGraphics("box.4.png", 5, 5) ;
-    	image2 = new ImageGraphics("stone.broken.4.png", 5, 5) ;
-    	crate1 = new Crate(game, false, new Vector(0.0f, 5.0f), 5f, 5f, image1);
-    	crate2 = new Crate(game, false, new Vector(0.2f, 7.0f), 8f, 8f, image1);
-    	crate3 = new Crate(game, false, new Vector(2.0f, 6.0f), 5f, 5f, image2);
-    	image1.setParent(crate1) ;    	
-    	
-    	EntityBuilder entityBuilderPlank = world.createEntityBuilder() ;
-        entityBuilderPlank.setFixed(false) ;
-        entityBuilderPlank.setPosition(new Vector(-2.5f, 0.8f)) ;
-        crate1 = entityBuilderPlank.build() ;
-        PartBuilder partBuilderPlank = crate1.createPartBuilder() ;
-        partBuilderPlank = crate1.createPartBuilder() ;
-        Polygon polygon = new Polygon(
-        new Vector(0.0f, 0.0f),
-        new Vector(5.0f, 0.0f),
-        new Vector(5.0f, 5.0f),
-        new Vector(0.0f, 5.0f)
-        ) ;
-        partBuilderPlank.setShape(polygon) ;
-        partBuilderPlank.build() ;
-      
-    	
-    	
+    	image1 = new ImageGraphics("box.4.png", 5, 5);
+    	image2 = new ImageGraphics("stone.broken.4.png", 5, 5);
         return true;
     }
 
     // This event is called at each frame
 
     public void update(float deltaTime) {
-
-    	image1.draw(window);
-    	
     }
 
     @Override

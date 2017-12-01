@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.game.actor;
 
+import ch.epfl.cs107.play.game.Game;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
@@ -17,7 +18,7 @@ import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
 
-public class ActorGame {
+public abstract class ActorGame implements Game {
 	
 	protected World world;
 	protected Window window;
