@@ -1,3 +1,7 @@
 nbproject/*
 bin/*
 build.xml
+buid/*
+*.properties
+build/classes/*
+dist/*

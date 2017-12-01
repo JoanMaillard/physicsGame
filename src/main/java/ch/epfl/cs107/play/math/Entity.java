@@ -227,6 +227,6 @@ public class Entity implements Positionable {
             // Note: joints are automatically destroyed by world, using destruction callback to notify our simulator
             world = null;
         }
-    }
+    }  
     
 }
