@@ -37,7 +37,7 @@ public class Program {
 		try {
 
 			// Create a demo game
-			Game game = new ScaleGame();
+			Game game = new CrateGame();
 			if (game.begin(window, fileSystem)) {
 
 				// Use system clock to keep track of time progression

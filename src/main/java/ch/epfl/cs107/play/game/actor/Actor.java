@@ -15,5 +15,4 @@ public interface Actor extends Positionable, Graphics {
 	public default void destroy (){
 	// By default , actors have nothing to destroy
 	}
-	
 }

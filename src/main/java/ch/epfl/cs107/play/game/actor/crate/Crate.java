@@ -4,25 +4,43 @@ import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
-import ch.epfl.cs107.play.math.EntityBuilder;
-import ch.epfl.cs107.play.math.PartBuilder;
-import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Positionable;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
-import ch.epfl.cs107.play.window.Window;
 
 public class Crate extends GameEntity implements Actor{
-	
-	 //@Override
-    public void update(World world, Window window, float deltaTime) {
-        
-    	world.update(deltaTime) ;
-    	window.setRelativeTransform(Transform.I.scaled(10.0f)) ; 	
-        
+    //Variables
+    ImageGraphics image = new ImageGraphics("box.4.png", 5, 5); 
+    
+    //Constructors
+    public Crate(ActorGame game, boolean fixed, Vector position) {
+        super(game, fixed, position);
+        setParentToImage();
     }
-	
-	
+    
+    public Crate(ActorGame game, boolean fixed){
+        super(game, fixed);
+        setParentToImage();
+    }
+    
+    //Additional methods
+    private void setParentToImage() {
+    image.setParent(this);
+    }
+
+    @Override
+    public Transform getTransform() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Vector getVelocity() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
