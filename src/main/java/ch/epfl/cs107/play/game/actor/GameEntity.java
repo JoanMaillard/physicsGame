@@ -7,13 +7,13 @@ import ch.epfl.cs107.play.math.World;
 public abstract class GameEntity implements Actor{
     
     private Entity entity;
-    private ActorGame actorGame;
+    protected static ActorGame actorGame;
 	
-	private GameEntity (ActorGame game, boolean fixed, Vector position) {
+	public GameEntity (ActorGame game, boolean fixed, Vector position) {
             super();
 	}
 	
-	private GameEntity(ActorGame game, boolean fixed){
+	public GameEntity(ActorGame game, boolean fixed){
             super();
 	}
         
