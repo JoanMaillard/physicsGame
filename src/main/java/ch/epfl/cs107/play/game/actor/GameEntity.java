@@ -7,20 +7,6 @@ import ch.epfl.cs107.play.math.Vector;
 public abstract class GameEntity implements Actor{
     //Variables
     private Entity entity;
-<<<<<<< HEAD
-    protected static ActorGame actorGame;
-	
-	public GameEntity (ActorGame game, boolean fixed, Vector position) {
-            super();
-	}
-	
-	public GameEntity(ActorGame game, boolean fixed){
-            super();
-	}
-        
-        protected World getOwner() {
-        return new World();
-=======
     private ActorGame actorGame;
     private EntityBuilder eB;
 
@@ -36,7 +22,6 @@ public abstract class GameEntity implements Actor{
         //}
         /*catch (NullPointerException e) {
             System.err.println("NullPointerException: " + e.getMessage());
->>>>>>> bcd3b295232b5b2bec93143114b22aff31a172c7
         }
         catch (IllegalArgumentException e) {
             System.err.println("IllegalArgumentException: " + e.getMessage());
