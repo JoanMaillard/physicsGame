@@ -12,7 +12,7 @@ import ch.epfl.cs107.play.window.Window;
 
 public abstract class ActorGame implements Game {
     //Variables
-    protected World world;
+    public World world;
     private Window window;
     private Vector viewCenter ;
     private Vector viewTarget ;
