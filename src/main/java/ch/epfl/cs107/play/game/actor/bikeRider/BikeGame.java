@@ -17,35 +17,29 @@ import ch.epfl.cs107.play.window.Window;
 
 public class BikeGame extends ActorGame{
 	
-	private Terrain terrain;
-	private Wheel leftWheel;
-	private Wheel rightWheel;
-	private Window canvasWindow;
+    private Terrain terrain;
+    private Bike bike;
+    private Window canvasWindow;
 	
 	@Override
-    public boolean begin(Window window, FileSystem fileSystem) {
-		if (super.begin(window, fileSystem)) {  
-       terrain = new Terrain(this, true);
-       leftWheel = new Wheel(true);
-       rightWheel = new Wheel(false);
-       canvasWindow = window;
-		
-        return true;
+    public boolean begin(Window window, FileSystem fileSystem){
+        if (super.begin(window, fileSystem)) {  
+            terrain = new Terrain(this, true);
+            bike = new Bike(this, false, new Vector(0.0f, 0.0f)); //TODO: Change bike's position
+            canvasWindow = window;	
+            return true;
         }
         else {
-        	return false;
+            return false;
         }
     }
 
     // This event is called at each frame
     @Override
     public void update(float deltaTime) {
-        
     	super.update(deltaTime);
         terrain.draw(canvasWindow);
-        leftWheel.draw(canvasWindow);
-        rightWheel.draw(canvasWindow);
-        
+        bike.draw(canvasWindow);
     }
 
     @Override
