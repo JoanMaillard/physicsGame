@@ -1,7 +1,10 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import ch.epfl.cs107.play.game.actor.Actor;
+import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Entity;
+import ch.epfl.cs107.play.math.EntityBuilder;
+import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.WheelConstraintBuilder;
@@ -16,7 +19,28 @@ public class Wheel implements Actor{
 	
 	public Wheel(boolean left) {
 		
-		
+		 EntityBuilder entityBuilder = world.createEntityBuilder() ;
+		 PartBuilder partBuilder = entity.createPartBuilder() ;
+		 entityBuilder.setFixed(false) ;
+		 
+		 if (Bike.right == true) {
+			 
+			 entityBuilder.setPosition(Bike.positionInit.add(new Vector(1.0f, 0.f)));
+			}
+			else {
+				
+				entityBuilder.setPosition(Bike.positionInit.add(new Vector(-1.0f, 0.f)));
+			}
+		 
+	     
+	     entity = entityBuilder.build() ;
+	     partBuilder = entity.createPartBuilder() ;
+	     Circle circle = new Circle(0.6f);
+
+	     partBuilder.setShape(circle) ;
+	     partBuilder.setFriction(0.5f) ;
+	     partBuilder.build() ;
+
 		
 		if (Bike.right == true) {
 			motorized = left;
@@ -38,7 +62,7 @@ public class Wheel implements Actor{
 		// point d'ancrage du véhicule :
 		constraintBuilder.setFirstAnchor(anchor) ;
 		// Entity associée à la roue :
-		constraintBuilder.setSecondEntity(this.entity) ;
+		constraintBuilder.setSecondEntity(entity) ;
 		// point d'ancrage de la roue (son centre) :
 		constraintBuilder.setSecondAnchor(Vector.ZERO) ;
 		// axe le long duquel la roue peut se déplacer :
@@ -78,7 +102,7 @@ public class Wheel implements Actor{
 
 	@Override
 	public void draw(Canvas canvas) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
