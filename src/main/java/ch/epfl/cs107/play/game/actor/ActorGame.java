@@ -37,7 +37,7 @@ public abstract class ActorGame implements Game {
     	this.window = window;
         
         // Create physics engine
-        world = new World() ;
+        world = new World();
         // unit is meter
         world.setGravity(new Vector(0.0f, -9.81f)) ;
     	

@@ -1,11 +1,9 @@
 package ch.epfl.cs107.play.game.tutorial;
 
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 import ch.epfl.cs107.play.game.Game;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
-import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Entity;
@@ -13,7 +11,6 @@ import ch.epfl.cs107.play.math.EntityBuilder;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.RevoluteConstraintBuilder;
-import ch.epfl.cs107.play.math.RopeConstraintBuilder;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.World;
