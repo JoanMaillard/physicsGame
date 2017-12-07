@@ -37,6 +37,6 @@ public class CrateGame extends ActorGame{
 
     @Override
     public void end() {
-        // Empty on purpose, no cleanup required yet
+
     }
 }
