@@ -1,5 +1,7 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
+import java.awt.event.KeyEvent;
+
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.math.Entity;
@@ -8,6 +10,7 @@ import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
+import ch.epfl.cs107.play.window.Window;
 
 public class Bike extends GameEntity{
 	
@@ -33,7 +36,7 @@ public class Bike extends GameEntity{
         entity = super.getEntity();
         offset = new Vector(0.0f, 0.0f); // A revoir
         wheelAxis = new Vector(0.0f, 1.0f); // A revoir
-	build();
+        build();
         buildWheels(game, fixed, position);
         setMotorisedWheel(right);
         leftWheel.attach(entity, position.add(offset), wheelAxis);
@@ -69,6 +72,29 @@ public class Bike extends GameEntity{
             leftWheel.setMotorised(false);
             rightWheel.setMotorised(true);
         }
+    }
+    
+    private void controls(Window window) {
+    	
+    	//turn
+    	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isDown()) {
+    		right = !right;
+    	}
+    	
+    	//brake
+    	if (window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
+        		Wheel.stop = true;
+    		
+    	}
+    	
+    	//rotate
+    	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
+    		entity.applyAngularForce (-10.0f) ;
+    	}
+    	if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
+    		entity.applyAngularForce (10.0f) ;
+    	}
+    	
     }
 
     @Override

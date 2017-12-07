@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 import ch.epfl.cs107.play.game.actor.Actor;
+import ch.epfl.cs107.play.game.actor.ActorGame;
+import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Circle;
@@ -16,27 +18,37 @@ import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.WheelConstraintBuilder;
 import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
+import ch.epfl.cs107.play.window.Keyboard;
+import ch.epfl.cs107.play.window.Window;
 
-public class Wheel implements Actor{
+public class Wheel extends GameEntity implements Actor {
 	
 	private PartBuilder partBuilder;
 	private boolean left;
 	private boolean motorized;
+	static boolean stop = false;
+	WheelConstraintBuilder constraintBuilder;
 	private Entity entity;
 	private World world;
 	private Circle circle = new Circle(0.6f);
 	private ShapeGraphics image = new ShapeGraphics(circle , Color.GRAY , Color.BLACK ,	0.1f, 0.5f, 0);
+
 	
-	public Wheel(boolean left) {
-		
-		this.left = left;
+	public Wheel(ActorGame game, boolean fixed, Vector position) {
+        super(game, fixed, position);
+        entity = super.getEntity();
 		build();
-		
-	}
-	
+    }
+    
+    public Wheel(ActorGame game, boolean fixed){
+        super(game, fixed);
+        entity = super.getEntity();
+        build();
+    }
+    
 	public void attach(Entity vehicle , Vector anchor , Vector axis) {
 		
-		WheelConstraintBuilder constraintBuilder = world.createWheelConstraintBuilder() ; ;
+		constraintBuilder = world.createWheelConstraintBuilder() ; ;
 		constraintBuilder.setFirstEntity(vehicle) ;
 		// point d'ancrage du véhicule :
 		constraintBuilder.setFirstAnchor(anchor) ;
@@ -77,12 +89,16 @@ public class Wheel implements Actor{
 		
 	}
 	
-	private void setSpeed() {
-		if (super.getWindow().getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
-    		ball.applyAngularForce(10.0f) ;
-    		} else if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
-    		ball.applyAngularForce(-10.0f) ;
+	void go(Window window) {
+		
+		if(motorized && window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
+			if(Bike.right && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
+    		entity.applyAngularForce(10.0f) ;
     		}
+			if (!Bike.right && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
+    			entity.applyAngularForce(-10.0f) ;
+    		}
+		}
 	}
 	
 	
@@ -112,5 +128,12 @@ public class Wheel implements Actor{
 	public void draw(Canvas canvas) {
 		image.draw(canvas);
 	}
+
+	public void setMotorised(boolean motor) {
+		
+		motorized = motor;
+	}
+
+	
 
 }
