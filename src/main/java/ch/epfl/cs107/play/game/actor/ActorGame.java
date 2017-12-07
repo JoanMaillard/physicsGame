@@ -13,13 +13,13 @@ import ch.epfl.cs107.play.window.Window;
 public abstract class ActorGame implements Game {
     //Variables
     protected World world;
-    protected Window window;
+    private Window window;
     private Vector viewCenter ;
     private Vector viewTarget ;
     private Positionable viewCandidate ;
     private static final float VIEW_TARGET_VELOCITY_COMPENSATION = 0.2f ;
     private static final float VIEW_INTERPOLATION_RATIO_PER_SECOND = 0.1f ;
-    private static final float VIEW_SCALE = 10.0f ;
+    private static final float VIEW_SCALE = 15.0f ;
     
     //Additional methods (getters)
     public Keyboard getKeyboard (){
@@ -61,7 +61,7 @@ public abstract class ActorGame implements Game {
     	// Update expected viewport center
     	if (viewCandidate != null) {
     	viewTarget =
-    	viewCandidate.getPosition ().add(viewCandidate.getVelocity ()
+    	viewCandidate.getPosition().add(viewCandidate.getVelocity ()
     	.mul(VIEW_TARGET_VELOCITY_COMPENSATION)) ;
     	}
     	// Interpolate with previous location
@@ -71,8 +71,7 @@ public abstract class ActorGame implements Game {
     	// Compute new viewport
     	Transform viewTransform =
     	Transform.I.scaled(VIEW_SCALE).translated(viewCenter) ;
-    	window.setRelativeTransform(viewTransform) ;    	
-        
+    	window.setRelativeTransform(viewTransform) ;
     }
 
     @Override

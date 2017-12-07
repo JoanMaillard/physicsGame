@@ -64,19 +64,19 @@ public class Wheel implements Actor{
 		
 		WheelConstraintBuilder constraintBuilder = world.createWheelConstraintBuilder() ; ;
 		constraintBuilder.setFirstEntity(vehicle) ;
-		// point d'ancrage du véhicule :
+		// point d'ancrage du vÃ©hicule :
 		constraintBuilder.setFirstAnchor(anchor) ;
-		// Entity associée à la roue :
+		// Entity associÃ©e Ã  la roue :
 		constraintBuilder.setSecondEntity(entity) ;
 		// point d'ancrage de la roue (son centre) :
 		constraintBuilder.setSecondAnchor(Vector.ZERO) ;
-		// axe le long duquel la roue peut se déplacer :
+		// axe le long duquel la roue peut se dÃ©placer :
 		constraintBuilder.setAxis(axis) ;
-		// fréquence du ressort associé
+		// frï¿½quence du ressort associÃ©
 		constraintBuilder.setFrequency (3.0f) ;
 		constraintBuilder.setDamping (0.5f) ;
-		// force angulaire maximale pouvant être appliquée
-		//à la roue pour la faire tourner :
+		// force angulaire maximale pouvant Ãªtre appliquÃ©e
+		//Ã  la roue pour la faire tourner :
 		constraintBuilder.setMotorMaxTorque (10.0f) ;
 		//constraint = 
 		constraintBuilder.build () ;

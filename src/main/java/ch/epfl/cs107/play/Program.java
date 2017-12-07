@@ -76,7 +76,7 @@ public class Program {
 
 			}
 			game.end();
-
+                        
 		} finally {
 
 			// Release resources
