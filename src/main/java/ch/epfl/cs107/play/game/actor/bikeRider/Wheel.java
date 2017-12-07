@@ -1,6 +1,7 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
@@ -75,6 +76,15 @@ public class Wheel implements Actor{
 		
 		
 	}
+	
+	private void setSpeed() {
+		if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
+    		ball.applyAngularForce(10.0f) ;
+    		} else if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
+    		ball.applyAngularForce(-10.0f) ;
+    		}
+	}
+	
 	
 	public void power(float speed) {}
 	
