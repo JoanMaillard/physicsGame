@@ -9,6 +9,7 @@ import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.EntityBuilder;
 import ch.epfl.cs107.play.math.PartBuilder;
+import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.WheelConstraintBuilder;
@@ -17,6 +18,8 @@ import ch.epfl.cs107.play.window.Canvas;
 
 public class Wheel implements Actor{
 	
+	private PartBuilder partBuilder;
+	private boolean left;
 	private boolean motorized;
 	private Entity entity;
 	private World world;
@@ -25,38 +28,8 @@ public class Wheel implements Actor{
 	
 	public Wheel(boolean left) {
 		
-		 EntityBuilder entityBuilder = world.createEntityBuilder() ;
-		 PartBuilder partBuilder = entity.createPartBuilder() ;
-		 entityBuilder.setFixed(false) ;
-		 
-		 if (Bike.right == true) {
-			 
-			 entityBuilder.setPosition(Bike.positionInit.add(new Vector(1.0f, 0.f)));
-			}
-			else {
-				
-				entityBuilder.setPosition(Bike.positionInit.add(new Vector(-1.0f, 0.f)));
-			}
-		 
-	     
-	     entity = entityBuilder.build() ;
-	     partBuilder = entity.createPartBuilder() ;
-
-	     partBuilder.setShape(circle) ;
-	     partBuilder.setFriction(0.5f) ;
-	     partBuilder.build() ;
-
-		
-		if (Bike.right == true) {
-			motorized = left;
-			attach(entity , new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f)) ;
-		}
-		else {
-			motorized = !left;
-			attach(entity , new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f)) ;
-		}
-		
-		
+		this.left = left;
+		build();
 		
 	}
 	
@@ -80,6 +53,26 @@ public class Wheel implements Actor{
 		constraintBuilder.setMotorMaxTorque (10.0f) ;
 		//constraint = 
 		constraintBuilder.build () ;
+		
+	}
+	
+	private void build() {
+		
+		 partBuilder = entity.createPartBuilder() ;
+	     partBuilder.setShape(circle) ;
+	     partBuilder.setFriction(0.5f) ;
+	     partBuilder.build() ;
+
+		
+		if (Bike.right == true) {
+			motorized = left;
+			attach(entity , new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f)) ;
+		}
+		else {
+			motorized = !left;
+			attach(entity , new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f)) ;
+		}
+		
 		
 	}
 	
