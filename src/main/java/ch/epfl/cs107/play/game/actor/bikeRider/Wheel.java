@@ -78,7 +78,7 @@ public class Wheel implements Actor{
 	}
 	
 	private void setSpeed() {
-		if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
+		if (super.getWindow().getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
     		ball.applyAngularForce(10.0f) ;
     		} else if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		ball.applyAngularForce(-10.0f) ;
