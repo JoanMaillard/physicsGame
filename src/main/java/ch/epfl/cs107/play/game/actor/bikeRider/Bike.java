@@ -3,6 +3,7 @@ package ch.epfl.cs107.play.game.actor.bikeRider;
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
+import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.EntityBuilder;

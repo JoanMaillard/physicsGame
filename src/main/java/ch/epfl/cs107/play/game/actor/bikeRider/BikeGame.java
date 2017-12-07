@@ -23,8 +23,8 @@ public class BikeGame extends ActorGame{
     public boolean begin(Window window, FileSystem fileSystem) {
         
        Terrain terrain = new Terrain(this, true);
-       Wheel LeftWheel = new Wheel();
-       Wheel RightWheel = new Wheel();
+       Wheel LeftWheel = new Wheel(true);
+       Wheel RightWheel = new Wheel(false);
         
         return true;
     }

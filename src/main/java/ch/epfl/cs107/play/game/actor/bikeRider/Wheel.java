@@ -1,6 +1,10 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
+import java.awt.Color;
+
 import ch.epfl.cs107.play.game.actor.Actor;
+import ch.epfl.cs107.play.game.actor.ImageGraphics;
+import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.EntityBuilder;
@@ -16,6 +20,8 @@ public class Wheel implements Actor{
 	private boolean motorized;
 	private Entity entity;
 	private World world;
+	private Circle circle = new Circle(0.6f);
+	private ShapeGraphics image = new ShapeGraphics(circle , Color.GRAY , Color.BLACK ,	0.1f, 0.5f, 0);
 	
 	public Wheel(boolean left) {
 		
@@ -35,7 +41,6 @@ public class Wheel implements Actor{
 	     
 	     entity = entityBuilder.build() ;
 	     partBuilder = entity.createPartBuilder() ;
-	     Circle circle = new Circle(0.6f);
 
 	     partBuilder.setShape(circle) ;
 	     partBuilder.setFriction(0.5f) ;
@@ -102,8 +107,7 @@ public class Wheel implements Actor{
 
 	@Override
 	public void draw(Canvas canvas) {
-		
-		
+		image.draw(canvas);
 	}
 
 }
