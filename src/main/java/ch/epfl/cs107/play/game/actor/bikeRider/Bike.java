@@ -32,7 +32,7 @@ public class Bike extends GameEntity implements Actor{
 	this.world = world;
         entity = super.getEntity();
         build();
-        buildWheels(game, fixed, new Vector(0.0f, 0.0f));
+        buildWheels(game, fixed, new Vector(0.0f, 0.0f), world);
     }
 	
     public Bike(ActorGame game, boolean fixed, Vector position, World world) {
@@ -41,7 +41,7 @@ public class Bike extends GameEntity implements Actor{
         this.world = world;
         new Vector(0.0f, 0.0f);
         build();
-        buildWheels(game, fixed, position);
+        buildWheels(game, fixed, position, world);
     }
 
     private void build() {
@@ -62,11 +62,13 @@ public class Bike extends GameEntity implements Actor{
         
     }
         // TODO: change left and right wheel positions compared to bike frame (by changing the added vectors)
-    private void buildWheels(ActorGame game, boolean fixed, Vector position) {
-        leftWheel = new Wheel(game, fixed, position.add(new Vector(-2f, 5f)), true);
+    private void buildWheels(ActorGame game, boolean fixed, Vector position, World world) {
+        leftWheel = new Wheel(game, fixed, position.add(new Vector(-1.0f, 0.f)), true);
         leftWheel.build(world);
-        rightWheel = new Wheel(game, fixed, position.add(new Vector(2f, 5f)), false);
+        //leftWheel.attach(entity, new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f), world);
+        rightWheel = new Wheel(game, fixed, position.add(new Vector(1.0f, 0.f)), false);
         rightWheel.build(world);
+        //rightWheel.attach(entity, new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f), world);
     }
     
     static void controls(Window window) {

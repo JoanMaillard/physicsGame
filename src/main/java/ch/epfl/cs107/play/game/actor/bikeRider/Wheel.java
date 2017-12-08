@@ -24,7 +24,7 @@ public class Wheel extends GameEntity implements Actor {
 	static boolean stop = false;
 	WheelConstraintBuilder constraintBuilder;
 	private Entity entity;
-	private Circle circle = new Circle(1f);
+	private Circle circle = new Circle(0.5f);
 	private ImageGraphics image1 = new ImageGraphics("explosive.11.png", 1f , 1f , new Vector(0.5f, 0.5f)) ;
 	private ShapeGraphics image = new ShapeGraphics(circle , Color.RED , Color.BLUE ,	0.01f, 1f, 0);
 
@@ -110,7 +110,5 @@ public class Wheel extends GameEntity implements Actor {
 	@Override
 	public void draw(Canvas canvas) {
 		image.draw(canvas);
-	}
-	
-
+	}	
 }

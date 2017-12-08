@@ -18,7 +18,7 @@ public class BikeGame extends ActorGame{
 		world = new World();
 		if (super.begin(window, fileSystem)) {  
             terrain = new Terrain(this, true, world);
-            bike = new Bike(this, false, new Vector(0.0f, 3.0f), world);
+            bike = new Bike(this, false, new Vector(0.0f, 5.0f), world);
             canvasWindow = window;	
             return true;
         }
