@@ -23,7 +23,7 @@ public class Wheel extends GameEntity implements Actor {
 	private boolean left;
 	static boolean stop = false;
 	WheelConstraintBuilder constraintBuilder;
-	private Entity entity;
+	Entity entity;
 	private Circle circle = new Circle(0.5f);
 	private ImageGraphics image1 = new ImageGraphics("explosive.11.png", 1f , 1f , new Vector(0.5f, 0.5f)) ;
 	private ShapeGraphics image = new ShapeGraphics(circle , Color.RED , Color.BLUE ,	0.01f, 1f, 0);
@@ -43,7 +43,7 @@ public class Wheel extends GameEntity implements Actor {
     
 	public void attach(Entity vehicle , Vector anchor , Vector axis, World world) {
 		
-		constraintBuilder = world.createWheelConstraintBuilder() ; ;
+		constraintBuilder = getOwner().makeWheelConstraintBuilder();
 		constraintBuilder.setFirstEntity(vehicle) ;
 		// point d'ancrage du véhicule :
 		constraintBuilder.setFirstAnchor(anchor) ;
@@ -70,7 +70,7 @@ public class Wheel extends GameEntity implements Actor {
 	     partBuilder.setShape(circle) ;
 	     partBuilder.setFriction(0.5f) ;
 	     partBuilder.build() ;
-	     image.setParent(entity);
+	     image1.setParent(entity);
 	}
 	
 	void go(Window window) {
@@ -80,15 +80,13 @@ public class Wheel extends GameEntity implements Actor {
 		if(left && Bike.right) {
 			
 			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
-    		entity.applyAngularForce(-100.0f) ;
-    		System.out.println("left go right");
+    		entity.applyAngularForce(-10.0f) ;
     		}
 		}
 			
 		if(!left && !Bike.right) {
 			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
-	    	entity.applyAngularForce(100.0f) ;
-	    	System.out.println("right go left");
+	    	entity.applyAngularForce(10.0f) ;
 	    	}
 		}
 	} else 
@@ -109,6 +107,6 @@ public class Wheel extends GameEntity implements Actor {
 
 	@Override
 	public void draw(Canvas canvas) {
-		image.draw(canvas);
+		image1.draw(canvas);
 	}	
 }

@@ -5,6 +5,7 @@ import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Positionable;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.math.WheelConstraintBuilder;
 import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
@@ -73,6 +74,14 @@ public abstract class ActorGame implements Game {
     @Override
     public void end() {
     	
+    	
+    }
+    
+    public WheelConstraintBuilder makeWheelConstraintBuilder() {
+    	    	
+    	WheelConstraintBuilder constraintBuilder = world.createWheelConstraintBuilder();
+    	
+    	return constraintBuilder;
     	
     }
 	
