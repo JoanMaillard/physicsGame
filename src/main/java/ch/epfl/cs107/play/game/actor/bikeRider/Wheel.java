@@ -30,23 +30,22 @@ public class Wheel extends GameEntity implements Actor {
 	WheelConstraintBuilder constraintBuilder;
 	private Entity entity;
 	private World world;
-	private Circle circle = new Circle(0.6f);
-	private ShapeGraphics image = new ShapeGraphics(circle , Color.GRAY , Color.BLACK ,	0.1f, 0.5f, 0);
+	private Circle circle = new Circle(0.05f);
+	private ImageGraphics image1 = new ImageGraphics("explosive.11.png", 1f , 1f , new Vector(0.5f, 0.5f)) ;
+	private ShapeGraphics image = new ShapeGraphics(circle , Color.RED , Color.BLUE ,	0.01f, 1f, 0);
 
 	
 	public Wheel(ActorGame game, boolean fixed, Vector position) {
         super(game, fixed, position);
         entity = super.getEntity();
-		build();
     }
     
     public Wheel(ActorGame game, boolean fixed){
         super(game, fixed);
         entity = super.getEntity();
-        build();
     }
     
-	public void attach(Entity vehicle , Vector anchor , Vector axis) {
+	public void attach(Entity vehicle , Vector anchor , Vector axis, World world) {
 		
 		constraintBuilder = world.createWheelConstraintBuilder() ; ;
 		constraintBuilder.setFirstEntity(vehicle) ;
@@ -69,7 +68,7 @@ public class Wheel extends GameEntity implements Actor {
 		
 	}
 	
-	private void build() {
+	void build(World world) {
 		
 		 partBuilder = entity.createPartBuilder() ;
 	     partBuilder.setShape(circle) ;
@@ -79,11 +78,11 @@ public class Wheel extends GameEntity implements Actor {
 		
 		if (Bike.right == true) {
 			motorized = left;
-			attach(entity , new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f)) ;
+			attach(entity , new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f), world) ;
 		}
 		else {
 			motorized = !left;
-			attach(entity , new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f)) ;
+			attach(entity , new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f), world) ;
 		}
 		
 		
@@ -126,10 +125,10 @@ public class Wheel extends GameEntity implements Actor {
 
 	@Override
 	public void draw(Canvas canvas) {
-		image.draw(canvas);
+		image1.draw(canvas);
 	}
 
-	public void setMotorised(boolean motor) {
+	public void setMotorized(boolean motor) {
 		
 		motorized = motor;
 	}

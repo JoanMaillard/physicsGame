@@ -55,14 +55,13 @@ public class Crate extends GameEntity{
         return entity.getVelocity();    
     }
 
-    @Override
     public void draw(Canvas canvas) {
         image.draw(canvas);
     }
     
     private void setParentToImage(){
         image = new ImageGraphics("box.4.png", 1, 1);
-        image.setParent(this);
+        image.setParent(entity);
     }
     
 }

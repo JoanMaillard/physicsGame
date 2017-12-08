@@ -2,9 +2,10 @@ package ch.epfl.cs107.play.game.actor;
 
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.EntityBuilder;
+import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 
-public abstract class GameEntity implements Actor{
+public abstract class GameEntity{
     //Variables
     private Entity entity;
     private ActorGame actorGame;
@@ -56,4 +57,16 @@ public abstract class GameEntity implements Actor{
     protected ActorGame getOwner(){
         return actorGame;
     }
+    
+
+
+	public Transform getTransform() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Vector getVelocity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

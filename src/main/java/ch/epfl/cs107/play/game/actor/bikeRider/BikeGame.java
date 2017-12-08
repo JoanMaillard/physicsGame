@@ -20,12 +20,15 @@ public class BikeGame extends ActorGame{
     private Terrain terrain;
     private Bike bike;
     private Window canvasWindow;
+    private World world;
 	
 	@Override
     public boolean begin(Window window, FileSystem fileSystem){
-        if (super.begin(window, fileSystem)) {  
+       
+		world = new World();
+		if (super.begin(window, fileSystem)) {  
             terrain = new Terrain(this, true);
-            bike = new Bike(this, false, new Vector(0.0f, 0.0f)); //TODO: Change bike's position
+            bike = new Bike(this, false, new Vector(0.0f, 0.0f), world); //TODO: Change bike's position
             canvasWindow = window;	
             return true;
         }
@@ -38,6 +41,7 @@ public class BikeGame extends ActorGame{
     @Override
     public void update(float deltaTime) {
     	super.update(deltaTime);
+    	Bike.controls(canvasWindow);
         terrain.draw(canvasWindow);
         bike.draw(canvasWindow);
     }
