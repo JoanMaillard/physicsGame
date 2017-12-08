@@ -79,10 +79,10 @@ public class Wheel extends GameEntity implements Actor {
 		if (!stop) {
 		
 		if(left && Bike.right) {
-			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
+			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
     		entity.applyAngularForce(-10.0f) ;
     		}
-			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
+			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
     			entity.applyAngularForce(10.0f) ;
     		}
 		}
