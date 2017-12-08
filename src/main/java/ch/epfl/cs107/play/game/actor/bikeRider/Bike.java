@@ -29,6 +29,10 @@ public class Bike extends GameEntity implements Actor{
     private ShapeGraphics armImage;
 	private ShapeGraphics bodyImage;
 	private ShapeGraphics shoulderImage;
+	private ShapeGraphics leftLegUpImage;
+	private ShapeGraphics leftLegDownImage;
+	private ShapeGraphics rightLegUpImage;
+	private ShapeGraphics rightLegDownImage;
 	
 	
 	
@@ -63,14 +67,10 @@ public class Bike extends GameEntity implements Actor{
         image = new ShapeGraphics(polygon, Color.RED, Color.BLUE, 0.01f);
 	    image.setParent(entity);
 	     
-	    // Draw head
+	    // Draw bodyparts
 	    Circle head = new Circle (0.2f, getHeadLocation ());
-	    	
-	    // Draw arm
 	    Polyline arm = new Polyline(getSleeveLocation (), getHandLocation ());
-	    
 	    Polyline shoulder = new Polyline(getShoulderLocation (), getSleeveLocation ());
-
 	    Polyline body = new Polyline(getShoulderLocation (), getWaistLocation ());
 	    	
 	    headImage = new ShapeGraphics(head, Color.PINK, Color.DARK_GRAY, 0);
@@ -81,6 +81,14 @@ public class Bike extends GameEntity implements Actor{
 	    shoulderImage.setParent(entity);
 	    bodyImage = new ShapeGraphics(body, Color.BLUE, Color.BLUE, 0.15f);
 	    bodyImage.setParent(entity);
+	    leftLegUpImage = new ShapeGraphics(leftLegUp, Color.BLUE, Color.BLUE, 0.15f);
+	    leftLegUpImage.setParent(entity);
+	    leftLegDownImage = new ShapeGraphics(leftLegDown, Color.BLUE, Color.BLUE, 0.15f);
+	    leftLegDownImage.setParent(entity);
+	    rightLegUpImage = new ShapeGraphics(rightLegUp, Color.BLUE, Color.BLUE, 0.15f);
+	    rightLegUpImage.setParent(entity);
+	    rightLegDownImage = new ShapeGraphics(rightLegDown, Color.BLUE, Color.BLUE, 0.15f);
+	    rightLegDownImage.setParent(entity);
         
     }
 
@@ -139,6 +147,22 @@ public class Bike extends GameEntity implements Actor{
     private Vector getWaistLocation () {
     return new Vector (-0.3f, 0.6f) ;
     }
+    
+    private Vector getLeftKneeLocation () {
+        return new Vector (-0.3f, 0.6f) ;
+        }
+    
+    private Vector geRightKneeLocation () {
+        return new Vector (-0.3f, 0.6f) ;
+        }
+    
+    private Vector getLeftFootLocation () {
+        return new Vector (-0.3f, 0.6f) ;
+        }
+    
+    private Vector getRightFootLocation () {
+        return new Vector (-0.3f, 0.6f) ;
+        }
 
     public void draw(Canvas canvas) {
     	
