@@ -5,19 +5,25 @@ import java.awt.Color;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
+import ch.epfl.cs107.play.math.Entity;
+import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
 
 public class Terrain extends GameEntity{
 	
 	private ShapeGraphics image;
+	private PartBuilder partBuilder;
+	private Entity entity;
+	private Polyline polyline;
 	
-	public Terrain(ActorGame game, boolean fixed) {
+	public Terrain(ActorGame game, boolean fixed, World world) {
 		super(game, fixed);
-		Polyline polyline = 
-				new Polyline(
+		entity = super.getEntity();
+		polyline = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
 						0.0f, 0.0f,
@@ -32,19 +38,9 @@ public class Terrain extends GameEntity{
 						65.0f, 0.0f,
 						6500.0f, -1000.0f
 						);
-		image = new ShapeGraphics(polyline , Color.DARK_GRAY , Color.GREEN ,0.1f, 1f, 0);
-	}
-
-	@Override
-	public Transform getTransform() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Vector getVelocity() {
-		// TODO Auto-generated method stub
-		return null;
+		image = new ShapeGraphics(polyline , Color.DARK_GRAY , Color.GREEN ,0.5f, 1f, 0);
+		
+		build(world);
 	}
 
 	public void draw(Canvas canvas) {
@@ -52,6 +48,12 @@ public class Terrain extends GameEntity{
 		
 	}
 	
-	
-
+	void build(World world) {
+		
+		 partBuilder = entity.createPartBuilder() ;
+	     partBuilder.setShape(polyline) ;
+	     partBuilder.setFriction(0.5f) ;
+	     partBuilder.build() ;
+	     image.setParent(entity);
+	}
 }

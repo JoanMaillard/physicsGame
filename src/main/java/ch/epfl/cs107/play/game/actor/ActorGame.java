@@ -60,17 +60,13 @@ public abstract class ActorGame implements Game {
     	
     	// Update expected viewport center
     	if (viewCandidate != null) {
-    	viewTarget =
-    	viewCandidate.getPosition().add(viewCandidate.getVelocity ()
-    	.mul(VIEW_TARGET_VELOCITY_COMPENSATION)) ;
+    	viewTarget = viewCandidate.getPosition().add(viewCandidate.getVelocity ().mul(VIEW_TARGET_VELOCITY_COMPENSATION)) ;
     	}
     	// Interpolate with previous location
-    	float ratio = (float)Math.pow(VIEW_INTERPOLATION_RATIO_PER_SECOND ,
-    	deltaTime) ;
+    	float ratio = (float)Math.pow(VIEW_INTERPOLATION_RATIO_PER_SECOND , deltaTime) ;
     	viewCenter = viewCenter.mixed(viewTarget , ratio) ;
     	// Compute new viewport
-    	Transform viewTransform =
-    	Transform.I.scaled(VIEW_SCALE).translated(viewCenter) ;
+    	Transform viewTransform = Transform.I.scaled(VIEW_SCALE).translated(viewCenter) ;
     	window.setRelativeTransform(viewTransform) ;
     }
 

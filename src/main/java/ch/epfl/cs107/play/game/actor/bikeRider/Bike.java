@@ -8,7 +8,6 @@ import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
@@ -18,10 +17,9 @@ public class Bike extends GameEntity implements Actor{
 	
     public static final float MAX_WHEEL_SPEED = 20f;
     public static boolean right = true;
-    private static Entity entity;
-    private Wheel leftWheel;
-    private Wheel rightWheel;
-    private Vector offset;
+    static Entity entity;
+    private static Wheel leftWheel;
+    private static Wheel rightWheel;
     private Vector wheelAxis;
     private World world;
 	
@@ -31,7 +29,7 @@ public class Bike extends GameEntity implements Actor{
 	super(game, fixed);
 	this.world = world;
         entity = super.getEntity();
-	build();
+        build();
         buildWheels(game, fixed, new Vector(0.0f, 0.0f));
     }
 	
@@ -39,13 +37,10 @@ public class Bike extends GameEntity implements Actor{
 	super(game, fixed, position);
         entity = super.getEntity();
         this.world = world;
-        offset = new Vector(0.0f, 0.0f); // A revoir
-        wheelAxis = new Vector(0.0f, 1.0f); // A revoir
+        new Vector(0.0f, 0.0f);
         build();
         buildWheels(game, fixed, position);
         setMotorisedWheel(right);
-        leftWheel.attach(entity, position.add(offset), wheelAxis, world);
-        rightWheel.attach(entity, position.add(offset), wheelAxis, world);
     }
 
     private void build() {
@@ -64,9 +59,9 @@ public class Bike extends GameEntity implements Actor{
     }
         // TODO: change left and right wheel positions compared to bike frame (by changing the added vectors)
     private void buildWheels(ActorGame game, boolean fixed, Vector position) {
-        leftWheel = new Wheel(game, fixed, position.add(offset));
+        leftWheel = new Wheel(game, fixed, position.add(new Vector(-2f, 5f)), true);
         leftWheel.build(world);
-        rightWheel = new Wheel(game, fixed, position.add(offset));
+        rightWheel = new Wheel(game, fixed, position.add(new Vector(2f, 5f)), false);
         rightWheel.build(world);
     }
     
@@ -90,9 +85,11 @@ public class Bike extends GameEntity implements Actor{
     	
     	//brake
     	if (window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
-        		Wheel.stop = true;
+        		Wheel.stop = true; }
+        		else {Wheel.stop = false;}
     		
-    	}
+    	leftWheel.go(window);
+    	rightWheel.go(window);
     	
     	//rotate
     	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {

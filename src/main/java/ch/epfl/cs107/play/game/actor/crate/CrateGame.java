@@ -11,8 +11,7 @@ public class CrateGame extends ActorGame{
     private Crate crate2;
     private Crate crate3;
     private Window canvasWindow;
-	
-    @Override
+
     public boolean begin(Window window, FileSystem fileSystem) {
         if (super.begin(window, fileSystem)) {
             crate1 = new Crate(this, false, new Vector(0.0f, 5.0f));
@@ -26,8 +25,6 @@ public class CrateGame extends ActorGame{
         }
     }    
 
-    // This event is called at each frame
-    @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
         crate1.draw(canvasWindow);
@@ -35,7 +32,6 @@ public class CrateGame extends ActorGame{
         crate3.draw(canvasWindow);
     }
 
-    @Override
     public void end() {
 
     }

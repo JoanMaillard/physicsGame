@@ -45,16 +45,6 @@ public class Crate extends GameEntity{
         pB.build();
     }
 
-    @Override
-    public Transform getTransform() {
-        return entity.getTransform();
-    }
-
-    @Override
-    public Vector getVelocity() {
-        return entity.getVelocity();    
-    }
-
     public void draw(Canvas canvas) {
         image.draw(canvas);
     }

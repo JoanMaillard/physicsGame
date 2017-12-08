@@ -10,15 +10,11 @@ import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Entity;
-import ch.epfl.cs107.play.math.EntityBuilder;
 import ch.epfl.cs107.play.math.PartBuilder;
-import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.WheelConstraintBuilder;
 import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
-import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
 
 public class Wheel extends GameEntity implements Actor {
@@ -29,20 +25,21 @@ public class Wheel extends GameEntity implements Actor {
 	static boolean stop = false;
 	WheelConstraintBuilder constraintBuilder;
 	private Entity entity;
-	private World world;
-	private Circle circle = new Circle(0.05f);
+	private Circle circle = new Circle(1f);
 	private ImageGraphics image1 = new ImageGraphics("explosive.11.png", 1f , 1f , new Vector(0.5f, 0.5f)) ;
 	private ShapeGraphics image = new ShapeGraphics(circle , Color.RED , Color.BLUE ,	0.01f, 1f, 0);
 
 	
-	public Wheel(ActorGame game, boolean fixed, Vector position) {
+	public Wheel(ActorGame game, boolean fixed, Vector position, boolean left) {
         super(game, fixed, position);
         entity = super.getEntity();
+        this.left = left;
     }
     
-    public Wheel(ActorGame game, boolean fixed){
+    public Wheel(ActorGame game, boolean fixed, boolean left){
         super(game, fixed);
         entity = super.getEntity();
+        this.left = left;
     }
     
 	public void attach(Entity vehicle , Vector anchor , Vector axis, World world) {
@@ -74,32 +71,27 @@ public class Wheel extends GameEntity implements Actor {
 	     partBuilder.setShape(circle) ;
 	     partBuilder.setFriction(0.5f) ;
 	     partBuilder.build() ;
-
-		
-		if (Bike.right == true) {
-			motorized = left;
-			attach(entity , new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f), world) ;
-		}
-		else {
-			motorized = !left;
-			attach(entity , new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f), world) ;
-		}
-		
-		
+	     image1.setParent(entity);
 	}
 	
 	void go(Window window) {
 		
-		if(motorized && window.getKeyboard().get(KeyEvent.VK_UP).isDown()) {
-			if(Bike.right && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
-    		entity.applyAngularForce(10.0f) ;
+		if (!stop) {
+		
+		if(left && Bike.right) {
+			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
+    		entity.applyAngularForce(-10.0f) ;
     		}
-			if (!Bike.right && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
-    			entity.applyAngularForce(-10.0f) ;
+			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
+    			entity.applyAngularForce(10.0f) ;
     		}
 		}
+	} else 
+	{
+		entity.setAngularPosition(0f);
+		
 	}
-	
+	}
 	
 	public void power(float speed) {}
 	
@@ -109,19 +101,6 @@ public class Wheel extends GameEntity implements Actor {
 	
 	public float getSpeed () {
 		return 0;}
-	
-
-	@Override
-	public Transform getTransform() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Vector getVelocity() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void draw(Canvas canvas) {
