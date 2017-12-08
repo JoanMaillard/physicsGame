@@ -21,7 +21,6 @@ public class Wheel extends GameEntity implements Actor {
 	
 	private PartBuilder partBuilder;
 	private boolean left;
-	private boolean motorized;
 	static boolean stop = false;
 	WheelConstraintBuilder constraintBuilder;
 	private Entity entity;
@@ -71,7 +70,7 @@ public class Wheel extends GameEntity implements Actor {
 	     partBuilder.setShape(circle) ;
 	     partBuilder.setFriction(0.5f) ;
 	     partBuilder.build() ;
-	     image1.setParent(entity);
+	     image.setParent(entity);
 	}
 	
 	void go(Window window) {
@@ -79,12 +78,18 @@ public class Wheel extends GameEntity implements Actor {
 		if (!stop) {
 		
 		if(left && Bike.right) {
+			
 			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
-    		entity.applyAngularForce(-10.0f) ;
+    		entity.applyAngularForce(-100.0f) ;
+    		System.out.println("left go right");
     		}
+		}
+			
+		if(!left && !Bike.right) {
 			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
-    			entity.applyAngularForce(10.0f) ;
-    		}
+	    	entity.applyAngularForce(100.0f) ;
+	    	System.out.println("right go left");
+	    	}
 		}
 	} else 
 	{
@@ -104,14 +109,8 @@ public class Wheel extends GameEntity implements Actor {
 
 	@Override
 	public void draw(Canvas canvas) {
-		image1.draw(canvas);
+		image.draw(canvas);
 	}
-
-	public void setMotorized(boolean motor) {
-		
-		motorized = motor;
-	}
-
 	
 
 }

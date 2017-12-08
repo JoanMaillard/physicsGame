@@ -1,10 +1,12 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
+import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
@@ -16,12 +18,12 @@ import ch.epfl.cs107.play.window.Window;
 public class Bike extends GameEntity implements Actor{
 	
     public static final float MAX_WHEEL_SPEED = 20f;
-    public static boolean right = true;
+    public static boolean right;
     static Entity entity;
     private static Wheel leftWheel;
     private static Wheel rightWheel;
-    private Vector wheelAxis;
     private World world;
+    private ShapeGraphics image;
 	
 	
 	
@@ -40,7 +42,6 @@ public class Bike extends GameEntity implements Actor{
         new Vector(0.0f, 0.0f);
         build();
         buildWheels(game, fixed, position);
-        setMotorisedWheel(right);
     }
 
     private void build() {
@@ -56,6 +57,9 @@ public class Bike extends GameEntity implements Actor{
         partBuilder.setShape(polygon);
         partBuilder.setFriction(0.8f);
         partBuilder.build();
+        image = new ShapeGraphics(polygon, Color.RED, Color.BLUE, 0.01f);
+	     image.setParent(entity);
+        
     }
         // TODO: change left and right wheel positions compared to bike frame (by changing the added vectors)
     private void buildWheels(ActorGame game, boolean fixed, Vector position) {
@@ -65,22 +69,12 @@ public class Bike extends GameEntity implements Actor{
         rightWheel.build(world);
     }
     
-    private void setMotorisedWheel(boolean right) {
-        if (right){
-            leftWheel.setMotorized(true);
-            rightWheel.setMotorized(false);
-        }
-        else {
-            leftWheel.setMotorized(false);
-            rightWheel.setMotorized(true);
-        }
-    }
-    
     static void controls(Window window) {
     	
     	//turn
     	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isDown()) {
-    		right = !right;
+    		if (right) {right = false;}
+    		else {right = true;}
     	}
     	
     	//brake
@@ -104,6 +98,7 @@ public class Bike extends GameEntity implements Actor{
     public void draw(Canvas canvas) {
         // TOFINISH (need bike's graphics)
         // shapeGraphicsBike.draw(canvas);
+    	image.draw(canvas);
         leftWheel.draw(canvas);
         rightWheel.draw(canvas);
     }
