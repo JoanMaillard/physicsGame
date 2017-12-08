@@ -1,6 +1,7 @@
 package ch.epfl.cs107.play.game.actor;
 
 import ch.epfl.cs107.play.game.Game;
+import ch.epfl.cs107.play.game.actor.bikeRider.Bike;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Positionable;
 import ch.epfl.cs107.play.math.Transform;
@@ -60,8 +61,8 @@ public abstract class ActorGame implements Game {
     	window.setRelativeTransform(Transform.I.scaled(10.0f)) ;
     	
     	// Update expected viewport center
-    	if (viewCandidate != null) {
-    	viewTarget = viewCandidate.getPosition().add(viewCandidate.getVelocity ().mul(VIEW_TARGET_VELOCITY_COMPENSATION)) ;
+    	if (Bike.entity != null) {
+    	viewTarget = Bike.entity.getPosition().add(Bike.entity.getVelocity ().mul(VIEW_TARGET_VELOCITY_COMPENSATION)) ;
     	}
     	// Interpolate with previous location
     	float ratio = (float)Math.pow(VIEW_INTERPOLATION_RATIO_PER_SECOND , deltaTime) ;

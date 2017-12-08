@@ -38,7 +38,7 @@ public class Terrain extends GameEntity{
 						65.0f, 0.0f,
 						6500.0f, -1000.0f
 						);
-		image = new ShapeGraphics(polyline , Color.DARK_GRAY , Color.GREEN ,0.5f, 1f, 0);
+		image = new ShapeGraphics(polyline , new Color(2, 106, 53) , Color.GREEN ,0.5f, 1f, 0);
 		
 		build(world);
 	}

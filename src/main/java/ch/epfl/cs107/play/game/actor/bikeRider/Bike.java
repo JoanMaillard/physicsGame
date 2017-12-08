@@ -12,6 +12,7 @@ import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Polyline;
+import ch.epfl.cs107.play.math.Shape;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
@@ -21,7 +22,7 @@ public class Bike extends GameEntity implements Actor{
 	
     public static final float MAX_WHEEL_SPEED = 20f;
     public static boolean right = true;
-    static Entity entity;
+    public static Entity entity;
     private static Wheel leftWheel;
     private static Wheel rightWheel;
     private ShapeGraphics image;
@@ -72,6 +73,10 @@ public class Bike extends GameEntity implements Actor{
 	    Polyline arm = new Polyline(getSleeveLocation (), getHandLocation ());
 	    Polyline shoulder = new Polyline(getShoulderLocation (), getSleeveLocation ());
 	    Polyline body = new Polyline(getShoulderLocation (), getWaistLocation ());
+	    Polyline leftLegUp = new Polyline(getWaistLocation (), getLeftKneeLocation ());
+	    Polyline leftLegDown = new Polyline(getLeftKneeLocation (), getLeftFootLocation ());
+	    Polyline rightLegUp = new Polyline(getWaistLocation (), getRightKneeLocation ());
+	    Polyline rightLegDown = new Polyline(getRightKneeLocation (), getRightFootLocation ());
 	    	
 	    headImage = new ShapeGraphics(head, Color.PINK, Color.DARK_GRAY, 0);
 	    headImage.setParent(entity);
@@ -79,15 +84,15 @@ public class Bike extends GameEntity implements Actor{
 	    armImage.setParent(entity);
 	    shoulderImage = new ShapeGraphics(shoulder, Color.BLUE, Color.BLUE, 0.15f);
 	    shoulderImage.setParent(entity);
-	    bodyImage = new ShapeGraphics(body, Color.BLUE, Color.BLUE, 0.15f);
+	    bodyImage = new ShapeGraphics(body, Color.BLUE, Color.BLUE, 0.3f);
 	    bodyImage.setParent(entity);
-	    leftLegUpImage = new ShapeGraphics(leftLegUp, Color.BLUE, Color.BLUE, 0.15f);
+	    leftLegUpImage = new ShapeGraphics(leftLegUp, Color.DARK_GRAY, Color.DARK_GRAY, 0.25f);
 	    leftLegUpImage.setParent(entity);
-	    leftLegDownImage = new ShapeGraphics(leftLegDown, Color.BLUE, Color.BLUE, 0.15f);
+	    leftLegDownImage = new ShapeGraphics(leftLegDown, Color.DARK_GRAY, Color.DARK_GRAY, 0.25f);
 	    leftLegDownImage.setParent(entity);
-	    rightLegUpImage = new ShapeGraphics(rightLegUp, Color.BLUE, Color.BLUE, 0.15f);
+	    rightLegUpImage = new ShapeGraphics(rightLegUp, Color.GRAY, Color.GRAY, 0.25f);
 	    rightLegUpImage.setParent(entity);
-	    rightLegDownImage = new ShapeGraphics(rightLegDown, Color.BLUE, Color.BLUE, 0.15f);
+	    rightLegDownImage = new ShapeGraphics(rightLegDown, Color.GRAY, Color.GRAY, 0.25f);
 	    rightLegDownImage.setParent(entity);
         
     }
@@ -145,23 +150,23 @@ public class Bike extends GameEntity implements Actor{
     }
     
     private Vector getWaistLocation () {
-    return new Vector (-0.3f, 0.6f) ;
+    return new Vector (-0.5f, 0.8f) ;
     }
     
     private Vector getLeftKneeLocation () {
-        return new Vector (-0.3f, 0.6f) ;
+        return new Vector (0.3f, 0.5f) ;
         }
     
-    private Vector geRightKneeLocation () {
-        return new Vector (-0.3f, 0.6f) ;
+    private Vector getRightKneeLocation () {
+        return new Vector (0.2f, 0.2f) ;
         }
     
     private Vector getLeftFootLocation () {
-        return new Vector (-0.3f, 0.6f) ;
+        return new Vector (-0.3f, 0f) ;
         }
     
     private Vector getRightFootLocation () {
-        return new Vector (-0.3f, 0.6f) ;
+        return new Vector (0f, -0.2f) ;
         }
 
     public void draw(Canvas canvas) {
@@ -170,7 +175,10 @@ public class Bike extends GameEntity implements Actor{
     	armImage.draw(canvas);
     	shoulderImage.draw(canvas);
     	bodyImage.draw(canvas);
-    	//image.draw(canvas);
+    	leftLegUpImage.draw(canvas);
+    	leftLegDownImage.draw(canvas);
+    	rightLegUpImage.draw(canvas);
+    	rightLegDownImage.draw(canvas);
         leftWheel.draw(canvas);
         rightWheel.draw(canvas);
     }
