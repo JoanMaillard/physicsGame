@@ -44,7 +44,7 @@ public class BikeGame extends ActorGame{
     public void update(float deltaTime) {
     	sky.draw(canvasWindow);
     	super.update(deltaTime);
-    	Bike.controls(canvasWindow);
+    	bike.controls(canvasWindow);
     	terrain.draw(canvasWindow);
         bike.draw(canvasWindow);
     }

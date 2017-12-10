@@ -34,6 +34,14 @@ public class Bike extends GameEntity implements Actor{
 	private ShapeGraphics leftLegDownImage;
 	private ShapeGraphics rightLegUpImage;
 	private ShapeGraphics rightLegDownImage;
+	private Circle head = new Circle (0.2f, getHeadLocation ());
+	private Polyline arm = new Polyline(getSleeveLocation (), getHandLocation ());
+	private Polyline shoulder = new Polyline(getShoulderLocation (), getSleeveLocation ());
+	private Polyline body = new Polyline(getShoulderLocation (), getWaistLocation ());
+	private Polyline leftLegUp = new Polyline(getWaistLocation (), getLeftKneeLocation ());
+	private Polyline leftLegDown = new Polyline(getLeftKneeLocation (), getLeftFootLocation ());
+	private Polyline rightLegUp = new Polyline(getWaistLocation (), getRightKneeLocation ());
+	private Polyline rightLegDown = new Polyline(getRightKneeLocation (), getRightFootLocation ());
 	
 	
 	
@@ -67,34 +75,8 @@ public class Bike extends GameEntity implements Actor{
         partBuilder.build();
         image = new ShapeGraphics(polygon, Color.RED, Color.BLUE, 0.01f);
 	    image.setParent(entity);
-	     
-	    // Draw bodyparts
-	    Circle head = new Circle (0.2f, getHeadLocation ());
-	    Polyline arm = new Polyline(getSleeveLocation (), getHandLocation ());
-	    Polyline shoulder = new Polyline(getShoulderLocation (), getSleeveLocation ());
-	    Polyline body = new Polyline(getShoulderLocation (), getWaistLocation ());
-	    Polyline leftLegUp = new Polyline(getWaistLocation (), getLeftKneeLocation ());
-	    Polyline leftLegDown = new Polyline(getLeftKneeLocation (), getLeftFootLocation ());
-	    Polyline rightLegUp = new Polyline(getWaistLocation (), getRightKneeLocation ());
-	    Polyline rightLegDown = new Polyline(getRightKneeLocation (), getRightFootLocation ());
-	    	
-	    headImage = new ShapeGraphics(head, Color.PINK, Color.DARK_GRAY, 0);
-	    headImage.setParent(entity);
-	    armImage = new ShapeGraphics(arm, Color.PINK, Color.PINK, 0.15f);
-	    armImage.setParent(entity);
-	    shoulderImage = new ShapeGraphics(shoulder, Color.BLUE, Color.BLUE, 0.15f);
-	    shoulderImage.setParent(entity);
-	    bodyImage = new ShapeGraphics(body, Color.BLUE, Color.BLUE, 0.3f);
-	    bodyImage.setParent(entity);
-	    leftLegUpImage = new ShapeGraphics(leftLegUp, Color.DARK_GRAY, Color.DARK_GRAY, 0.25f);
-	    leftLegUpImage.setParent(entity);
-	    leftLegDownImage = new ShapeGraphics(leftLegDown, Color.DARK_GRAY, Color.DARK_GRAY, 0.25f);
-	    leftLegDownImage.setParent(entity);
-	    rightLegUpImage = new ShapeGraphics(rightLegUp, Color.GRAY, Color.GRAY, 0.25f);
-	    rightLegUpImage.setParent(entity);
-	    rightLegDownImage = new ShapeGraphics(rightLegDown, Color.GRAY, Color.GRAY, 0.25f);
-	    rightLegDownImage.setParent(entity);
-        
+	   
+        drawBody();
     }
 
     private void buildWheels(ActorGame game, boolean fixed, Vector position, World world) {
@@ -106,12 +88,13 @@ public class Bike extends GameEntity implements Actor{
         rightWheel.attach(entity, new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f), world);
     }
     
-    static void controls(Window window) {
+    void controls(Window window) {
     	
     	//turn
     	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isDown()) {
-    		if (right) {right = false;}
-    		else {right = true;}
+    		
+    		right = !right;
+    		drawBody();
     	}
     	
     	//brake
@@ -134,39 +117,75 @@ public class Bike extends GameEntity implements Actor{
     
     // Head location , in local coordinates
     private Vector getHeadLocation () {
-    return new Vector (0.0f, 1.75f) ;
+    	if (right) {
+    return new Vector (0f, 1.75f) ;
+    	} else {
+    		return new Vector (0f, 1.75f) ;
+    	}
     }
     
     private Vector getSleeveLocation () {
+    	if (right) {
     return new Vector (0.25f, 1.2f) ;
+    } else {
+		return new Vector (-0.25f, 1.2f) ;
+	}
     }
     
     private Vector getShoulderLocation () {
-    return new Vector (0.0f, 1.4f) ;
+    	if (right) {
+    return new Vector (0f, 1.4f) ;
+    } else {
+		return new Vector (0f, 1.4f) ;
+	}
     }
     
     private Vector getHandLocation () {
+    	if (right) {
     return new Vector (0.5f, 1f) ;
+    } else {
+		return new Vector (-0.5f, 1f) ;
+	}
     }
     
     private Vector getWaistLocation () {
+    	if (right) {
     return new Vector (-0.5f, 0.8f) ;
+    } else {
+		return new Vector (0.5f, 0.8f) ;
+	}
     }
     
     private Vector getLeftKneeLocation () {
+    	if (right) {
         return new Vector (0.3f, 0.5f) ;
+    } else {
+		return new Vector (-0.3f, 0.5f) ;
+	}
         }
     
     private Vector getRightKneeLocation () {
+    	if (right) {
         return new Vector (0.2f, 0.2f) ;
+    } else {
+		return new Vector (-0.2f, 0.2f) ;
+	}
         }
     
     private Vector getLeftFootLocation () {
+    	if (right) {
         return new Vector (-0.3f, 0f) ;
+    } else {
+		return new Vector (0.3f, 0f) ;
+	}
         }
     
     private Vector getRightFootLocation () {
+    	if (right) {
         return new Vector (0f, -0.2f) ;
+    } else {
+		return new Vector (0f, -0.2f) ;
+	}
         }
 
     public void draw(Canvas canvas) {
@@ -181,5 +200,36 @@ public class Bike extends GameEntity implements Actor{
     	rightLegDownImage.draw(canvas);
         leftWheel.draw(canvas);
         rightWheel.draw(canvas);
+        System.out.println("right : " + right);
+    }
+    
+    private void drawBody()
+    {
+    	 // Draw bodyparts
+	    head = new Circle (0.2f, getHeadLocation ());
+	    arm = new Polyline(getSleeveLocation (), getHandLocation ());
+	    shoulder = new Polyline(getShoulderLocation (), getSleeveLocation ());
+	    body = new Polyline(getShoulderLocation (), getWaistLocation ());
+	    leftLegUp = new Polyline(getWaistLocation (), getLeftKneeLocation ());
+	    leftLegDown = new Polyline(getLeftKneeLocation (), getLeftFootLocation ());
+	    rightLegUp = new Polyline(getWaistLocation (), getRightKneeLocation ());
+	    rightLegDown = new Polyline(getRightKneeLocation (), getRightFootLocation ());
+	    	
+	    headImage = new ShapeGraphics(head, Color.PINK, Color.DARK_GRAY, 0);
+	    headImage.setParent(entity);
+	    armImage = new ShapeGraphics(arm, Color.PINK, Color.PINK, 0.15f);
+	    armImage.setParent(entity);
+	    shoulderImage = new ShapeGraphics(shoulder, Color.BLUE, Color.BLUE, 0.15f);
+	    shoulderImage.setParent(entity);
+	    bodyImage = new ShapeGraphics(body, Color.BLUE, Color.BLUE, 0.3f);
+	    bodyImage.setParent(entity);
+	    leftLegUpImage = new ShapeGraphics(leftLegUp, Color.DARK_GRAY, Color.DARK_GRAY, 0.25f);
+	    leftLegUpImage.setParent(entity);
+	    leftLegDownImage = new ShapeGraphics(leftLegDown, Color.DARK_GRAY, Color.DARK_GRAY, 0.25f);
+	    leftLegDownImage.setParent(entity);
+	    rightLegUpImage = new ShapeGraphics(rightLegUp, Color.GRAY, Color.GRAY, 0.25f);
+	    rightLegUpImage.setParent(entity);
+	    rightLegDownImage = new ShapeGraphics(rightLegDown, Color.GRAY, Color.GRAY, 0.25f);
+	    rightLegDownImage.setParent(entity);
     }
 }
