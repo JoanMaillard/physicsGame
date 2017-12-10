@@ -8,6 +8,8 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Circle;
+import ch.epfl.cs107.play.math.Contact;
+import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
@@ -22,6 +24,7 @@ public class Bike extends GameEntity implements Actor{
 	
     public static final float MAX_WHEEL_SPEED = 20f;
     public static boolean right = true;
+    private boolean hit;
     public static Entity entity;
     private static Wheel leftWheel;
     private static Wheel rightWheel;
@@ -231,5 +234,23 @@ public class Bike extends GameEntity implements Actor{
 	    rightLegUpImage.setParent(entity);
 	    rightLegDownImage = new ShapeGraphics(rightLegDown, Color.GRAY, Color.GRAY, 0.25f);
 	    rightLegDownImage.setParent(entity);
+    }
+    
+    private void contactListener() {
+    
+    	ContactListener listener = new ContactListener () {
+    	@Override
+    	public void beginContact(Contact contact) {
+    	if (contact.getOther ().isGhost ())
+    	//return ;
+    	// si contact avec les roues :
+    	//return ;
+    	hit = true ;
+    	}
+    	
+    	@Override
+    	public void endContact(Contact contact) {}
+    	} ;
+    	//addContactListener() ;
     }
 }
