@@ -66,35 +66,35 @@ public class Wheel extends GameEntity implements Actor {
 	
 	void build(World world) {
 		
-		 partBuilder = entity.createPartBuilder() ;
-	     partBuilder.setShape(circle) ;
-	     partBuilder.setFriction(0.5f) ;
-	     partBuilder.build() ;
-	     image1.setParent(entity);
+            partBuilder = entity.createPartBuilder() ;
+	    partBuilder.setShape(circle) ;
+	    partBuilder.setFriction(10000.0f) ;
+	    partBuilder.build() ;
+	    image1.setParent(entity);
 	}
 	
 	void go(Window window) {
-		
-		if (!stop) {
-		
 		if(left && Bike.right) {
-			
-			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
-    		entity.applyAngularForce(-10.0f) ;
-    		}
+                    if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
+                        entity.applyAngularForce(-10.0f) ;
+                    }
+                    
+                    
 		}
-			
 		if(!left && !Bike.right) {
-			if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
-	    	entity.applyAngularForce(10.0f) ;
-	    	}
-		}
-	} else 
-	{
-		entity.setAngularPosition(0f);
-		
-	}
-	}
+                    if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
+                        entity.applyAngularForce(10.0f);
+                    }
+                }
+                if(window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
+                    if (getSpeed() < 0.0f) {
+                        entity.applyAngularForce(10.0f);
+                    }
+                    if (getSpeed() > 0.0f) {
+                        entity.applyAngularForce(-10.0f);
+                    }
+                }
+        }
 	
 	public void power(float speed) {}
 	
@@ -103,10 +103,11 @@ public class Wheel extends GameEntity implements Actor {
 	public void detach () {}
 	
 	public float getSpeed () {
-		return 0;}
+            return entity.getAngularVelocity();
+        }
 
 	@Override
 	public void draw(Canvas canvas) {
-		image1.draw(canvas);
+            image1.draw(canvas);
 	}	
 }

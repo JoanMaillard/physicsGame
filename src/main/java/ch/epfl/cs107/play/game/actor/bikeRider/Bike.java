@@ -31,20 +31,20 @@ public class Bike extends GameEntity implements Actor{
     private ShapeGraphics image;
     private ShapeGraphics headImage;
     private ShapeGraphics armImage;
-	private ShapeGraphics bodyImage;
-	private ShapeGraphics shoulderImage;
-	private ShapeGraphics leftLegUpImage;
-	private ShapeGraphics leftLegDownImage;
-	private ShapeGraphics rightLegUpImage;
-	private ShapeGraphics rightLegDownImage;
-	private Circle head = new Circle (0.2f, getHeadLocation ());
-	private Polyline arm = new Polyline(getSleeveLocation (), getHandLocation ());
-	private Polyline shoulder = new Polyline(getShoulderLocation (), getSleeveLocation ());
-	private Polyline body = new Polyline(getShoulderLocation (), getWaistLocation ());
-	private Polyline leftLegUp = new Polyline(getWaistLocation (), getLeftKneeLocation ());
-	private Polyline leftLegDown = new Polyline(getLeftKneeLocation (), getLeftFootLocation ());
-	private Polyline rightLegUp = new Polyline(getWaistLocation (), getRightKneeLocation ());
-	private Polyline rightLegDown = new Polyline(getRightKneeLocation (), getRightFootLocation ());
+    private ShapeGraphics bodyImage;
+    private ShapeGraphics shoulderImage;
+    private ShapeGraphics leftLegUpImage;
+    private ShapeGraphics leftLegDownImage;
+    private ShapeGraphics rightLegUpImage;
+    private ShapeGraphics rightLegDownImage;
+    private Circle head = new Circle (0.2f, getHeadLocation ());
+    private Polyline arm = new Polyline(getSleeveLocation (), getHandLocation ());
+    private Polyline shoulder = new Polyline(getShoulderLocation (), getSleeveLocation ());
+    private Polyline body = new Polyline(getShoulderLocation (), getWaistLocation ());
+    private Polyline leftLegUp = new Polyline(getWaistLocation (), getLeftKneeLocation ());
+    private Polyline leftLegDown = new Polyline(getLeftKneeLocation (), getLeftFootLocation ());
+    private Polyline rightLegUp = new Polyline(getWaistLocation (), getRightKneeLocation ());
+    private Polyline rightLegDown = new Polyline(getRightKneeLocation (), getRightFootLocation ());
 	
 	
 	
@@ -53,6 +53,7 @@ public class Bike extends GameEntity implements Actor{
         entity = super.getEntity();
         build();
         buildWheels(game, fixed, new Vector(0.0f, 0.0f), world);
+        //hasAlreadyTurned = false;
     }
 	
     public Bike(ActorGame game, boolean fixed, Vector position, World world) {
@@ -61,6 +62,7 @@ public class Bike extends GameEntity implements Actor{
         new Vector(0.0f, 0.0f);
         build();
         buildWheels(game, fixed, position, world);
+        //hasAlreadyTurned = false;
     }
 
     private void build() {
@@ -94,17 +96,17 @@ public class Bike extends GameEntity implements Actor{
     void controls(Window window) {
     	
     	//turn
-    	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isDown()) {
+    	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()) {
     		
     		right = !right;
     		drawBody();
+                
     	}
+        
+        /*if (hasAlreadyTurned && window.getKeyboard().get(KeyEvent.VK_SPACE).)) {
+            hasAlreadyTurned = false;
+        }*/
     	
-    	//brake
-    	if (window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
-        		Wheel.stop = true; }
-        		else {Wheel.stop = false;}
-    		
     	leftWheel.go(window);
     	rightWheel.go(window);
     	
@@ -203,7 +205,6 @@ public class Bike extends GameEntity implements Actor{
     	rightLegDownImage.draw(canvas);
         leftWheel.draw(canvas);
         rightWheel.draw(canvas);
-        System.out.println("right : " + right);
     }
     
     private void drawBody()
