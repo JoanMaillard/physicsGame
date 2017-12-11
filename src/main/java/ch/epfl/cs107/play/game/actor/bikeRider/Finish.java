@@ -3,6 +3,7 @@ package ch.epfl.cs107.play.game.actor.bikeRider;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
+import ch.epfl.cs107.play.math.BasicContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
@@ -14,12 +15,15 @@ public class Finish extends GameEntity{
 	private PartBuilder partBuilder;
 	private Entity entity;
 	private ImageGraphics image= new ImageGraphics("flag.red.png", 1, 1);
+	private BasicContactListener contactListener ;
 
 	public Finish(ActorGame game, boolean fixed) {
-		super(game, fixed);
+		super(game, fixed, new Vector(65f, 0.3f));
 		entity = super.getEntity();
 		buildParts();
 		image.setParent(entity);
+		contactListener = new BasicContactListener () ;
+	    entity.addContactListener(contactListener) ;
 		
 	}
 	
@@ -28,6 +32,8 @@ public class Finish extends GameEntity{
 		entity = super.getEntity();
 		buildParts();
 		image.setParent(entity);
+		contactListener = new BasicContactListener () ;
+	    entity.addContactListener(contactListener) ;
 		
 	}
 
@@ -40,10 +46,13 @@ public class Finish extends GameEntity{
             new Vector(1.0f, 0f)
         );
         partBuilder.setShape(polygon);
+        partBuilder.setGhost(true);
         partBuilder.build();
     }
 
     public void draw(Canvas canvas) {
         image.draw(canvas);
     }
+    
+    
 }
