@@ -41,7 +41,7 @@ public class Car extends GameEntity implements Actor{
 	
 	
 	
-    public Car(ActorGame game, boolean fixed, World world) {
+    public Car(ActorGame game, boolean fixed) {
 	super(game, fixed);
         entity = super.getEntity();
         build();
@@ -49,7 +49,7 @@ public class Car extends GameEntity implements Actor{
         //hasAlreadyTurned = false;
     }
 	
-    public Car(ActorGame game, boolean fixed, Vector position, World world) {
+    public Car(ActorGame game, boolean fixed, Vector position) {
 	super(game, fixed, position);
         entity = super.getEntity();
         new Vector(0.0f, 0.0f);
@@ -68,15 +68,6 @@ public class Car extends GameEntity implements Actor{
 	    hitBox.setParent(entity);
     }
 
-<<<<<<< HEAD
-    private void buildWheels(ActorGame game, boolean fixed, Vector position, World world) {
-        leftWheel = new Wheel(game, fixed, position.add(new Vector(-3f, 0f)), true);
-        leftWheel.build(world);
-        leftWheel.attach(entity, new Vector (-3f, 0f), new Vector (-0.5f, -1.0f), world);
-        rightWheel = new Wheel(game, fixed, position.add(new Vector(3f, 0f)), false);
-        rightWheel.build(world);
-        rightWheel.attach(entity, new Vector (3f, 0f), new Vector (0.5f, -1.0f), world);
-=======
     private void buildWheels(ActorGame game, boolean fixed, Vector position) {
         leftWheel = new Wheel(game, fixed, position.add(new Vector(-2.5f, -1f)), true);
         leftWheel.build();
@@ -84,7 +75,6 @@ public class Car extends GameEntity implements Actor{
         rightWheel = new Wheel(game, fixed, position.add(new Vector(2.5f, -1f)), false);
         rightWheel.build();
         rightWheel.attach(entity, new Vector (2.5f, -1f), new Vector (0.5f, -1.0f));
->>>>>>> 9ce271092b9808a759037761e08f8f385eea72c8
     }
     
     void controls(Window window) {
@@ -96,8 +86,8 @@ public class Car extends GameEntity implements Actor{
                 
     	}
     	
-    	leftWheel.goBean(window);
-    	rightWheel.goBean(window);
+    	leftWheel.go(window);
+    	rightWheel.go(window);
     	
     	//rotate
     	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
