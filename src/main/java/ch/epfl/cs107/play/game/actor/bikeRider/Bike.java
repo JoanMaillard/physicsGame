@@ -79,12 +79,15 @@ public class Bike extends GameEntity implements Actor{
     }
 
     private void buildWheels(ActorGame game, boolean fixed, Vector position) {
+        getOwner().getEntitiesList().add(this);
         leftWheel = new Wheel(game, fixed, position.add(new Vector(-1.0f, 0.f)), true);
         leftWheel.build();
         leftWheel.attach(entity, new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f));
+        getOwner().getEntitiesList().add(leftWheel);
         rightWheel = new Wheel(game, fixed, position.add(new Vector(1.0f, 0.f)), false);
         rightWheel.build();
         rightWheel.attach(entity, new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f));
+        getOwner().getEntitiesList().add(rightWheel);
     }
     
     void controls(Window window) {
@@ -188,8 +191,6 @@ public class Bike extends GameEntity implements Actor{
     	leftLegDownImage.draw(canvas);
     	rightLegUpImage.draw(canvas);
     	rightLegDownImage.draw(canvas);
-        leftWheel.draw(canvas);
-        rightWheel.draw(canvas);
     }
     
     @Override
@@ -232,10 +233,10 @@ public class Bike extends GameEntity implements Actor{
     	ContactListener listener = new ContactListener () {
     	@Override
     	public void beginContact(Contact contact) {
-    	if (contact.getOther ().isGhost ()){
+    	if (contact.getOther().isGhost()){
     	return ;
         }
-    	
+    	//if (contact.getOther())
     	hit = true;
     	}
     	

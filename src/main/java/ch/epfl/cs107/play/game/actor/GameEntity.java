@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.EntityBuilder;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.window.Canvas;
 
 public abstract class GameEntity{
     //Variables
@@ -69,4 +70,7 @@ public abstract class GameEntity{
 		// TODO Auto-generated method stub
 		return null;
 	}
+        
+        public void draw(Canvas canvas) {
+        }
 }

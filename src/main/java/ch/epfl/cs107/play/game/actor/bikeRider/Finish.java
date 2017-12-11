@@ -59,7 +59,7 @@ public class Finish extends GameEntity{
         image.draw(canvas);
     }
     
-    void collision(Entity gameEntity) {
+    public String collision(Entity gameEntity) {
     	
     	if (!bikeCollision) {
             bikeCollision = contactListener.hasContactWith(gameEntity);
@@ -69,7 +69,9 @@ public class Finish extends GameEntity{
     			message.setParent(getOwner().getCanvas()) ;
     			message.setRelativeTransform(Transform.I.translated (0.0f, -1.0f)) ;
     			message.draw(getOwner().getCanvas());
+                return "win";
     	}
+        return "";
     }
     
 }

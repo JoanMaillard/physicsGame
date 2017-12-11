@@ -1,52 +1,47 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
-import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class BikeGame extends ActorGame{
 	
     private Terrain terrain;
     private Bike bike;
-    private Finish finish;
     private Window canvasWindow;
     private String endFlag = "";
+    private int level = 1;
+    private int lives = 3;
     
     @Override
     public void initializeObjects() {
-        terrain = new Terrain(this, true);
-        bike = new Bike(this, false, new Vector(0.0f, 5.0f));
-        finish = new Finish(this, true, new Vector(65f, 0.3f));
+                terrain = new Terrain(this, true, level);
+                bike = new Bike(this, false, new Vector(0.0f, 5.0f));
+                setViewCandidate(bike.getEntity());
     }
     
     @Override
     public void destroyAllObjects() {
-        terrain.destroy();
-        bike.destroy();
-        finish.destroy();
+        super.setEntitiesList(new ArrayList<>());
     }
     
     @Override
     public void drawAllObjects() {
-        terrain.draw(canvasWindow);
-        bike.draw(canvasWindow);
-        finish.draw(canvasWindow);
+        super.drawAllObjects();
     }
     
-    public GameEntity getBike() {
-        return bike;
+    public int getLevel() {
+        return level;
     }
     
     @Override
     public boolean begin(Window window, FileSystem fileSystem){
             if (super.begin(window, fileSystem)) {
                 initializeObjects();
-                setViewCandidate(bike.getEntity());
                 canvasWindow = window;
-
             return true;
         }
         else {
@@ -65,7 +60,10 @@ public class BikeGame extends ActorGame{
             super.update(deltaTime);
             drawAllObjects();
             bike.controls(canvasWindow);
-            finish.collision(bike.getEntity());
+            if (terrain.collision(bike.getEntity()).equals("win")) {
+                endFlag = "win";
+                end();
+            }
         }
     }
 
@@ -74,12 +72,26 @@ public class BikeGame extends ActorGame{
         switch (endFlag) {
             case "reset":
                 destroyAllObjects();
+                level = 1;
+                lives = 3;
                 initializeObjects();
-                setViewCandidate(bike.getEntity());
                 break;
             case "win":
+                destroyAllObjects();
+                if (level == 3) {
+                    level = 0;
+                }
+                level++;
+                initializeObjects();
                 break;
             case "lose":
+                destroyAllObjects();
+                lives--;
+                if (lives == 0) {
+                    level = 1;
+                    lives = 3;
+                }
+                initializeObjects();
                 break;
             default:
                 break;

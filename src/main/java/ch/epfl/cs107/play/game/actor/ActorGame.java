@@ -1,7 +1,6 @@
 package ch.epfl.cs107.play.game.actor;
 
 import ch.epfl.cs107.play.game.Game;
-import ch.epfl.cs107.play.game.actor.bikeRider.Bike;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Positionable;
 import ch.epfl.cs107.play.math.Transform;
@@ -10,6 +9,8 @@ import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 import ch.epfl.cs107.play.window.Window;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ActorGame implements Game {
     //Variables
@@ -18,6 +19,7 @@ public abstract class ActorGame implements Game {
     private Vector viewCenter ;
     private Vector viewTarget ;
     private Positionable viewCandidate ;
+    private List<GameEntity> listEntities = new ArrayList<>();
     private static final float VIEW_TARGET_VELOCITY_COMPENSATION = 0.2f ;
     private static final float VIEW_INTERPOLATION_RATIO_PER_SECOND = 0.1f ;
     private static final float VIEW_SCALE = 15.0f ;
@@ -30,6 +32,14 @@ public abstract class ActorGame implements Game {
         return window ;
     }
     
+    public List getEntitiesList() {
+        return listEntities;
+    }
+    
+    public void setEntitiesList(List list) {
+        listEntities = list;
+    }
+    
     public void setViewCandidate (Positionable candidate) {
         viewCandidate = candidate;
     }
@@ -40,10 +50,15 @@ public abstract class ActorGame implements Game {
 
     public void destroyAllObjects() {
     // by default, nothing to destroy
+        for (int i = 0; i < listEntities.toArray().length; i++) {
+            listEntities.get(i).destroy();
+        }
     }
     
     public void drawAllObjects() {
-    // by default, nothing to draw
+        for (int i = 0; i < listEntities.toArray().length; i++){
+            listEntities.get(i).draw(window);
+        }
     }
     
     //Game interface methods
