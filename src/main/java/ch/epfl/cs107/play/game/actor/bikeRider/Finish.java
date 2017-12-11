@@ -1,12 +1,16 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
+import java.awt.Color;
+
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
+import ch.epfl.cs107.play.game.actor.TextGraphics;
 import ch.epfl.cs107.play.math.BasicContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
+import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
@@ -57,9 +61,13 @@ public class Finish extends GameEntity{
     
     void collision() {
     	
-    	bikeCollision = contactListener.getEntities().contains(Bike.entity) ;
+    	if (!bikeCollision) {
+    	bikeCollision = contactListener.getEntities().contains(Bike.entity) ;}
     	if (bikeCollision){
-    	System.out.println("STAHP");
+    		TextGraphics message = new TextGraphics("Bravo. Wow.", 0.3f, Color.RED , Color.WHITE , 0.02f, true , false , new Vector (0.5f, 0.5f), 1.0f, 100.0f) ;
+    			message.setParent(getOwner().getCanvas()) ;
+    			message.setRelativeTransform(Transform.I.translated (0.0f, -1.0f)) ;
+    			message.draw(getOwner().getCanvas());
     	}
     }
     
