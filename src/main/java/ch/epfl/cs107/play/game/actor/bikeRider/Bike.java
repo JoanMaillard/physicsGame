@@ -15,7 +15,6 @@ import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Window;
 
@@ -233,11 +232,11 @@ public class Bike extends GameEntity implements Actor{
     	ContactListener listener = new ContactListener () {
     	@Override
     	public void beginContact(Contact contact) {
-    	if (contact.getOther ().isGhost ())
-    	//return ;
-    	// si contact avec les roues :
-    	//return ;
-    	hit = true ;
+    	if (contact.getOther ().isGhost ()){
+    	return ;
+        }
+    	
+    	hit = true;
     	}
     	
     	@Override

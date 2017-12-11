@@ -43,7 +43,7 @@ public class Car extends GameEntity implements Actor{
 	super(game, fixed);
         entity = super.getEntity();
         build();
-        buildWheels(game, fixed, new Vector(0.0f, 0.0f), world);
+        buildWheels(game, fixed, new Vector(0.0f, 0.0f));
         //hasAlreadyTurned = false;
     }
 	
@@ -52,7 +52,7 @@ public class Car extends GameEntity implements Actor{
         entity = super.getEntity();
         new Vector(0.0f, 0.0f);
         build();
-        buildWheels(game, fixed, position, world);
+        buildWheels(game, fixed, position);
         //hasAlreadyTurned = false;
     }
 
@@ -66,13 +66,13 @@ public class Car extends GameEntity implements Actor{
 	    hitBox.setParent(entity);
     }
 
-    private void buildWheels(ActorGame game, boolean fixed, Vector position, World world) {
+    private void buildWheels(ActorGame game, boolean fixed, Vector position) {
         leftWheel = new Wheel(game, fixed, position.add(new Vector(-2.5f, -1f)), true);
-        leftWheel.build(world);
-        leftWheel.attach(entity, new Vector (-2.5f, -1f), new Vector (-0.5f, -1.0f), world);
+        leftWheel.build();
+        leftWheel.attach(entity, new Vector (-2.5f, -1f), new Vector (-0.5f, -1.0f));
         rightWheel = new Wheel(game, fixed, position.add(new Vector(2.5f, -1f)), false);
-        rightWheel.build(world);
-        rightWheel.attach(entity, new Vector (2.5f, -1f), new Vector (0.5f, -1.0f), world);
+        rightWheel.build();
+        rightWheel.attach(entity, new Vector (2.5f, -1f), new Vector (0.5f, -1.0f));
     }
     
     void controls(Window window) {
@@ -81,13 +81,8 @@ public class Car extends GameEntity implements Actor{
     	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()) {
     		
     		right = !right;
-    		//drawBody();
                 
     	}
-        
-        /*if (hasAlreadyTurned && window.getKeyboard().get(KeyEvent.VK_SPACE).)) {
-            hasAlreadyTurned = false;
-        }*/
     	
     	leftWheel.goBean(window);
     	rightWheel.goBean(window);
@@ -117,7 +112,7 @@ public class Car extends GameEntity implements Actor{
     	public void beginContact(Contact contact) {
     	if (contact.getOther ().isGhost ())
     	//return ;
-    	// si contact avec les roues :
+    	// si contact avec les roues 
     	//return ;
     	hit = true ;
     	}
