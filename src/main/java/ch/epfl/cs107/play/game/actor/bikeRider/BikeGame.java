@@ -13,6 +13,7 @@ public class BikeGame extends ActorGame{
     private Bike bike;
     private Finish finish;
     private Window canvasWindow;
+<<<<<<< HEAD
     private String endFlag = "";
     
     @Override
@@ -46,6 +47,10 @@ public class BikeGame extends ActorGame{
                 initializeObjects();
                 setViewCandidate(bike.getEntity());
                 canvasWindow = window;
+=======
+
+        	
+>>>>>>> 942e8a9e0aea5df09f725e403e73b9720a4969b9
             return true;
         }
         else {
@@ -55,6 +60,7 @@ public class BikeGame extends ActorGame{
     
     @Override
     public void update(float deltaTime) {
+<<<<<<< HEAD
         //reset
         if (canvasWindow.getKeyboard().get(KeyEvent.VK_R).isPressed()) {
             endFlag = "reset";
@@ -66,6 +72,8 @@ public class BikeGame extends ActorGame{
             bike.controls(canvasWindow);
             finish.collision(bike.getEntity());
         }
+=======
+>>>>>>> 942e8a9e0aea5df09f725e403e73b9720a4969b9
     }
 
     @Override
