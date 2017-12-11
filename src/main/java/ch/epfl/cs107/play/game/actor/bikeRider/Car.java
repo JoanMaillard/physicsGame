@@ -8,15 +8,12 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
-import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Contact;
 import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Window;
 
@@ -26,8 +23,8 @@ public class Car extends GameEntity implements Actor{
     public static boolean right = true;
     private boolean hit;
     public static Entity entity;
-    private static Wheel leftWheel;
-    private static Wheel rightWheel;
+    private static CarWheel leftWheel;
+    private static CarWheel rightWheel;
     private ImageGraphics carImage = new ImageGraphics("car.png", 8f, 4.5f, new Vector(0.9f, 0f));
     private Polygon polygon = new Polygon(
     		-4f, 1f,
@@ -70,23 +67,19 @@ public class Car extends GameEntity implements Actor{
 
     private void buildWheels(ActorGame game, boolean fixed, Vector position) {
         getOwner().getEntitiesList().add(this);
-        leftWheel = new Wheel(game, fixed, position.add(new Vector(-2.5f, -1f)), true);
+        leftWheel = new CarWheel(game, fixed, position.add(new Vector(-2.5f, -1f)), true);
         leftWheel.build();
         leftWheel.attach(entity, new Vector (-2.5f, -1f), new Vector (-0.5f, -1.0f));
-        getOwner().getEntitiesList().add(leftWheel);
-        rightWheel = new Wheel(game, fixed, position.add(new Vector(2.5f, -1f)), false);
+        rightWheel = new CarWheel(game, fixed, position.add(new Vector(2.5f, -1f)), false);
         rightWheel.build();
         rightWheel.attach(entity, new Vector (2.5f, -1f), new Vector (0.5f, -1.0f));
-        getOwner().getEntitiesList().add(rightWheel);
     }
     
     void controls(Window window) {
     	
     	//turn
     	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()) {
-    		
     		right = !right;
-                
     	}
     	
     	leftWheel.go(window);
@@ -94,12 +87,17 @@ public class Car extends GameEntity implements Actor{
     	
     	//rotate
     	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
-    		entity.applyAngularForce (20.0f) ;
+    		entity.applyAngularForce (50.0f) ;
     	}
     	if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
-    		entity.applyAngularForce (-20.0f) ;
+    		entity.applyAngularForce (-50.0f) ;
     	}
     	
+    }
+    
+    @Override
+    protected Entity getEntity() {
+        return entity;
     }
 
     public void draw(Canvas canvas) {

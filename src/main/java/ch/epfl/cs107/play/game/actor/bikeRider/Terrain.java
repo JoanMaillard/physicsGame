@@ -105,7 +105,7 @@ public class Terrain extends GameEntity{
 	void build() {
             partBuilder = entity.createPartBuilder() ;
 	    partBuilder.setShape(polyline) ;
-	    partBuilder.setFriction(1.0f) ;
+	    partBuilder.setFriction(1000.0f) ;
 	    partBuilder.build() ;
 	    image.setParent(entity);
             getOwner().getEntitiesList().add(this);

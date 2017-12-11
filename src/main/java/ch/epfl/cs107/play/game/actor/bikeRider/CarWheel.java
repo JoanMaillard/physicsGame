@@ -46,7 +46,7 @@ public class CarWheel extends GameEntity implements Actor {
     	return constraintBuilder;
     }
     
-	public void attach(Entity vehicle , Vector anchor , Vector axis, World world) {
+	public void attach(Entity vehicle , Vector anchor , Vector axis) {
 		
 		constraintBuilder = makeWheelConstraintBuilder();
 		constraintBuilder.setFirstEntity(vehicle) ;
@@ -60,22 +60,23 @@ public class CarWheel extends GameEntity implements Actor {
 		constraintBuilder.setAxis(axis) ;
 		// fr�quence du ressort associé
 		constraintBuilder.setFrequency (3.0f) ;
-		constraintBuilder.setDamping (0.5f) ;
+		constraintBuilder.setDamping (8.5f) ;
 		// force angulaire maximale pouvant être appliquée
 		//à la roue pour la faire tourner :
-		constraintBuilder.setMotorMaxTorque (10.0f) ;
+		constraintBuilder.setMotorMaxTorque (600.0f) ;
 		//constraint = 
 		constraintBuilder.build () ;
 		
 	}
 	
-	void build(World world) {
+	void build() {
 		
             partBuilder = entity.createPartBuilder() ;
 	    partBuilder.setShape(circle) ;
 	    partBuilder.setFriction(10000.0f) ;
 	    partBuilder.build() ;
 	    image1.setParent(entity);
+            getOwner().getEntitiesList().add(this);
 	}
 	
 	void go(Window window) {
