@@ -34,7 +34,9 @@ public class Car extends GameEntity implements Actor{
     		-3.5f, 4.5f,
     		3.5f, 4.5f,
     		4f, 1f,
-    		0f, 0f);
+    		2f, 1.5f,
+    		0f, 1f,
+    		-2f, 1.5f);
     private ShapeGraphics hitBox = new ShapeGraphics(polygon, Color.RED, Color.blue, 0, 0.5f, 0);
 	
 	
@@ -67,12 +69,12 @@ public class Car extends GameEntity implements Actor{
     }
 
     private void buildWheels(ActorGame game, boolean fixed, Vector position, World world) {
-        leftWheel = new Wheel(game, fixed, position.add(new Vector(-2.5f, -1f)), true);
+        leftWheel = new Wheel(game, fixed, position.add(new Vector(-3f, 0f)), true);
         leftWheel.build(world);
-        leftWheel.attach(entity, new Vector (-2.5f, -1f), new Vector (-0.5f, -1.0f), world);
-        rightWheel = new Wheel(game, fixed, position.add(new Vector(2.5f, -1f)), false);
+        leftWheel.attach(entity, new Vector (-3f, 0f), new Vector (-0.5f, -1.0f), world);
+        rightWheel = new Wheel(game, fixed, position.add(new Vector(3f, 0f)), false);
         rightWheel.build(world);
-        rightWheel.attach(entity, new Vector (2.5f, -1f), new Vector (0.5f, -1.0f), world);
+        rightWheel.attach(entity, new Vector (3f, 0f), new Vector (0.5f, -1.0f), world);
     }
     
     void controls(Window window) {
