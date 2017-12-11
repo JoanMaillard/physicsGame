@@ -2,10 +2,7 @@ package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.io.FileSystem;
-import ch.epfl.cs107.play.math.ConstraintBuilder;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.math.WheelConstraintBuilder;
-import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Window;
 
 public class BikeGame extends ActorGame{
@@ -14,7 +11,6 @@ public class BikeGame extends ActorGame{
     private Bike bike;
     private Finish finish;
     private Window canvasWindow;
-    private WheelConstraintBuilder constraintBuilder;
 	
     public boolean begin(Window window, FileSystem fileSystem){
             if (super.begin(window, fileSystem)) {  
