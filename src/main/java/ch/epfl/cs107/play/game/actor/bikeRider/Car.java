@@ -28,7 +28,7 @@ public class Car extends GameEntity implements Actor{
     public static Entity entity;
     private static Wheel leftWheel;
     private static Wheel rightWheel;
-    private ImageGraphics carImage = new ImageGraphics("car.png", 8f, 4.5f, new Vector(-4f, 0f));
+    private ImageGraphics carImage = new ImageGraphics("car.png", 8f, 4.5f, new Vector(0.9f, 0f));
     private Polygon polygon = new Polygon(
     		-4f, 1f,
     		-3.5f, 4.5f,
