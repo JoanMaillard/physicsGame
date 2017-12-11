@@ -54,7 +54,6 @@ public class Car extends GameEntity implements Actor{
         entity = super.getEntity();
         new Vector(0.0f, 0.0f);
         build();
-        buildWheels(game, fixed, position, world);
         //hasAlreadyTurned = false;
     }
 
@@ -68,6 +67,7 @@ public class Car extends GameEntity implements Actor{
 	    hitBox.setParent(entity);
     }
 
+<<<<<<< HEAD
     private void buildWheels(ActorGame game, boolean fixed, Vector position, World world) {
         leftWheel = new Wheel(game, fixed, position.add(new Vector(-3f, 0f)), true);
         leftWheel.build(world);
@@ -75,6 +75,8 @@ public class Car extends GameEntity implements Actor{
         rightWheel = new Wheel(game, fixed, position.add(new Vector(3f, 0f)), false);
         rightWheel.build(world);
         rightWheel.attach(entity, new Vector (3f, 0f), new Vector (0.5f, -1.0f), world);
+=======
+>>>>>>> 9ce271092b9808a759037761e08f8f385eea72c8
     }
     
     void controls(Window window) {
@@ -83,13 +85,8 @@ public class Car extends GameEntity implements Actor{
     	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()) {
     		
     		right = !right;
-    		//drawBody();
                 
     	}
-        
-        /*if (hasAlreadyTurned && window.getKeyboard().get(KeyEvent.VK_SPACE).)) {
-            hasAlreadyTurned = false;
-        }*/
     	
     	leftWheel.goBean(window);
     	rightWheel.goBean(window);
@@ -119,7 +116,6 @@ public class Car extends GameEntity implements Actor{
     	public void beginContact(Contact contact) {
     	if (contact.getOther ().isGhost ())
     	//return ;
-    	// si contact avec les roues :
     	//return ;
     	hit = true ;
     	}

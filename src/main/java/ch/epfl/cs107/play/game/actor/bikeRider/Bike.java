@@ -15,7 +15,6 @@ import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Window;
 
@@ -24,7 +23,7 @@ public class Bike extends GameEntity implements Actor{
     public static final float MAX_WHEEL_SPEED = 20f;
     public static boolean right = true;
     private boolean hit;
-    public static Entity entity;
+    private Entity entity;
     private static Wheel leftWheel;
     private static Wheel rightWheel;
     private ShapeGraphics image;
@@ -47,21 +46,18 @@ public class Bike extends GameEntity implements Actor{
 	
 	
 	
-    public Bike(ActorGame game, boolean fixed, World world) {
+    public Bike(ActorGame game, boolean fixed) {
 	super(game, fixed);
         entity = super.getEntity();
         build();
-        buildWheels(game, fixed, new Vector(0.0f, 0.0f), world);
-        //hasAlreadyTurned = false;
+        buildWheels(game, fixed, new Vector(0.0f, 0.0f));
     }
 	
-    public Bike(ActorGame game, boolean fixed, Vector position, World world) {
+    public Bike(ActorGame game, boolean fixed, Vector position) {
 	super(game, fixed, position);
         entity = super.getEntity();
-        new Vector(0.0f, 0.0f);
         build();
-        buildWheels(game, fixed, position, world);
-        //hasAlreadyTurned = false;
+        buildWheels(game, fixed, position);
     }
 
     private void build() {
@@ -78,37 +74,28 @@ public class Bike extends GameEntity implements Actor{
         partBuilder.setFriction(0.8f);
         partBuilder.build();
         image = new ShapeGraphics(polygon, Color.RED, Color.BLUE, 0.01f);
-	    image.setParent(entity);
-	   
+	image.setParent(entity);
         drawBody();
     }
 
-    private void buildWheels(ActorGame game, boolean fixed, Vector position, World world) {
+    private void buildWheels(ActorGame game, boolean fixed, Vector position) {
         leftWheel = new Wheel(game, fixed, position.add(new Vector(-1.0f, 0.f)), true);
-        leftWheel.build(world);
-        leftWheel.attach(entity, new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f), world);
+        leftWheel.build();
+        leftWheel.attach(entity, new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f));
         rightWheel = new Wheel(game, fixed, position.add(new Vector(1.0f, 0.f)), false);
-        rightWheel.build(world);
-        rightWheel.attach(entity, new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f), world);
+        rightWheel.build();
+        rightWheel.attach(entity, new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f));
     }
     
     void controls(Window window) {
     	
     	//turn
     	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()) {
-    		
     		right = !right;
     		drawBody();
-                
     	}
-        
-        /*if (hasAlreadyTurned && window.getKeyboard().get(KeyEvent.VK_SPACE).)) {
-            hasAlreadyTurned = false;
-        }*/
-    	
     	leftWheel.go(window);
     	rightWheel.go(window);
-    	
     	//rotate
     	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
     		entity.applyAngularForce (20.0f) ;
@@ -116,7 +103,6 @@ public class Bike extends GameEntity implements Actor{
     	if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		entity.applyAngularForce (-20.0f) ;
     	}
-    	
     }
     
     // Head location , in local coordinates
@@ -192,8 +178,8 @@ public class Bike extends GameEntity implements Actor{
 	}
         }
 
+    @Override
     public void draw(Canvas canvas) {
-    	
     	headImage.draw(canvas);
     	armImage.draw(canvas);
     	shoulderImage.draw(canvas);
@@ -204,6 +190,11 @@ public class Bike extends GameEntity implements Actor{
     	rightLegDownImage.draw(canvas);
         leftWheel.draw(canvas);
         rightWheel.draw(canvas);
+    }
+    
+    @Override
+    protected Entity getEntity() {
+        return entity;
     }
     
     private void drawBody()
@@ -241,11 +232,11 @@ public class Bike extends GameEntity implements Actor{
     	ContactListener listener = new ContactListener () {
     	@Override
     	public void beginContact(Contact contact) {
-    	if (contact.getOther ().isGhost ())
-    	//return ;
-    	// si contact avec les roues :
-    	//return ;
-    	hit = true ;
+    	if (contact.getOther ().isGhost ()){
+    	return ;
+        }
+    	
+    	hit = true;
     	}
     	
     	@Override

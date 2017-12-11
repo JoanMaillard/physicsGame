@@ -21,9 +21,8 @@ public class Wheel extends GameEntity implements Actor {
 	
 	private PartBuilder partBuilder;
 	private boolean left;
-	static boolean stop = false;
-	WheelConstraintBuilder constraintBuilder;
-	Entity entity;
+	private WheelConstraintBuilder constraintBuilder;
+	private Entity entity;
 	private Circle circle = new Circle(0.5f);
 	private ImageGraphics image1 = new ImageGraphics("wheel.png", 1f , 1f , new Vector(0.5f, 0.5f)) ;
 	private ShapeGraphics image = new ShapeGraphics(circle , Color.GRAY , Color.BLACK ,	0.01f, 1f, 0);
@@ -33,6 +32,11 @@ public class Wheel extends GameEntity implements Actor {
         super(game, fixed, position);
         entity = super.getEntity();
         this.left = left;
+    }
+        
+    @Override
+    protected Entity getEntity() {
+        return entity;
     }
     
     public Wheel(ActorGame game, boolean fixed, boolean left){
@@ -46,7 +50,7 @@ public class Wheel extends GameEntity implements Actor {
     	return constraintBuilder;
     }
     
-	public void attach(Entity vehicle , Vector anchor , Vector axis, World world) {
+	public void attach(Entity vehicle , Vector anchor , Vector axis) {
 		
 		constraintBuilder = makeWheelConstraintBuilder();
 		constraintBuilder.setFirstEntity(vehicle) ;
@@ -69,11 +73,11 @@ public class Wheel extends GameEntity implements Actor {
 		
 	}
 	
-	void build(World world) {
+	void build() {
 		
             partBuilder = entity.createPartBuilder() ;
 	    partBuilder.setShape(circle) ;
-	    partBuilder.setFriction(10000.0f) ;
+	    partBuilder.setFriction(1.0f) ;
 	    partBuilder.build() ;
 	    image1.setParent(entity);
 	}
@@ -83,8 +87,6 @@ public class Wheel extends GameEntity implements Actor {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
                         entity.applyAngularForce(-10.0f);
                     }
-                    
-                    
 		}
 		if(!left && !Bike.right) {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED) {
