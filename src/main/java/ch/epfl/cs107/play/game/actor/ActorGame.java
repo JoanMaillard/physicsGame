@@ -77,13 +77,5 @@ public abstract class ActorGame implements Game {
     	
     	
     }
-    
-    public WheelConstraintBuilder makeWheelConstraintBuilder() {
-    	    	
-    	WheelConstraintBuilder constraintBuilder = world.createWheelConstraintBuilder();
-    	
-    	return constraintBuilder;
-    	
-    }
 	
 }

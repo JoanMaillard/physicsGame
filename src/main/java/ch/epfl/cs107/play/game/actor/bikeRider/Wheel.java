@@ -41,9 +41,14 @@ public class Wheel extends GameEntity implements Actor {
         this.left = left;
     }
     
+    public WheelConstraintBuilder makeWheelConstraintBuilder() {   	
+    	constraintBuilder = getOwner().world.createWheelConstraintBuilder();
+    	return constraintBuilder;
+    }
+    
 	public void attach(Entity vehicle , Vector anchor , Vector axis, World world) {
 		
-		constraintBuilder = getOwner().makeWheelConstraintBuilder();
+		constraintBuilder = makeWheelConstraintBuilder();
 		constraintBuilder.setFirstEntity(vehicle) ;
 		// point d'ancrage du véhicule :
 		constraintBuilder.setFirstAnchor(anchor) ;
