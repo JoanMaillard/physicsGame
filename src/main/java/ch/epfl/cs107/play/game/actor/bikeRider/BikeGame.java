@@ -1,9 +1,6 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
-import java.awt.Color;
-
 import ch.epfl.cs107.play.game.actor.ActorGame;
-import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.ConstraintBuilder;
 import ch.epfl.cs107.play.math.Vector;
@@ -40,6 +37,7 @@ public class BikeGame extends ActorGame{
     	terrain.draw(canvasWindow);
         bike.draw(canvasWindow);
         finish.draw(canvasWindow);
+        finish.collision();
     }
 
     public void end() {

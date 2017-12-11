@@ -16,6 +16,7 @@ public class Finish extends GameEntity{
 	private Entity entity;
 	private ImageGraphics image= new ImageGraphics("flag.red.png", 1, 1);
 	private BasicContactListener contactListener ;
+	private boolean bikeCollision;
 
 	public Finish(ActorGame game, boolean fixed) {
 		super(game, fixed, new Vector(65f, 0.3f));
@@ -54,5 +55,12 @@ public class Finish extends GameEntity{
         image.draw(canvas);
     }
     
+    void collision() {
+    	
+    	bikeCollision = contactListener.getEntities().contains(Bike.entity) ;
+    	if (bikeCollision){
+    	System.out.println("STAHP");
+    	}
+    }
     
 }
