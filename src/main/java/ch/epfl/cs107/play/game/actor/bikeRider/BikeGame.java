@@ -14,6 +14,7 @@ public class BikeGame extends ActorGame{
 	
     private Terrain terrain;
     private Bike bike;
+    private Finish finish;
     private Window canvasWindow;
     private World world;
     private ShapeGraphics sky;
@@ -24,6 +25,7 @@ public class BikeGame extends ActorGame{
 		if (super.begin(window, fileSystem)) {  
             terrain = new Terrain(this, true, world);
             bike = new Bike(this, false, new Vector(0.0f, 5.0f), world);
+            finish = new Finish(this, true, new Vector(65f, 0.3f));
             canvasWindow = window;
             Polygon polygon = new Polygon(
                     new Vector(-1000f, -1000f), 
@@ -47,6 +49,7 @@ public class BikeGame extends ActorGame{
     	bike.controls(canvasWindow);
     	terrain.draw(canvasWindow);
         bike.draw(canvasWindow);
+        finish.draw(canvasWindow);
     }
 
     public void end() {
