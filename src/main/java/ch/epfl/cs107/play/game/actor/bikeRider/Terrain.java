@@ -59,7 +59,8 @@ public class Terrain extends GameEntity{
 						6500.0f, -1000.0f
 						);
                         Crate crate1 = new Crate(game, false, new Vector(-12.0f, 1.0f));
-                        Crate crate2 = new Crate(game, false, new Vector(-15.0f, 1.0f));
+                        Crate crate2 = new Crate(game, false, new Vector(-12.0f, 2.0f));
+                        Crate crate3 = new Crate(game, true, new Vector(-15.0f, 1.0f));
                         finish = new Finish(game, true, new Vector(-65f, 0.3f));
                         break;
                     case 3: //Change the level!

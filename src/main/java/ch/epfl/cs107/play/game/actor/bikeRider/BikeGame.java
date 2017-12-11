@@ -25,6 +25,7 @@ public class BikeGame extends ActorGame{
     
     @Override
     public void destroyAllObjects() {
+        super.destroyAllObjects();
         super.setEntitiesList(new ArrayList<>());
     }
     
@@ -72,7 +73,6 @@ public class BikeGame extends ActorGame{
         switch (endFlag) {
             case "reset":
                 destroyAllObjects();
-                level = 1;
                 lives = 3;
                 initializeObjects();
                 break;

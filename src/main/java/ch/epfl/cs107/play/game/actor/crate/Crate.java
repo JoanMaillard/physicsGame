@@ -6,7 +6,6 @@ import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
@@ -38,10 +37,11 @@ public class Crate extends GameEntity{
         Polygon polygon = new Polygon(
             new Vector(0.0f, 0.0f), 
             new Vector(0.0f, 1.0f), 
-            new Vector(1.0f, 0.0f), 
-            new Vector(1.0f, 1.0f)
+            new Vector(1.0f, 1.0f), 
+            new Vector(1.0f, 0.0f)
         );
         pB.setShape(polygon);
+        pB.setFriction(1.0f);
         pB.build();
         getOwner().getEntitiesList().add(this);
     }
