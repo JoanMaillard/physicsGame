@@ -20,13 +20,13 @@ public class CrateGame extends ActorGame{
     }
     
     @Override
-    public void destroyAllObjects(){}
+    public void destroyAllObjects(){
+        super.destroyAllObjects();
+    }
     
     @Override
     public void drawAllObjects() {
-    crate1.draw(canvasWindow);
-    crate2.draw(canvasWindow);
-    crate3.draw(canvasWindow);
+        super.drawAllObjects();
     }
 
     @Override

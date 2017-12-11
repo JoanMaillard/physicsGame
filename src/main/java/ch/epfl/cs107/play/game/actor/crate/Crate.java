@@ -43,6 +43,7 @@ public class Crate extends GameEntity{
         );
         pB.setShape(polygon);
         pB.build();
+        getOwner().getEntitiesList().add(this);
     }
 
     public void draw(Canvas canvas) {

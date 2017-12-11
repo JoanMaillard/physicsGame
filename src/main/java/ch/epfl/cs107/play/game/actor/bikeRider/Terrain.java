@@ -41,7 +41,6 @@ public class Terrain extends GameEntity{
 						6500.0f, -1000.0f
 						);
                         finish = new Finish(game, true, new Vector(65f, 0.3f));
-                        getOwner().getEntitiesList().add(finish);
                         break;
                     case 2: //Change the level!
                         polyline = new Polyline(
@@ -62,9 +61,6 @@ public class Terrain extends GameEntity{
                         Crate crate1 = new Crate(game, false, new Vector(-12.0f, 1.0f));
                         Crate crate2 = new Crate(game, false, new Vector(-15.0f, 1.0f));
                         finish = new Finish(game, true, new Vector(-65f, 0.3f));
-                        getOwner().getEntitiesList().add(crate1);
-                        getOwner().getEntitiesList().add(crate2);
-                        getOwner().getEntitiesList().add(finish);
                         break;
                     case 3: //Change the level!
                         polyline = new Polyline(
@@ -83,7 +79,6 @@ public class Terrain extends GameEntity{
 						6500.0f, -1000.0f
 						);
                         finish = new Finish(game, true, new Vector(-5f, 0.3f));
-                        getOwner().getEntitiesList().add(finish);
                         break;
                     default:
                         

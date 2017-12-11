@@ -53,6 +53,7 @@ public class Finish extends GameEntity{
         partBuilder.setShape(polygon);
         partBuilder.setGhost(true);
         partBuilder.build();
+        getOwner().getEntitiesList().add(this);
     }
 
     public void draw(Canvas canvas) {

@@ -80,6 +80,7 @@ public class Wheel extends GameEntity implements Actor {
 	    partBuilder.setFriction(1.0f) ;
 	    partBuilder.build() ;
 	    image1.setParent(entity);
+            getOwner().getEntitiesList().add(this);
 	}
 	
 	void go(Window window) {
