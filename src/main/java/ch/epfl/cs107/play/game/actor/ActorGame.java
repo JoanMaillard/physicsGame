@@ -22,14 +22,30 @@ public abstract class ActorGame implements Game {
     private static final float VIEW_INTERPOLATION_RATIO_PER_SECOND = 0.1f ;
     private static final float VIEW_SCALE = 15.0f ;
     
-    //Additional methods (getters)
+    //Additional methods (getters, initializers, destroyers)
     public Keyboard getKeyboard (){
         return window.getKeyboard () ;
     }
     public Canvas getCanvas (){
         return window ;
     }
+    
+    public void setViewCandidate (Positionable candidate) {
+        viewCandidate = candidate;
+    }
+    
+    public void initializeObjects() {
+    // by default, nothing to initialize
+    }
 
+    public void destroyAllObjects() {
+    // by default, nothing to destroy
+    }
+    
+    public void drawAllObjects() {
+    // by default, nothing to draw
+    }
+    
     //Game interface methods
 
     @Override
@@ -60,8 +76,8 @@ public abstract class ActorGame implements Game {
     	window.setRelativeTransform(Transform.I.scaled(10.0f)) ;
     	
     	// Update expected viewport center
-    	if (Bike.entity != null) {
-    	viewTarget = Bike.entity.getPosition().add(Bike.entity.getVelocity ().mul(VIEW_TARGET_VELOCITY_COMPENSATION)) ;
+    	if (viewCandidate != null) {
+    	viewTarget = viewCandidate.getPosition().add(viewCandidate.getVelocity().mul(VIEW_TARGET_VELOCITY_COMPENSATION)) ;
     	}
     	// Interpolate with previous location
     	float ratio = (float)Math.pow(VIEW_INTERPOLATION_RATIO_PER_SECOND , deltaTime) ;

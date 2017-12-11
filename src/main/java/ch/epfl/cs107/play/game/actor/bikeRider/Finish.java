@@ -18,7 +18,7 @@ public class Finish extends GameEntity{
 	
 	private PartBuilder partBuilder;
 	private Entity entity;
-	private ImageGraphics image= new ImageGraphics("flag.red.png", 1, 1);
+	private ImageGraphics image = new ImageGraphics("flag.red.png", 1, 1);
 	private BasicContactListener contactListener ;
 	private boolean bikeCollision;
 
@@ -59,10 +59,11 @@ public class Finish extends GameEntity{
         image.draw(canvas);
     }
     
-    void collision() {
+    void collision(Entity gameEntity) {
     	
     	if (!bikeCollision) {
-    	bikeCollision = contactListener.getEntities().contains(Bike.entity) ;}
+            bikeCollision = contactListener.hasContactWith(gameEntity);
+        }
     	if (bikeCollision){
     		TextGraphics message = new TextGraphics("Bravo. Wow.", 0.3f, Color.RED , Color.WHITE , 0.02f, true , false , new Vector (0.5f, 0.5f), 1.0f, 100.0f) ;
     			message.setParent(getOwner().getCanvas()) ;

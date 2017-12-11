@@ -8,9 +8,6 @@ import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polyline;
-import ch.epfl.cs107.play.math.Transform;
-import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
 
 public class Terrain extends GameEntity{
@@ -20,7 +17,7 @@ public class Terrain extends GameEntity{
 	private Entity entity;
 	private Polyline polyline;
 	
-	public Terrain(ActorGame game, boolean fixed, World world) {
+	public Terrain(ActorGame game, boolean fixed) {
 		super(game, fixed);
 		entity = super.getEntity();
 		polyline = new Polyline(
@@ -39,8 +36,7 @@ public class Terrain extends GameEntity{
 						6500.0f, -1000.0f
 						);
 		image = new ShapeGraphics(polyline , new Color(2, 106, 53) , Color.GREEN ,0.5f, 1f, 0);
-		
-		build(world);
+		build();
 	}
 
 	public void draw(Canvas canvas) {
@@ -48,12 +44,11 @@ public class Terrain extends GameEntity{
 		
 	}
 	
-	void build(World world) {
-		
-		 partBuilder = entity.createPartBuilder() ;
-	     partBuilder.setShape(polyline) ;
-	     partBuilder.setFriction(0.5f) ;
-	     partBuilder.build() ;
-	     image.setParent(entity);
+	void build() {
+            partBuilder = entity.createPartBuilder() ;
+	    partBuilder.setShape(polyline) ;
+	    partBuilder.setFriction(0.5f) ;
+	    partBuilder.build() ;
+	    image.setParent(entity);
 	}
 }
