@@ -20,7 +20,7 @@ public class Terrain extends GameEntity{
 
         private void createLevel(int level) {
             switch (level){
-                    case 1:
+                    case 4:
                         Polyline terrainLv1 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
@@ -85,6 +85,48 @@ public class Terrain extends GameEntity{
                         new NormalTerrain(getOwner(), true, terrainLv3);
                         new Finish(getOwner(), true, new Vector(-5f, 0.3f));
                         break;
+                        
+                    case 1: //Change the level!
+                        Polyline terrainLv4 = new Polyline(
+						-15f, 0f,
+                 				-100f, 5f,
+                 				2f, 4.5f,
+                 				2f, 4f,
+                 				2.5f, 4f,
+                 				2.5f, 3.5f,
+                 				3f, 3.5f,
+                 				3f, 3f,
+                 				3.5f, 3f,
+                 				3.5f, 2.5f,
+                 				4f, 2.5f,
+                 				4f, 2f,
+                 				4.5f, 2f,
+                 				4.5f, 1.5f,
+                 				5f, 1.5f,
+                 				5f, 1f,
+                 				5.5f, 1f,
+                 				5.5f, 0.5f,
+                 				6f, 0.5f,
+                 				6f, 0f,
+                 				6.5f, 0f,
+                 				7f, -2.5f,
+                 				7.5f, -2.5f,
+                 				8f, 0f,
+                 				8.5f, 5f,
+                 				100f, 5f,
+                 				100f, -100f,
+                 				-100f, -100f
+                 				
+                 				
+                 				
+                 				);
+                        for (int i = 0; i < 7 ; i++) {
+                        new Spike(getOwner(), true, new Vector(17.5f+i, -29.7f));
+                        }
+                        new NormalTerrain(getOwner(), true, terrainLv4);
+                        new Finish(getOwner(), true, new Vector(-5f, 0.3f));
+                        break;
+                        
                     default:
                         
                         break;
