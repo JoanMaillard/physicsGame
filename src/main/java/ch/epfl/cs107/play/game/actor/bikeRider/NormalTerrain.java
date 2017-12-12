@@ -26,12 +26,15 @@ public class NormalTerrain extends GameEntity{
         entity = super.getEntity();
         levelline = polyline;
         image = new ShapeGraphics(polyline , new Color(2, 106, 53) , Color.GREEN ,0.5f, 1f, 0);
+        build();
     }
     
     public NormalTerrain(ActorGame game, boolean fixed, Polyline polyline) {
         super(game, fixed);
+        entity = super.getEntity();
         levelline = polyline;
         image = new ShapeGraphics(polyline , new Color(2, 106, 53) , Color.GREEN ,0.5f, 1f, 0);
+        build();
         
     }
     
