@@ -8,6 +8,7 @@ package ch.epfl.cs107.play.game.actor.bikeRider;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
+import ch.epfl.cs107.play.math.BasicContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polyline;
@@ -20,6 +21,8 @@ public class NormalTerrain extends GameEntity{
     private Entity entity;
     private PartBuilder partBuilder;
     private ShapeGraphics image;
+    private BasicContactListener contactListener;
+    private boolean collision;
     
     public NormalTerrain(ActorGame game, boolean fixed, Vector position, Polyline polyline) {
         super(game, fixed, position);
@@ -44,11 +47,25 @@ public class NormalTerrain extends GameEntity{
 	    partBuilder.setFriction(1000.0f) ;
 	    partBuilder.build() ;
 	    image.setParent(entity);
+            contactListener = new BasicContactListener () ;
+	    entity.addContactListener(contactListener) ;
             getOwner().getEntitiesList().add(this);
 	}
     
     @Override
     public void draw(Canvas canvas) {
         image.draw(canvas);
+    }
+    
+        
+    public String collisions(Entity gameEntity) {
+    	
+    if (!collision) {
+        collision = contactListener.hasContactWith(gameEntity);
+    }
+    if (collision){
+        return "lose";
+    }
+        return "";
     }
 }

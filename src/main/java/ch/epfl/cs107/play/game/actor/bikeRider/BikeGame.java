@@ -68,7 +68,19 @@ public class BikeGame extends ActorGame{
     @Override
     public void objectsCollision() {
         for (int i = 0; i < super.getEntitiesList().toArray().length; i++){
-            super.getEntitiesList().get(i).collisions(bike.getEntity());
+            switch (super.getEntitiesList().get(i).collisions(bike.getEntity()))
+            {
+                case "win":
+                    endFlag = "win";
+                    end();
+                    break;
+                case "lose":
+                    endFlag = "lose";
+                    end();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

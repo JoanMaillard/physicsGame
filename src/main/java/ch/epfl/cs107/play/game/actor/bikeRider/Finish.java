@@ -60,6 +60,7 @@ public class Finish extends GameEntity{
         image.draw(canvas);
     }
     
+    @Override
     public String collisions(Entity gameEntity) {
     	
     	if (!bikeCollision) {
