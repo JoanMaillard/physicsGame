@@ -1,11 +1,13 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
+import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BikeGame extends ActorGame{
 	
@@ -39,6 +41,7 @@ public class BikeGame extends ActorGame{
         return level;
     }
     
+    
     @Override
     public boolean begin(Window window, FileSystem fileSystem){
             if (super.begin(window, fileSystem)) {
@@ -67,22 +70,11 @@ public class BikeGame extends ActorGame{
     
     @Override
     public void objectsCollision() {
-        for (int i = 0; i < super.getEntitiesList().toArray().length; i++){
-            switch (super.getEntitiesList().get(i).collisions(bike.getEntity(), 0))
-            {
-                case "win":
-                    endFlag = "win";
-                    end();
-                    break;
-                case "lose":
-                    endFlag = "lose";
-                    end();
-                    break;
-                default:
-                    break;
-            }
-        }
+        
     }
+            
+        
+    
 
     @Override
     public void end() {
@@ -114,4 +106,4 @@ public class BikeGame extends ActorGame{
         }
     }
     
-}
+    }
