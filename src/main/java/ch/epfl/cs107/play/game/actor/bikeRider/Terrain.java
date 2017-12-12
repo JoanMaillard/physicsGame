@@ -10,7 +10,6 @@ import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
 public class Terrain extends GameEntity{
-        Finish finish;
         boolean collision = false;
 	
 	public Terrain(ActorGame game, boolean fixed, int level) {
@@ -37,9 +36,8 @@ public class Terrain extends GameEntity{
 						65.0f, 0.0f,
 						6500.0f, -1000.0f
 						);
-                        NormalTerrain normalTerrainLv1 = new NormalTerrain(getOwner(), true, terrainLv1);
-                        Finish finish1 = new Finish(getOwner(), true, new Vector(65f, 0.3f));
-                        finish = finish1;
+                        new NormalTerrain(getOwner(), true, terrainLv1);
+                        new Finish(getOwner(), true, new Vector(65f, 0.3f));
                         break;
                     case 2: //Change the level!
                         Polyline terrainLv2 = new Polyline(
@@ -57,12 +55,11 @@ public class Terrain extends GameEntity{
 						65.0f, 0.0f,
 						6500.0f, -1000.0f
 						);
-                        NormalTerrain normalTerrainLv2 = new NormalTerrain(getOwner(), true, terrainLv2);
-                        Crate crate1_1 = new Crate(getOwner(), false, new Vector(-12.0f, 1.0f));
-                        Crate crate1_2 = new Crate(getOwner(), false, new Vector(-12.0f, 2.0f));
-                        Crate crate1_3 = new Crate(getOwner(), true, new Vector(-15.0f, 1.0f));
-                        Finish finish2 = new Finish(getOwner(), true, new Vector(-65f, 0.3f));
-                        finish = finish2;
+                        new NormalTerrain(getOwner(), true, terrainLv2);
+                        new Crate(getOwner(), false, new Vector(-12.0f, 1.0f));
+                        new Crate(getOwner(), false, new Vector(-12.0f, 2.0f));
+                        new Crate(getOwner(), true, new Vector(-15.0f, 1.0f));
+                        new Finish(getOwner(), true, new Vector(-65f, 0.3f));
                         break;
                     case 3: //Change the level!
                         Polyline terrainLv3 = new Polyline(
@@ -85,9 +82,8 @@ public class Terrain extends GameEntity{
                         for (int i = 0; i < 7 ; i++) {
                         new Spike(getOwner(), true, new Vector(17.5f+i, -29.7f));
                         }
-                        NormalTerrain normalTerrainLv3 = new NormalTerrain(getOwner(), true, terrainLv3);
-                        Finish finish3 = new Finish(getOwner(), true, new Vector(-5f, 0.3f));
-                        finish = finish3;
+                        new NormalTerrain(getOwner(), true, terrainLv3);
+                        new Finish(getOwner(), true, new Vector(-5f, 0.3f));
                         break;
                     default:
                         

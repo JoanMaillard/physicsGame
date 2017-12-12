@@ -20,7 +20,7 @@ public class Finish extends GameEntity{
 	private Entity entity;
 	private ImageGraphics image = new ImageGraphics("flag.red.png", 1, 1);
 	private BasicContactListener contactListener ;
-	private boolean bikeCollision;
+	private boolean[] bikeCollision = {false, false};
 
 	public Finish(ActorGame game, boolean fixed) {
 		super(game, fixed, new Vector(65f, 0.3f));
@@ -61,12 +61,12 @@ public class Finish extends GameEntity{
     }
     
     @Override
-    public String collisions(Entity gameEntity) {
+    public String collisions(Entity gameEntity, int type) {
     	
-    	if (!bikeCollision) {
-            bikeCollision = contactListener.hasContactWith(gameEntity);
+    	if (!bikeCollision[type]) {
+            bikeCollision[type] = contactListener.hasContactWith(gameEntity);
         }
-    	if (bikeCollision){
+    	if (type == 1 && bikeCollision[type]){
     		TextGraphics message = new TextGraphics("Bravo. Wow.", 0.3f, Color.RED , Color.WHITE , 0.02f, true , false , new Vector (0.5f, 0.5f), 1.0f, 100.0f) ;
     			message.setParent(getOwner().getCanvas()) ;
     			message.setRelativeTransform(Transform.I.translated (0.0f, -1.0f)) ;

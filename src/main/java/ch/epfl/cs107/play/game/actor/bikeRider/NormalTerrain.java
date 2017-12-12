@@ -22,7 +22,7 @@ public class NormalTerrain extends GameEntity{
     private PartBuilder partBuilder;
     private ShapeGraphics image;
     private BasicContactListener contactListener;
-    private boolean collision;
+    private boolean[] collision = {false, false};
     
     public NormalTerrain(ActorGame game, boolean fixed, Vector position, Polyline polyline) {
         super(game, fixed, position);
@@ -58,12 +58,12 @@ public class NormalTerrain extends GameEntity{
     }
     
         
-    public String collisions(Entity gameEntity) {
+    public String collisions(Entity gameEntity, int type) {
     	
-    if (!collision) {
-        collision = contactListener.hasContactWith(gameEntity);
+    if (!collision[type]) {
+        collision[type] = contactListener.hasContactWith(gameEntity);
     }
-    if (collision){
+    if (collision[type] && type == 0){
         return "lose";
     }
         return "";

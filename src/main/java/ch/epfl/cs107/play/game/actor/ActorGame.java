@@ -49,7 +49,6 @@ public abstract class ActorGame implements Game {
     }
 
     public void destroyAllObjects() {
-    // by default, nothing to destroy
         for (int i = 0; i < listEntities.toArray().length; i++) {
             listEntities.get(i).destroy();
         }

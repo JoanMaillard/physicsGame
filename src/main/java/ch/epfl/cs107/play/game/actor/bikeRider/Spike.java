@@ -21,7 +21,7 @@ public class Spike extends GameEntity{
     private Entity entity;
     private PartBuilder pB;
     private ImageGraphics image;
-    private boolean collision;
+    private boolean collision[] = {false, false};
     private BasicContactListener contactListener;
     
     //Constructors
@@ -66,12 +66,12 @@ public class Spike extends GameEntity{
         image.setParent(entity);
     }
     
-public String collisions(Entity gameEntity) {
+public String collisions(Entity gameEntity, int type) {
     	
-    	if (!collision) {
-            collision = contactListener.hasContactWith(gameEntity);
+    	if (!collision[type]) {
+            collision[type] = contactListener.hasContactWith(gameEntity);
         }
-    	if (collision){
+    	if (collision[type]){
             return "lose";
     	}
         return "";
