@@ -68,6 +68,7 @@ public class Bumper extends GameEntity{
 	        	entity.setAngularPosition(0);
 	        	entity.setPosition(position);
 	        }
+		jump();
 		image.draw(canvas);
 	    
 	}

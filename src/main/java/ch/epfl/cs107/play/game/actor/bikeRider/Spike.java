@@ -66,12 +66,11 @@ public class Spike extends GameEntity{
         image.setParent(entity);
     }
     
-    public String collisions() {
+    public void bikeCollisions() {
     	
     	if (contactListener.getEntities().getClass() == Wheel.class) {
-           return "reset"; 
-        } else {
-		return null; }
+           game.setEndFlag("loose");
     }
     
+    }
 }

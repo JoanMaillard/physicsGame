@@ -20,7 +20,7 @@ public class Terrain extends GameEntity{
 
         private void createLevel(int level) {
             switch (level){
-                    case 1:
+                    case 3:
                         Polyline terrainLv1 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
@@ -61,7 +61,7 @@ public class Terrain extends GameEntity{
                         new Crate(getOwner(), true, new Vector(-15.0f, 1.0f));
                         new Finish(getOwner(), true, new Vector(-65f, 0.3f));
                         break;
-                    case 3: //Change the level!
+                    case 1: //Change the level!
                         Polyline terrainLv3 = new Polyline(
 						-15f, 0f,
                  				-5, 0f,
@@ -75,15 +75,20 @@ public class Terrain extends GameEntity{
                  				25f, -30f,
                  				25f, -22f,
                  				27.56f, -23.68f,
-                 				100f, -25f,
-                 				100f, -100f,
+                 				200f, -23.68f,
+                 				200f, -100f,
                  				-15f, -100f
                  				);
                         for (int i = 0; i < 7 ; i++) {
                         new Spike(getOwner(), true, new Vector(17.5f+i, -29.7f));
                         }
+                        for (int i = 0; i < 15 ; i++) {
+
+                            new Spike(getOwner(), true, new Vector(50f+i, -23.38f));
+                        }
                         new NormalTerrain(getOwner(), true, terrainLv3);
-                        new Finish(getOwner(), true, new Vector(-5f, 0.3f));
+                        new Finish(getOwner(), true, new Vector(100f, -23.38f));
+                        new Bumper(getOwner(), false, new Vector(45f, -23.35f));
                         break;
                         
                     case 4: //Change the level!

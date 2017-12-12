@@ -56,7 +56,7 @@ public class BikeGame extends ActorGame{
     public void update(float deltaTime) {
         //reset
         if (canvasWindow.getKeyboard().get(KeyEvent.VK_R).isPressed()) {
-            endFlag = "reset";
+            setEndFlag("reset");
             end();
         }
         else {
@@ -70,11 +70,11 @@ public class BikeGame extends ActorGame{
     @Override
     public void objectsCollision() {
         if (bike.collisions().equals("lose")) {
-                endFlag = "lose";
+                setEndFlag("lose");
                 end();
             }
         if (bike.collisions().equals("win")) {
-            endFlag = "win";
+            setEndFlag("win");
             end();
         }
     }
@@ -84,7 +84,7 @@ public class BikeGame extends ActorGame{
 
     @Override
     public void end() {
-        switch (endFlag) {
+        switch (getEndFlag()) {
             case "reset":
                 destroyAllObjects();
                 lives = 3;
@@ -111,5 +111,13 @@ public class BikeGame extends ActorGame{
                 break;
         }
     }
+
+	public String getEndFlag() {
+		return endFlag;
+	}
+
+	public void setEndFlag(String endFlag) {
+		this.endFlag = endFlag;
+	}
     
     }
