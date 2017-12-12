@@ -83,11 +83,9 @@ public class Bike extends GameEntity implements Actor{
         leftWheel = new Wheel(game, fixed, position.add(new Vector(-1.0f, 0.f)), true);
         leftWheel.build();
         leftWheel.attach(entity, new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f));
-        getOwner().getEntitiesList().add(leftWheel);
         rightWheel = new Wheel(game, fixed, position.add(new Vector(1.0f, 0.f)), false);
-        rightWheel.build();
         rightWheel.attach(entity, new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f));
-        getOwner().getEntitiesList().add(rightWheel);
+        rightWheel.build();
     }
     
     void controls(Window window) {
@@ -228,21 +226,30 @@ public class Bike extends GameEntity implements Actor{
 	    rightLegDownImage.setParent(entity);
     }
     
+    public String collisions() {
+        contactListener();
+        if (leftWheel.collisions(entity).equals("lose") || rightWheel.collisions(entity).equals("lose") || hit == true) {return "lose";}
+        return "";
+    }
+    
     private void contactListener() {
     
     	ContactListener listener = new ContactListener () {
     	@Override
     	public void beginContact(Contact contact) {
-    	if (contact.getOther().isGhost()){
-    	return ;
-        }
-    	//if (contact.getOther())
-    	hit = true;
+            if (contact.getOther().isGhost()){
+                return ;
+            }
+            if (contact.getOther().getEntity().equals(leftWheel.getEntity()) || contact.getOther().getEntity().equals(rightWheel.getEntity())){
+                return;
+            }
+            hit = true;
     	}
     	
     	@Override
     	public void endContact(Contact contact) {}
     	} ;
-    	//addContactListener() ;
+        
+        entity.addContactListener(listener);
     }
 }

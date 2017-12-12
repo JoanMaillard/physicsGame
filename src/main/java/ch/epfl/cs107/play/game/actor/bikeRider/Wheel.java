@@ -9,6 +9,8 @@ import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Circle;
+import ch.epfl.cs107.play.math.Contact;
+import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Vector;
@@ -26,6 +28,7 @@ public class Wheel extends GameEntity implements Actor {
 	private Circle circle = new Circle(0.5f);
 	private ImageGraphics image1 = new ImageGraphics("wheel.png", 1f , 1f , new Vector(0.5f, 0.5f)) ;
 	private ShapeGraphics image = new ShapeGraphics(circle , Color.GRAY , Color.BLACK ,	0.01f, 1f, 0);
+        boolean hit = false;
 
 	
 	public Wheel(ActorGame game, boolean fixed, Vector position, boolean left) {
@@ -82,6 +85,32 @@ public class Wheel extends GameEntity implements Actor {
 	    image1.setParent(entity);
             getOwner().getEntitiesList().add(this);
 	}
+        
+        public String collisions(Entity bikeEntity) {
+            contactListener(bikeEntity);
+            return "";
+        }
+        
+        private void contactListener(Entity bikeEntity) {
+    
+    	ContactListener listener = new ContactListener () {
+    	@Override
+    	public void beginContact(Contact contact) {
+            if (contact.getOther().isGhost()){
+                return ;
+            }
+            if (contact.getOther().getEntity().equals(bikeEntity)){
+                return;
+            }
+            hit = true;
+    	}
+    	
+    	@Override
+    	public void endContact(Contact contact) {}
+    	} ;
+        
+        entity.addContactListener(listener);
+    }
 	
 	void go(Window window) {
 		if(left && Bike.right) {

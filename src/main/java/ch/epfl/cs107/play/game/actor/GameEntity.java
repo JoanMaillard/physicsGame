@@ -70,5 +70,5 @@ public abstract class GameEntity{
     public void draw(Canvas canvas) {
     }
     
-    public String collisions(Entity gameEntity, int type) {return "";}
+    public String collisions() {return "";}
 }
