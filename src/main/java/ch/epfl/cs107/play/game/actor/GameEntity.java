@@ -59,18 +59,16 @@ public abstract class GameEntity{
         return actorGame;
     }
     
+    public Transform getTransform() {
+        return null;
+    }
 
-
-	public Transform getTransform() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Vector getVelocity() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Vector getVelocity() {
+	return null;
+    }
         
-        public void draw(Canvas canvas) {
-        }
+    public void draw(Canvas canvas) {
+    }
+    
+    public String collisions(Entity gameEntity) {return "";}
 }

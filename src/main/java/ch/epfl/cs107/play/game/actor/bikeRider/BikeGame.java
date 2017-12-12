@@ -61,10 +61,13 @@ public class BikeGame extends ActorGame{
             super.update(deltaTime);
             drawAllObjects();
             bike.controls(canvasWindow);
-            if (terrain.collision(bike.getEntity()).equals("win")) {
-                endFlag = "win";
-                end();
-            }
+        }
+    }
+    
+    @Override
+    public void objectsCollision() {
+        for (int i = 0; i < super.getEntitiesList().toArray().length; i++){
+            super.getEntitiesList().get(i).collisions(bike.getEntity());
         }
     }
 
