@@ -22,7 +22,7 @@ public class Bike extends GameEntity implements Actor{
 	
     public static final float MAX_WHEEL_SPEED = 20f;
     public static boolean right = true;
-    private boolean hit;
+    private String hit = "";
     private Entity entity;
     private static Wheel leftWheel;
     private static Wheel rightWheel;
@@ -75,6 +75,7 @@ public class Bike extends GameEntity implements Actor{
         partBuilder.build();
         image = new ShapeGraphics(polygon, Color.RED, Color.BLUE, 0.01f);
 	image.setParent(entity);
+        contactListener();
         drawBody();
     }
 
@@ -226,9 +227,14 @@ public class Bike extends GameEntity implements Actor{
 	    rightLegDownImage.setParent(entity);
     }
     
+    @Override
     public String collisions() {
-        contactListener();
-        if (leftWheel.collisions(entity).equals("lose") || rightWheel.collisions(entity).equals("lose") || hit == true) {return "lose";}
+        if (leftWheel.collisions(entity).equals("lose") || rightWheel.collisions(entity).equals("lose") || hit.equals("lose")) {
+            return "lose";
+        }
+        if (hit.equals("win")) {
+            return "win";
+        }
         return "";
     }
     
@@ -238,12 +244,15 @@ public class Bike extends GameEntity implements Actor{
     	@Override
     	public void beginContact(Contact contact) {
             if (contact.getOther().isGhost()){
+                if (true) { //todo test
+                    hit = "win";
+                }
                 return ;
             }
             if (contact.getOther().getEntity().equals(leftWheel.getEntity()) || contact.getOther().getEntity().equals(rightWheel.getEntity())){
                 return;
             }
-            hit = true;
+            hit = "lose";
     	}
     	
     	@Override

@@ -1,13 +1,11 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
-import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BikeGame extends ActorGame{
 	
@@ -62,6 +60,7 @@ public class BikeGame extends ActorGame{
             end();
         }
         else {
+            objectsCollision();
             super.update(deltaTime);
             drawAllObjects();
             bike.controls(canvasWindow);
@@ -70,7 +69,14 @@ public class BikeGame extends ActorGame{
     
     @Override
     public void objectsCollision() {
-        
+        if (bike.collisions().equals("lose")) {
+                endFlag = "lose";
+                end();
+            }
+        if (bike.collisions().equals("win")) {
+            endFlag = "win";
+            end();
+        }
     }
             
         

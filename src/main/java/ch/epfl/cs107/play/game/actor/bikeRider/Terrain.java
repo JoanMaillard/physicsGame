@@ -20,7 +20,7 @@ public class Terrain extends GameEntity{
 
         private void createLevel(int level) {
             switch (level){
-                    case 4:
+                    case 1:
                         Polyline terrainLv1 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
@@ -86,7 +86,7 @@ public class Terrain extends GameEntity{
                         new Finish(getOwner(), true, new Vector(-5f, 0.3f));
                         break;
                         
-                    case 1: //Change the level!
+                    case 4: //Change the level!
                         Polyline terrainLv4 = new Polyline(
 						-15f, 0f,
                  				-100f, 5f,

@@ -19,15 +19,12 @@ public class Finish extends GameEntity{
 	private PartBuilder partBuilder;
 	private Entity entity;
 	private ImageGraphics image = new ImageGraphics("flag.red.png", 1, 1);
-	private BasicContactListener contactListener ;
 
 	public Finish(ActorGame game, boolean fixed) {
 		super(game, fixed, new Vector(65f, 0.3f));
 		entity = super.getEntity();
 		buildParts();
 		image.setParent(entity);
-		contactListener = new BasicContactListener () ;
-	    entity.addContactListener(contactListener) ;
 		
 	}
 	
@@ -36,8 +33,6 @@ public class Finish extends GameEntity{
 		entity = super.getEntity();
 		buildParts();
 		image.setParent(entity);
-		contactListener = new BasicContactListener () ;
-	    entity.addContactListener(contactListener) ;
 		
 	}
 
