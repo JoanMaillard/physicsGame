@@ -90,39 +90,37 @@ public class Terrain extends GameEntity{
                         Polyline terrainLv4 = new Polyline(
 						-15f, 0f,
                  				-100f, 5f,
-                 				2f, 4.5f,
+                 				2f, 5,
                  				2f, 4f,
-                 				2.5f, 4f,
-                 				2.5f, 3.5f,
-                 				3f, 3.5f,
+                 				3f, 4f,
                  				3f, 3f,
-                 				3.5f, 3f,
-                 				3.5f, 2.5f,
-                 				4f, 2.5f,
+                 				4f, 3f,
                  				4f, 2f,
-                 				4.5f, 2f,
-                 				4.5f, 1.5f,
-                 				5f, 1.5f,
+                 				5f, 2f,
                  				5f, 1f,
-                 				5.5f, 1f,
-                 				5.5f, 0.5f,
-                 				6f, 0.5f,
+                 				6f, 1f,
                  				6f, 0f,
-                 				6.5f, 0f,
-                 				7f, -2.5f,
-                 				7.5f, -2.5f,
-                 				8f, 0f,
-                 				8.5f, 5f,
+                 				7f, 0f,
+                 				7f, -1f,
+                 				8f, -1f,
+                 				8f, -2f,
+                 				9f, -2f,
+                 				9f, -3f,
+                 				10f, -3f,
+                 				10f, -4f,
+                 				11f, -4f,
+                 				11f, -5f,
+                 				14f, -20f,
+                 				10f, -40f,
+                 				14f, -60f,
+                 				50f, -60f,
+                 				20f, -40f,
+                 				17f, -20f,
+                 				20f, 5f,
                  				100f, 5f,
                  				100f, -100f,
-                 				-100f, -100f
-                 				
-                 				
-                 				
+                 				-100f, -100f                 				
                  				);
-                        for (int i = 0; i < 7 ; i++) {
-                        new Spike(getOwner(), true, new Vector(17.5f+i, -29.7f));
-                        }
                         new NormalTerrain(getOwner(), true, terrainLv4);
                         new Finish(getOwner(), true, new Vector(-5f, 0.3f));
                         break;
