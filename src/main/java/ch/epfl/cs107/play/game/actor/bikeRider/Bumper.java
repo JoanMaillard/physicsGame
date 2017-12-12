@@ -2,6 +2,9 @@ package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import java.awt.event.KeyEvent;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
@@ -57,7 +60,8 @@ public class Bumper extends GameEntity{
     }
 	
 	public void draw(Canvas canvas) {
-	        if (entity.getPosition().getY() > 5f)
+	    
+		if (entity.getPosition().getY() > 5f)
 	        {
 	        	entity.setAngularVelocity(0);
 	        	entity.setVelocity(Vector.ZERO);
@@ -70,7 +74,16 @@ public class Bumper extends GameEntity{
 	
 	void jump() {
 
-			entity.setVelocity(new Vector(0f, 40f));
+		if (contactListener.getEntities().size() > 1)
+				 {
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				  @Override
+				  public void run() {
+					  entity.setVelocity(new Vector(0f, 20f));
+				  }
+				}, 500);
+		}
 	        
 		}
 	}

@@ -24,7 +24,7 @@ public class Bike extends GameEntity implements Actor{
     public static boolean right = true;
     private String hit = "";
     private Entity entity;
-    private static Wheel leftWheel;
+    static Wheel leftWheel;
     private static Wheel rightWheel;
     private ShapeGraphics image;
     private ShapeGraphics headImage;

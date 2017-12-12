@@ -11,7 +11,6 @@ public class BikeGame extends ActorGame{
 	
     private Terrain terrain;
     private Bike bike;
-    private Bumper bumper;
     private Window canvasWindow;
     private String endFlag = "";
     private int level = 1;
@@ -21,7 +20,6 @@ public class BikeGame extends ActorGame{
     public void initializeObjects() {
                 terrain = new Terrain(this, true, level);
                 bike = new Bike(this, false, new Vector(0.0f, 5.0f));
-                bumper = new Bumper(this, false, new Vector(-10f, 0f));
                 setViewCandidate(bike.getEntity());
                 
     }
@@ -66,9 +64,6 @@ public class BikeGame extends ActorGame{
             super.update(deltaTime);
             drawAllObjects();
             bike.controls(canvasWindow);
-            if (canvasWindow.getKeyboard().get(KeyEvent.VK_J).isPressed()) {
-            bumper.jump();
-            }
         }
     }
     

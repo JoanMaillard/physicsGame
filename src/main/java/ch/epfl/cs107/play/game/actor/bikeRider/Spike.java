@@ -40,7 +40,7 @@ public class Spike extends GameEntity{
         buildParts();
         setParentToImage();
         contactListener = new BasicContactListener () ;
-	entity.addContactListener(contactListener) ;
+        entity.addContactListener(contactListener) ;
     }
     
     //Additional methods
@@ -66,16 +66,12 @@ public class Spike extends GameEntity{
         image.setParent(entity);
     }
     
-public String collisions(Entity gameEntity, int type) {
+    public String collisions() {
     	
-    	if (!collision[type]) {
-            collision[type] = contactListener.hasContactWith(gameEntity);
-        }
-    	if (collision[type]){
-            return "lose";
-    	}
-        return "";
+    	if (contactListener.getEntities().getClass() == Wheel.class) {
+           return "reset"; 
+        } else {
+		return null; }
     }
-
     
 }
