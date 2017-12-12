@@ -1,31 +1,27 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
-import java.awt.Color;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
-import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.game.actor.crate.Crate;
 import ch.epfl.cs107.play.math.Entity;
-import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
 public class Terrain extends GameEntity{
-	
-	private ShapeGraphics image;
-	private PartBuilder partBuilder;
-	private Entity entity;
-	private Polyline polyline;
-        private Finish finish;
+        Finish finish;
 	
 	public Terrain(ActorGame game, boolean fixed, int level) {
 		super(game, fixed);
-		entity = super.getEntity();
-                switch (level){
+                createLevel(level);
+	}
+        
+
+        private void createLevel(int level) {
+            switch (level){
                     case 1:
-                        polyline = new Polyline(
+                        Polyline terrainLv1 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
 						0.0f, 0.0f,
@@ -40,10 +36,11 @@ public class Terrain extends GameEntity{
 						65.0f, 0.0f,
 						6500.0f, -1000.0f
 						);
-                        finish = new Finish(game, true, new Vector(65f, 0.3f));
+                        Finish finish1 = new Finish(getOwner(), true, new Vector(65f, 0.3f));
+                        finish = finish1;
                         break;
                     case 2: //Change the level!
-                        polyline = new Polyline(
+                        Polyline terrainLv2 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
 						0.0f, 0.0f,
@@ -58,13 +55,15 @@ public class Terrain extends GameEntity{
 						65.0f, 0.0f,
 						6500.0f, -1000.0f
 						);
-                        Crate crate1 = new Crate(game, false, new Vector(-12.0f, 1.0f));
-                        Crate crate2 = new Crate(game, false, new Vector(-12.0f, 2.0f));
-                        Crate crate3 = new Crate(game, true, new Vector(-15.0f, 1.0f));
-                        finish = new Finish(game, true, new Vector(-65f, 0.3f));
+                        
+                        Crate crate1_1 = new Crate(getOwner(), false, new Vector(-12.0f, 1.0f));
+                        Crate crate1_2 = new Crate(getOwner(), false, new Vector(-12.0f, 2.0f));
+                        Crate crate1_3 = new Crate(getOwner(), true, new Vector(-15.0f, 1.0f));
+                        Finish finish2 = new Finish(getOwner(), true, new Vector(-65f, 0.3f));
+                        finish = finish2;
                         break;
                     case 3: //Change the level!
-                        polyline = new Polyline(
+                        Polyline terrainLv3 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
 						0.0f, 0.0f,
@@ -79,22 +78,20 @@ public class Terrain extends GameEntity{
 						65.0f, 0.0f,
 						6500.0f, -1000.0f
 						);
-                        finish = new Finish(game, true, new Vector(-5f, 0.3f));
+                        Finish finish3 = new Finish(getOwner(), true, new Vector(-5f, 0.3f));
+                        finish = finish3;
                         break;
                     default:
                         
                         break;
                 }
-                image = new ShapeGraphics(polyline , new Color(2, 106, 53) , Color.GREEN ,0.5f, 1f, 0);
-		build();
-	}
-
+        }
+        
 	public void draw(Canvas canvas) {
-		image.draw(canvas);
 	}
         
-        public String collision(Entity entity) {
-            if (finish.collision(entity).equals("win")) {
+        public String collisions(Entity entity) {
+            if (finish.collisions(entity).equals("win")) {
                 return "win";
             }
             else {
@@ -102,12 +99,5 @@ public class Terrain extends GameEntity{
             }
         }
 	
-	void build() {
-            partBuilder = entity.createPartBuilder() ;
-	    partBuilder.setShape(polyline) ;
-	    partBuilder.setFriction(1000.0f) ;
-	    partBuilder.build() ;
-	    image.setParent(entity);
-            getOwner().getEntitiesList().add(this);
-	}
+	
 }

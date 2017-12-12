@@ -32,7 +32,7 @@ public abstract class ActorGame implements Game {
         return window ;
     }
     
-    public List getEntitiesList() {
+    public List<GameEntity> getEntitiesList() {
         return listEntities;
     }
     
@@ -53,6 +53,9 @@ public abstract class ActorGame implements Game {
         for (int i = 0; i < listEntities.toArray().length; i++) {
             listEntities.get(i).destroy();
         }
+    }
+    
+    public void objectsCollision() {
     }
     
     public void drawAllObjects() {
@@ -83,6 +86,8 @@ public abstract class ActorGame implements Game {
     
     @Override
     public void update(float deltaTime) {
+        
+        objectsCollision();
         
     	world.update(deltaTime) ;
     	// We can render our scene now,

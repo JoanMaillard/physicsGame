@@ -60,7 +60,7 @@ public class Finish extends GameEntity{
         image.draw(canvas);
     }
     
-    public String collision(Entity gameEntity) {
+    public String collisions(Entity gameEntity) {
     	
     	if (!bikeCollision) {
             bikeCollision = contactListener.hasContactWith(gameEntity);
