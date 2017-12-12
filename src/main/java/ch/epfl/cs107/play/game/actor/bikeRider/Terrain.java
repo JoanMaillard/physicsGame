@@ -65,6 +65,7 @@ public class Terrain extends GameEntity{
                         break;
                     case 3: //Change the level!
                         Polyline terrainLv3 = new Polyline(
+<<<<<<< HEAD
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
 						0.0f, 0.0f,
