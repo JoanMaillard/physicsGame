@@ -26,6 +26,7 @@ public class Car extends GameEntity implements Actor{
     private static CarWheel leftWheel;
     private static CarWheel rightWheel;
     private ImageGraphics carImage = new ImageGraphics("car.png", 8f, 4.5f, new Vector(0.9f, 0f));
+    //only for tests
     private Polygon polygon = new Polygon(
     		-4f, 1f,
     		-3.5f, 4.5f,
@@ -88,10 +89,17 @@ public class Car extends GameEntity implements Actor{
     	
     	//rotate
     	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
+<<<<<<< HEAD
     		entity.applyAngularForce (100.0f) ;
     	}
     	if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
     		entity.applyAngularForce (-100.0f) ;
+=======
+    		entity.applyAngularForce (500.0f) ;
+    	}
+    	if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
+    		entity.applyAngularForce (-500.0f) ;
+>>>>>>> c32d6dd1c7aeb0d64185c6ced6429cb5ac9dfcfd
     	}
     	
     }
@@ -103,7 +111,7 @@ public class Car extends GameEntity implements Actor{
 
     public void draw(Canvas canvas) {
     	carImage.draw(canvas);
-        hitBox.draw(canvas);
+    	hitBox.draw(canvas);
     }
     public void destroy()
     {
