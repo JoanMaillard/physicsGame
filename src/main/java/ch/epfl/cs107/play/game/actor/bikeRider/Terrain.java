@@ -3,7 +3,6 @@ package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
-import ch.epfl.cs107.play.game.actor.crate.Crate;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
@@ -75,6 +74,7 @@ public class Terrain extends GameEntity{
         private void createLevel(int level) {
             switch (level){
                     case 1:
+                        BikeGame.beanIsActive = false;
                         Polyline terrainLv1 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
@@ -97,6 +97,7 @@ public class Terrain extends GameEntity{
                         new Item(getOwner(), true, new Vector(8f, 1.3f));
                         break;
                     case 2:
+                        BikeGame.beanIsActive = false;
                         Polyline terrainLv2 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
@@ -125,6 +126,7 @@ public class Terrain extends GameEntity{
                         }
                         break;
                     case 3: //Change the level!
+                        BikeGame.beanIsActive = false;
                         Polyline terrainLv3 = new Polyline(
 						-15f, 0f,
                  				-5, 0f,
@@ -155,6 +157,7 @@ public class Terrain extends GameEntity{
                         break;
                         
                     case 4: //Change the level!
+                        BikeGame.beanIsActive = false;
                         Polyline terrainLv4 = new Polyline(
 						-15f, 0f,
                  				-100f, 5f,

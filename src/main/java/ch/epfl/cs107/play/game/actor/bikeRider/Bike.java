@@ -262,6 +262,7 @@ public class Bike extends GameEntity implements Actor{
                 }
                 if (Terrain.getItems().contains(contact.getOther().getEntity())) {
                     hit = "switchBean";
+                    contact.getOther().destroy();
                 }
             }
             if (Terrain.getDangerousBike().contains(contact.getOther().getEntity())) {

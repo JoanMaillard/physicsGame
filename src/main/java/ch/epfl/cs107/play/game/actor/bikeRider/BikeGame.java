@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class BikeGame extends ActorGame{
 	
     private Terrain terrain;
-    private boolean beanIsActive;
+    public static boolean beanIsActive;
     private Bike bike;
     private Car car;
     private Window canvasWindow;
