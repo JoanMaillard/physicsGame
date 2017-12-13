@@ -71,4 +71,9 @@ public abstract class GameEntity{
     }
     
     public String collisions() {return "";}
+
+	public void update(float deltaTime) {
+		// TODO Auto-generated method stub
+		
+	}
 }

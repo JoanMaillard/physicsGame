@@ -23,6 +23,7 @@ public abstract class ActorGame implements Game {
     private static final float VIEW_TARGET_VELOCITY_COMPENSATION = 0.2f ;
     private static final float VIEW_INTERPOLATION_RATIO_PER_SECOND = 0.1f ;
     private static final float VIEW_SCALE = 15.0f ;
+    private String endFlag = "";
     
     //Additional methods (getters, initializers, destroyers)
     public Keyboard getKeyboard (){
@@ -63,6 +64,12 @@ public abstract class ActorGame implements Game {
         }
     }
     
+    public void updateAllObjects(float deltaTime) {
+        for (int i = 0; i < listEntities.toArray().length; i++){
+            listEntities.get(i).update(deltaTime);
+        }
+    }
+    
     //Game interface methods
 
     @Override
@@ -80,6 +87,9 @@ public abstract class ActorGame implements Game {
                 
         return true;
     }
+    public void setEndFlag(String endFlag) {
+		this.endFlag = endFlag;
+	}
 
     // This event is called at each frame
     

@@ -11,7 +11,7 @@ import ch.epfl.cs107.play.window.Canvas;
 
 public class Terrain extends GameEntity{
         boolean collision = false;
-	
+        private ActorGame game = getOwner();
 	public Terrain(ActorGame game, boolean fixed, int level) {
 		super(game, fixed);
                 createLevel(level);
