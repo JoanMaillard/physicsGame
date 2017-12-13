@@ -23,10 +23,12 @@ public class Spike extends GameEntity{
     private ImageGraphics image;
     private boolean collision[] = {false, false};
     private BasicContactListener contactListener;
+    private ActorGame game;
     
     //Constructors
     public Spike(ActorGame game, boolean fixed, Vector position) {
         super(game, fixed, position);
+        this.game = game;
         entity = super.getEntity();
         buildParts();
         setParentToImage();
@@ -57,8 +59,16 @@ public class Spike extends GameEntity{
         getOwner().getEntitiesList().add(this);
     }
 
+    @Override
     public void draw(Canvas canvas) {
         image.draw(canvas);
+    }
+    
+    @Override
+    public void update(float deltaTime)
+    {
+    	System.out.println("update");
+    	bikeCollisions();
     }
     
     private void setParentToImage(){
@@ -69,6 +79,7 @@ public class Spike extends GameEntity{
     public void bikeCollisions() {
     	
     	if (contactListener.getEntities().getClass() == Wheel.class) {
+    		
            game.setEndFlag("loose");
     }
     
