@@ -69,6 +69,7 @@ public class BikeGame extends ActorGame{
             super.update(deltaTime);
             drawAllObjects();
             bike.controls(canvasWindow);
+            if (beanIsActive) {car.controls(canvasWindow);}
             
         }
     }
@@ -89,7 +90,7 @@ public class BikeGame extends ActorGame{
             if (bike.collisions().equals("switchBean")) {
                 Vector bikePosition = bike.getEntity().getPosition();
                 super.getEntitiesList().remove(bike);
-                car = new Car(this, false, bikePosition);
+                car = new Car(this, false, new Vector(bikePosition.getX(), bikePosition.getY()+5f));
                 setViewCandidate(car.getEntity());
                 beanIsActive = true;
             } 

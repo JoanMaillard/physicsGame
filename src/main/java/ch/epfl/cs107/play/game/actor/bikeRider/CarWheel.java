@@ -26,9 +26,8 @@ public class CarWheel extends GameEntity implements Actor {
         private String hit = "";
 	private WheelConstraintBuilder constraintBuilder;
 	private Entity entity;
-	private Circle circle = new Circle(0.5f);
-	private ImageGraphics image1 = new ImageGraphics("wheel.png", 1f , 1f , new Vector(0.5f, 0.5f)) ;
-	private ShapeGraphics image = new ShapeGraphics(circle , Color.GRAY , Color.BLACK ,	0.01f, 1f, 0);
+	private Circle circle = new Circle(1f);
+	private ImageGraphics image1 = new ImageGraphics("wheel.png", 2f , 2f , new Vector(1f, 1f)) ;
 
 	
 	public CarWheel(ActorGame game, boolean fixed, Vector position, boolean left) {
@@ -75,7 +74,7 @@ public class CarWheel extends GameEntity implements Actor {
 		
             partBuilder = entity.createPartBuilder() ;
 	    partBuilder.setShape(circle) ;
-	    partBuilder.setFriction(10000.0f) ;
+	    partBuilder.setFriction(1f) ;
 	    partBuilder.build() ;
 	    image1.setParent(entity);
             getOwner().getEntitiesList().add(this);
@@ -105,15 +104,15 @@ public class CarWheel extends GameEntity implements Actor {
     }
 	
 	void go(Window window) {
-		if(left && Bike.right) {
-                    if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED*3) {
+		if(left && Car.right) {
+                    if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Car.MAX_WHEEL_SPEED*3) {
                         entity.applyAngularForce(-30.0f);
                     }
                     
                     
 		}
-		if(!left && !Bike.right) {
-                    if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED*3) {
+		if(!left && !Car.right) {
+                    if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Car.MAX_WHEEL_SPEED*3) {
                         entity.applyAngularForce(30.0f);
                     }
                 }
