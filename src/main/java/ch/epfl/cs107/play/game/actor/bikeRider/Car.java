@@ -21,7 +21,7 @@ public class Car extends GameEntity implements Actor{
 	
     public static final float MAX_WHEEL_SPEED = 20f;
     public static boolean right = true;
-    private boolean hit;
+    private String hit = "";
     public static Entity entity;
     private static CarWheel leftWheel;
     private static CarWheel rightWheel;
@@ -73,6 +73,7 @@ public class Car extends GameEntity implements Actor{
         rightWheel = new CarWheel(game, fixed, position.add(new Vector(2.5f, -1f)), false);
         rightWheel.build();
         rightWheel.attach(entity, new Vector (2.5f, -1f), new Vector (0.5f, -1.0f));
+        contactListener();
     }
     
     void controls(Window window) {
@@ -105,21 +106,37 @@ public class Car extends GameEntity implements Actor{
         hitBox.draw(canvas);
     }
     
+    @Override
+    public String collisions() {
+        if (leftWheel.collisions().equals("lose") || rightWheel.collisions().equals("lose") || hit.equals("lose")) {
+            return "lose";
+        }
+        if (hit.equals("win")) {
+            return "win";
+        }
+        return "";
+    }
+    
     private void contactListener() {
     
     	ContactListener listener = new ContactListener () {
     	@Override
     	public void beginContact(Contact contact) {
-    	if (contact.getOther ().isGhost ())
-    	//return ;
-    	// si contact avec les roues 
-    	//return ;
-    	hit = true ;
+            if (contact.getOther().isGhost()){
+                if (Terrain.getFinish().equals(contact.getOther().getEntity())) { //todo test
+                    hit = "win";
+                }
+                return ;
+            }
+            if (Terrain.getDangerousBike().contains(contact.getOther().getEntity())) {
+                hit = "lose";
+            }
     	}
     	
     	@Override
     	public void endContact(Contact contact) {}
     	} ;
-    	//addContactListener() ;
+        
+        entity.addContactListener(listener);
     }
 }

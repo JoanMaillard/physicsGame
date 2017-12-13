@@ -3,7 +3,6 @@ package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
-import ch.epfl.cs107.play.game.actor.crate.Crate;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
@@ -100,9 +99,6 @@ public class Terrain extends GameEntity{
 						6500.0f, -1000.0f
 						);
                         new NormalTerrain(getOwner(), true, terrainLv2);
-                        new Crate(getOwner(), false, new Vector(-12.0f, 1.0f));
-                        new Crate(getOwner(), false, new Vector(-12.0f, 2.0f));
-                        new Crate(getOwner(), true, new Vector(-15.0f, 1.0f));
                         new Finish(getOwner(), true, new Vector(-65f, 0.3f));
                         break;
                     case 1: //Change the level!

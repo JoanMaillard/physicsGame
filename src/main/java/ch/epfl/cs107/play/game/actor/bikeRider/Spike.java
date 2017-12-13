@@ -1,17 +1,12 @@
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
-import java.awt.Color;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
-import ch.epfl.cs107.play.game.actor.TextGraphics;
-import ch.epfl.cs107.play.math.BasicContactListener;
-import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
@@ -21,13 +16,10 @@ public class Spike extends GameEntity{
     private Entity entity;
     private PartBuilder pB;
     private ImageGraphics image;
-    private BasicContactListener contactListener;
-	private ActorGame game;
     
     //Constructors
     public Spike(ActorGame game, boolean fixed, Vector position) {
         super(game, fixed, position);
-        this.game = game;
         entity = super.getEntity();
         buildParts();
         setParentToImage();
