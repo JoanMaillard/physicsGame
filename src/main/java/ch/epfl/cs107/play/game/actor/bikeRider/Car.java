@@ -104,7 +104,7 @@ public class Car extends GameEntity implements Actor{
 
     public void draw(Canvas canvas) {
     	carImage.draw(canvas);
-    	hitBox.draw(canvas);
+    	//hitBox.draw(canvas);
     }
     public void destroy()
     {
