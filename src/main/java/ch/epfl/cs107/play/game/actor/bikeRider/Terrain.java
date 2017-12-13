@@ -3,6 +3,7 @@ package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
+import ch.epfl.cs107.play.game.actor.crate.Crate;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
@@ -83,13 +84,13 @@ public class Terrain extends GameEntity{
                         new Finish(getOwner(), true, new Vector(65f, 0.3f));
                         new Item(getOwner(), true, new Vector(8f, 1.3f));
                         break;
-                    case 2: //Change the level!
+                    case 2:
                         Polyline terrainLv2 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
 						0.0f, 0.0f,
 						3.0f, 1.0f,
-						8.0f, 1.0f,
+						3.0f, 10f,
 						15.0f, 3.0f,
 						16.0f, 3.0f,
 						25.0f, 0.0f,
@@ -101,6 +102,15 @@ public class Terrain extends GameEntity{
 						);
                         new NormalTerrain(getOwner(), true, terrainLv2);
                         new Finish(getOwner(), true, new Vector(-65f, 0.3f));
+                        for(int i = 0; i < 30; i++) {
+                        	new Crate(getOwner(), false, new Vector(-5f, 40f + 2*i));
+                        }
+                        for(int i = 0; i < 30; i++) {
+                        	new Crate(getOwner(), false, new Vector(-20f, 60f + 2*i));
+                        }
+                        for(int i = 0; i < 30; i++) {
+                        	new Crate(getOwner(), false, new Vector(-40f, 150f + 2*i));
+                        }
                         break;
                     case 3: //Change the level!
                         Polyline terrainLv3 = new Polyline(
@@ -156,19 +166,19 @@ public class Terrain extends GameEntity{
                  				10f, -4f,
                  				11f, -4f,
                  				11f, -5f,
-                 				14f, -20f,
+                 				12f, -20f,
                  				10f, -40f,
-                 				14f, -60f,
+                 				12f, -60f,
                  				50f, -60f,
                  				20f, -40f,
-                 				17f, -20f,
+                 				18f, -20f,
                  				20f, 5f,
                  				100f, 5f,
                  				100f, -100f,
                  				-100f, -100f                 				
                  				);
                         new NormalTerrain(getOwner(), true, terrainLv4);
-                        new Finish(getOwner(), true, new Vector(-5f, 0.3f));
+                        new Finish(getOwner(), true, new Vector(45f, -59.7f));
                         break;
                         
                     default:
