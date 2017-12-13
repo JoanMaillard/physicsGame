@@ -13,7 +13,7 @@ import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Window;
 
-public class Icon extends GameEntity implements Actor {
+public class Icon extends GameEntity{
 	
 	private ImageGraphics bikerImageOn = new ImageGraphics("bikeon.png", 10, 10);
 	private ImageGraphics bikerImageOff= new ImageGraphics("bikeoff.png", 10, 10);
@@ -23,8 +23,8 @@ public class Icon extends GameEntity implements Actor {
 	private Entity entity;
 	private boolean bike;
 	
-	public Icon(ActorGame game, boolean bike, Vector position) {
-		super(game, true, position);
+	public Icon(ActorGame game, boolean fixed, boolean bike, Vector position) {
+		super(game, fixed, position);
 		entity = super.getEntity();
 		this.bike = bike;
 		partBuilder = entity.createPartBuilder() ;
@@ -51,21 +51,21 @@ public class Icon extends GameEntity implements Actor {
 	private void choose(Window window) {
 		if (SkinChooser.skin) {
 			if (bike && bikerImageOff.getParent() != null) {
-				bikerImageOn.setParent(this);
+				bikerImageOn.setParent(entity);
 				bikerImageOff.setParent(null);
 			}
 		 else if (!bike && beanImageOn.getParent() != null) {
 				beanImageOn.setParent(null);
-				beanImageOff.setParent(this);
+				beanImageOff.setParent(entity);
 		}
 	} else {
 		
 		if (bike && bikerImageOn.getParent() != null) {
 			bikerImageOn.setParent(null);
-			bikerImageOff.setParent(this);
+			bikerImageOff.setParent(entity);
 		}
-	else if (!bike && beanImageOn.getParent() != null) {
-			beanImageOn.setParent(null);
+	else if (!bike && beanImageOff.getParent() != null) {
+			beanImageOn.setParent(entity);
 			beanImageOff.setParent(null);
 	}
 }

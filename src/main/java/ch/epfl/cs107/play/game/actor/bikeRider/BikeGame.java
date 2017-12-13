@@ -15,12 +15,16 @@ public class BikeGame extends ActorGame{
     private String endFlag = "";
     private int level = 1;
     private int lives = 3;
+    private SkinChooser skin;
+    private boolean skinChoosed;
     
     @Override
     public void initializeObjects() {
-                terrain = new Terrain(this, true, level);
-                bike = new Bike(this, false, new Vector(0.0f, 5.0f));
-                setViewCandidate(bike.getEntity());
+        skin = new SkinChooser(null);  
+        while(!skinChoosed) {}
+    	terrain = new Terrain(this, true, level);
+        bike = new Bike(this, false, new Vector(0.0f, 5.0f));
+    	setViewCandidate(bike.getEntity());
     }
     
     @Override
@@ -42,8 +46,8 @@ public class BikeGame extends ActorGame{
     @Override
     public boolean begin(Window window, FileSystem fileSystem){
             if (super.begin(window, fileSystem)) {
-                initializeObjects();
                 canvasWindow = window;
+                initializeObjects();
             return true;
         }
         else {
