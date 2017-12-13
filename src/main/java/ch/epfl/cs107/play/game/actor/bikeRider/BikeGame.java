@@ -94,7 +94,7 @@ public class BikeGame extends ActorGame{
             }
             if (bike.collisions().equals("switchBean")) {
                 Vector bikePosition = bike.getEntity().getPosition();
-                super.getEntitiesList().remove(bike);
+                bike.destroy();
                 car = new Car(this, false, new Vector(bikePosition.getX(), bikePosition.getY()+5f));
                 setViewCandidate(car.getEntity());
                 beanIsActive = true;
