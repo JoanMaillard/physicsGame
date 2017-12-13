@@ -241,6 +241,16 @@ public class Bike extends GameEntity implements Actor{
         return "";
     }
     
+    public void destroy()
+    {
+        leftWheel.destroy();
+        rightWheel.destroy();
+        getOwner().getEntitiesList().remove(leftWheel);
+        getOwner().getEntitiesList().remove(rightWheel);
+        getOwner().getEntitiesList().remove(this);
+        entity.destroy();
+    }
+    
     private void contactListener() {
     
     	ContactListener listener = new ContactListener () {
