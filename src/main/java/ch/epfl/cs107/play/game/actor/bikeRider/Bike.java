@@ -24,8 +24,8 @@ public class Bike extends GameEntity implements Actor{
     public static boolean right = true;
     private String hit = "";
     private Entity entity;
-    static Wheel leftWheel;
-    private static Wheel rightWheel;
+    private Wheel leftWheel;
+    private Wheel rightWheel;
     private ShapeGraphics image;
     private ShapeGraphics headImage;
     private ShapeGraphics armImage;
@@ -82,8 +82,8 @@ public class Bike extends GameEntity implements Actor{
     private void buildWheels(ActorGame game, boolean fixed, Vector position) {
         getOwner().getEntitiesList().add(this);
         leftWheel = new Wheel(game, fixed, position.add(new Vector(-1.0f, 0.f)), true);
-        leftWheel.build();
         leftWheel.attach(entity, new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f));
+        leftWheel.build();
         rightWheel = new Wheel(game, fixed, position.add(new Vector(1.0f, 0.f)), false);
         rightWheel.attach(entity, new Vector (1.0f, 0.0f), new Vector (0.5f, -1.0f));
         rightWheel.build();
@@ -243,10 +243,10 @@ public class Bike extends GameEntity implements Actor{
     
     public void destroy()
     {
-        leftWheel.destroy();
-        rightWheel.destroy();
         getOwner().getEntitiesList().remove(leftWheel);
         getOwner().getEntitiesList().remove(rightWheel);
+        leftWheel.destroy();
+        rightWheel.destroy();
         getOwner().getEntitiesList().remove(this);
         entity.destroy();
     }
@@ -262,7 +262,6 @@ public class Bike extends GameEntity implements Actor{
                 }
                 if (Terrain.getItems().contains(contact.getOther().getEntity())) {
                     hit = "switchBean";
-                    contact.getOther().destroy();
                 }
             }
             if (Terrain.getDangerousBike().contains(contact.getOther().getEntity())) {
