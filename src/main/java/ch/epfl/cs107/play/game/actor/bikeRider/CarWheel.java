@@ -27,7 +27,7 @@ public class CarWheel extends GameEntity implements Actor {
 	private WheelConstraintBuilder constraintBuilder;
 	private Entity entity;
 	private Circle circle = new Circle(1f);
-	private ImageGraphics image1 = new ImageGraphics("wheel.png", 2f , 2f , new Vector(1f, 1f)) ;
+	private ImageGraphics image1 = new ImageGraphics("wheel.png", 2f , 2f , new Vector(2f, 1f)) ;
 
 	
 	public CarWheel(ActorGame game, boolean fixed, Vector position, boolean left) {
@@ -106,22 +106,22 @@ public class CarWheel extends GameEntity implements Actor {
 	void go(Window window) {
 		if(left && Car.right) {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Car.MAX_WHEEL_SPEED*3) {
-                        entity.applyAngularForce(-30.0f);
+                        entity.applyAngularForce(-200.0f);
                     }
                     
                     
 		}
 		if(!left && !Car.right) {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Car.MAX_WHEEL_SPEED*3) {
-                        entity.applyAngularForce(30.0f);
+                        entity.applyAngularForce(200.0f);
                     }
                 }
                 if(window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
                     if (getSpeed() < 0.0f) {
-                        entity.applyAngularForce(10.0f);
+                        entity.applyAngularForce(100.0f);
                     }
                     if (getSpeed() > 0.0f) {
-                        entity.applyAngularForce(-10.0f);
+                        entity.applyAngularForce(-100.0f);
                     }
                 }
         }

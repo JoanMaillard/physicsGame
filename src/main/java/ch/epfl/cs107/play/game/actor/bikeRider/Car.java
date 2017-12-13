@@ -89,10 +89,10 @@ public class Car extends GameEntity implements Actor{
     	
     	//rotate
     	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
-    		entity.applyAngularForce (100.0f) ;
+    		entity.applyAngularForce (500.0f) ;
     	}
     	if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
-    		entity.applyAngularForce (-100.0f) ;
+    		entity.applyAngularForce (-500.0f) ;
     	}
     	
     }
