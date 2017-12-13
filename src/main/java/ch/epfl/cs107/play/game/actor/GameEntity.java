@@ -73,7 +73,16 @@ public abstract class GameEntity{
     public void draw(Canvas canvas) {
     }
     
+<<<<<<< HEAD
     public String collisions() {
     return "";
     }
+=======
+    public String collisions() {return "";}
+
+	public void update(float deltaTime) {
+		// TODO Auto-generated method stub
+		
+	}
+>>>>>>> c3d9bf032543b2d800a8048052226261f359f066
 }

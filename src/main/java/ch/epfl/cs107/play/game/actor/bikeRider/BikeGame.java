@@ -62,7 +62,9 @@ public class BikeGame extends ActorGame{
             objectsCollision();
             super.update(deltaTime);
             drawAllObjects();
+            updateAllObjects(deltaTime);
             bike.controls(canvasWindow);
+            
         }
     }
     
@@ -117,8 +119,10 @@ public class BikeGame extends ActorGame{
 		return endFlag;
 	}
 
-	public void setEndFlag(String endFlag) {
+	@Override
+    public void setEndFlag(String endFlag) {
 		this.endFlag = endFlag;
 	}
+	
     
     }
