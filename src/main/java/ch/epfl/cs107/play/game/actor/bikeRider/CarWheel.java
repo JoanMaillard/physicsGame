@@ -104,43 +104,24 @@ public class CarWheel extends GameEntity implements Actor {
     }
 	
 	void go(Window window) {
-<<<<<<< HEAD
-		if(left && Bike.right) {
-                    if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED*3) {
-                        entity.applyAngularForce(-60.0f);
-=======
 		if(left && Car.right) {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Car.MAX_WHEEL_SPEED*3) {
                         entity.applyAngularForce(-200.0f);
->>>>>>> c32d6dd1c7aeb0d64185c6ced6429cb5ac9dfcfd
                     }
                     
                     
 		}
-<<<<<<< HEAD
-		if(!left && !Bike.right) {
-                    if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED*3) {
-                        entity.applyAngularForce(60.0f);
-=======
 		if(!left && !Car.right) {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Car.MAX_WHEEL_SPEED*3) {
                         entity.applyAngularForce(200.0f);
->>>>>>> c32d6dd1c7aeb0d64185c6ced6429cb5ac9dfcfd
                     }
                 }
                 if(window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
                     if (getSpeed() < 0.0f) {
-<<<<<<< HEAD
-                        entity.applyAngularForce(30.0f);
-                    }
-                    if (getSpeed() > 0.0f) {
-                        entity.applyAngularForce(-30.0f);
-=======
                         entity.applyAngularForce(100.0f);
                     }
                     if (getSpeed() > 0.0f) {
                         entity.applyAngularForce(-100.0f);
->>>>>>> c32d6dd1c7aeb0d64185c6ced6429cb5ac9dfcfd
                     }
                 }
         }
