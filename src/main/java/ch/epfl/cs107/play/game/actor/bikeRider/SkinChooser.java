@@ -17,8 +17,8 @@ public class SkinChooser {
 	static boolean skin;
 	
 	public SkinChooser(ActorGame game) {
-		bikeIcon = new Icon(game, true, true, new Vector(-10f, 0f));
-		beanIcon = new Icon(game, true, false, new Vector(10f, 0f));
+		bikeIcon = new Icon(game, true, true, new Vector(-5f, 0f));
+		beanIcon = new Icon(game, true, false, new Vector(5f, 0f));
 	}
 	
 	public void choose(Window window) {

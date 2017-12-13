@@ -27,7 +27,7 @@ public class Icon extends GameEntity{
 		super(game, fixed, position);
 		entity = super.getEntity();
 		this.bike = bike;
-		partBuilder = entity.createPartBuilder() ;
+		partBuilder = entity.createPartBuilder();
 		partBuilder.setShape(new Polygon(new Vector(0f, 0f), new Vector(10f, 0f),
 	    		new Vector(10f, 10f), new Vector(0f, 10f))) ;
 	    partBuilder.build() ;

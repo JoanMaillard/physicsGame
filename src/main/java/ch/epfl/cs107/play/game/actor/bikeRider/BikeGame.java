@@ -20,8 +20,6 @@ public class BikeGame extends ActorGame{
     
     @Override
     public void initializeObjects() {
-        skin = new SkinChooser(null);  
-        while(!skinChoosed) {}
     	terrain = new Terrain(this, true, level);
         bike = new Bike(this, false, new Vector(0.0f, 5.0f));
     	setViewCandidate(bike.getEntity());

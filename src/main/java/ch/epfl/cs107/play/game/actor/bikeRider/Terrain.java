@@ -81,6 +81,7 @@ public class Terrain extends GameEntity{
 						);
                         new NormalTerrain(getOwner(), true, terrainLv1);
                         new Finish(getOwner(), true, new Vector(65f, 0.3f));
+                        new Item(getOwner(), true, new Vector(8f, 1.3f));
                         break;
                     case 2: //Change the level!
                         Polyline terrainLv2 = new Polyline(
