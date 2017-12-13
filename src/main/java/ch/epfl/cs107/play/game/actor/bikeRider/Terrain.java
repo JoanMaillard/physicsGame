@@ -78,6 +78,8 @@ public class Terrain extends GameEntity{
                         Polyline terrainLv1 = new Polyline(
 						-1000.0f, -1000.0f,
 						-1000.0f, 0.0f,
+						-5f, 10f,
+						-2f, 0f,
 						0.0f, 0.0f,
 						3.0f, 1.0f,
 						8.0f, 1.0f,
@@ -113,13 +115,13 @@ public class Terrain extends GameEntity{
                         new NormalTerrain(getOwner(), true, terrainLv2);
                         new Finish(getOwner(), true, new Vector(-65f, 0.3f));
                         for(int i = 0; i < 30; i++) {
-                        	new Crate(getOwner(), false, new Vector(-5f, 40f + 2*i));
+                        	new BikeCrate(getOwner(), false, new Vector(-5f, 40f + 2*i));
                         }
                         for(int i = 0; i < 30; i++) {
-                        	new Crate(getOwner(), false, new Vector(-20f, 60f + 2*i));
+                        	new BikeCrate(getOwner(), false, new Vector(-20f, 60f + 2*i));
                         }
                         for(int i = 0; i < 30; i++) {
-                        	new Crate(getOwner(), false, new Vector(-40f, 150f + 2*i));
+                        	new BikeCrate(getOwner(), false, new Vector(-40f, 150f + 2*i));
                         }
                         break;
                     case 3: //Change the level!
