@@ -22,10 +22,12 @@ public class Spike extends GameEntity{
     private PartBuilder pB;
     private ImageGraphics image;
     private BasicContactListener contactListener;
+	private ActorGame game;
     
     //Constructors
     public Spike(ActorGame game, boolean fixed, Vector position) {
         super(game, fixed, position);
+        this.game = game;
         entity = super.getEntity();
         buildParts();
         setParentToImage();
@@ -54,6 +56,7 @@ public class Spike extends GameEntity{
         getOwner().getEntitiesList().add(this);
     }
 
+    @Override
     public void draw(Canvas canvas) {
         image.draw(canvas);
     }
