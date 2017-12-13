@@ -116,7 +116,43 @@ public class Terrain extends GameEntity{ // This class contains the levels
                         	new BikeCrate(getOwner(), false, new Vector(-40f, 150f + 2*i));
                         }
                         break;
+                        
                     case 3: //Change the level!
+                        BikeGame.beanIsActive = false;
+                        Polyline terrainLv5 = new Polyline(
+						-15f, 0f,
+                 				-100, 100f,
+                 				-10f,0f,
+                 				50f, 5f,
+                 				50f, -10f,
+                 				0f, -10f,
+                 				0f, -70f,
+                 				25f, -70f,
+                 				35f, -60f,
+                 				35f, -70f,
+                 				45f, -70f,
+                 				45f, -60f,
+                 				55f, -70f,
+                 				90f, -70f,
+                 				110f, -50f,
+                 				110f, 0f,
+                 				80f, 20f,
+                 				60f, 30f,
+                 				150f, 150f,
+                 				150f, -150f,
+                 				-100f, -100f
+                 				
+                 				);
+                        
+                        for (int i = 0; i < 15 ; i++) {
+
+                            new Spike(getOwner(), true, new Vector(35f+i, -69.3f));
+                        }
+                        new NormalTerrain(getOwner(), true, terrainLv5);
+                        new Finish(getOwner(), true, new Vector(5f, -69.3f));
+                        new Item(getOwner(), true, new Vector(0f, 2f));
+                        break;
+                    case 4: //Change the level!
                         BikeGame.beanIsActive = false;
                         Polyline terrainLv3 = new Polyline(
 						-15f, 0f,
@@ -147,7 +183,7 @@ public class Terrain extends GameEntity{ // This class contains the levels
                         new Bumper(getOwner(), false, new Vector(45f, -23.35f));
                         break;
                         
-                    case 4: //Change the level!
+                    case 5: //Change the level!
                         BikeGame.beanIsActive = false;
                         Polyline terrainLv4 = new Polyline(
 						-15f, 0f,
@@ -186,9 +222,7 @@ public class Terrain extends GameEntity{ // This class contains the levels
                         new NormalTerrain(getOwner(), true, terrainLv4);
                         new Finish(getOwner(), true, new Vector(45f, -59.7f));
                         break;
-                        
                     default: //In case of bad number
-                        
                         break;
                 }
         }

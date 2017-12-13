@@ -29,10 +29,9 @@ public class Car extends GameEntity implements Actor{
     private ImageGraphics carImage = new ImageGraphics("car.png", 8f, 4.5f, new Vector(0.9f, 0f));
     //only for tests
     private Polygon polygon = new Polygon(
-    		-4f, 1f,
-    		-3.5f, 4.5f,
-    		3.5f, 4.5f,
-    		4f, 1f,
+    		-3.5f, 1.5f,
+    		-3f, 4.5f,
+    		1f, 4.5f,
     		2f, 1.5f,
     		0f, 1f,
     		-2f, 1.5f);
@@ -90,10 +89,10 @@ public class Car extends GameEntity implements Actor{
     	
     	//rotate
     	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
-    		entity.applyAngularForce (500.0f) ;
+    		entity.applyAngularForce (1000.0f) ;
     	}
     	if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
-    		entity.applyAngularForce (-500.0f) ;
+    		entity.applyAngularForce (-1000.0f) ;
     	}
     	
     }
