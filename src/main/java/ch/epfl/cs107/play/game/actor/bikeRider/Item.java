@@ -25,6 +25,7 @@ public class Item extends GameEntity{
                 partBuilder.build() ;
                 image.setParent(entity);
                 getOwner().getEntitiesList().add(this);
+                Terrain.getItems().add(entity);
 	}
 	
 	public void draw(Canvas canvas) {
