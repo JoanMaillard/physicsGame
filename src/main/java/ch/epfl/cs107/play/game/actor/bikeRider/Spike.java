@@ -61,31 +61,16 @@ public class Spike extends GameEntity{
         image.draw(canvas);
     }
     
-    public void update(float deltaTime)
-    {
-    	bikeCollisions(game);
-    }
     
     private void setParentToImage(){
         image = new ImageGraphics("stone.10.png", 1, 1);
         image.setParent(entity);
     }
     
-<<<<<<< HEAD
     private void setDangerous() {
     	Terrain.getDangerousWheel().add(entity);
         Terrain.getDangerousBike().add(entity);
-=======
-    public void bikeCollisions(ActorGame game) {
-    	
-    	System.out.println(getOwner().toString());
-    	if (contactListener.getEntities().isEmpty()  || 
-    			contactListener.getEntities().getClass() == Wheel.class) {
-    		
-    		System.out.println("aouch");
-           getOwner().setEndFlag("loose");
-           getOwner().end();
->>>>>>> c3d9bf032543b2d800a8048052226261f359f066
+
     }
     
     

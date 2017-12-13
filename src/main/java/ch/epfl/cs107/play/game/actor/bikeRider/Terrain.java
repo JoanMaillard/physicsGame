@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Terrain extends GameEntity{
-<<<<<<< HEAD
+
         private static List<Entity> dangerousWheel = new ArrayList<>();
         private static List<Entity> checkPoints = new ArrayList<>();
         private static List<Entity> dangerousBike = new ArrayList<>();
@@ -56,10 +56,6 @@ public class Terrain extends GameEntity{
             return finish;
         }
 	
-=======
-        boolean collision = false;
-        private ActorGame game = getOwner();
->>>>>>> c3d9bf032543b2d800a8048052226261f359f066
 	public Terrain(ActorGame game, boolean fixed, int level) {
 		super(game, fixed);
                 createLevel(level);

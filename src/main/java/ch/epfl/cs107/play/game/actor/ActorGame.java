@@ -64,12 +64,6 @@ public abstract class ActorGame implements Game {
         }
     }
     
-    public void updateAllObjects(float deltaTime) {
-        for (int i = 0; i < listEntities.toArray().length; i++){
-            listEntities.get(i).update(deltaTime);
-        }
-    }
-    
     //Game interface methods
 
     @Override

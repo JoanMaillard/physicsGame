@@ -37,8 +37,7 @@ public class Bumper extends GameEntity{
 		buildParts();
 		image.setParent(entity);
 		contactListener = new BasicContactListener () ;
-	    entity.addContactListener(contactListener) ;
-		
+                entity.addContactListener(contactListener) ;
 	}
 	
 	public Bumper(ActorGame game, boolean fixed, Vector position) {
@@ -48,7 +47,7 @@ public class Bumper extends GameEntity{
 		buildParts();
 		image.setParent(entity);
 		contactListener = new BasicContactListener () ;
-	    entity.addContactListener(contactListener) ;
+                entity.addContactListener(contactListener) ;
 		
 	}
 
@@ -57,6 +56,7 @@ public class Bumper extends GameEntity{
         partBuilder.setShape(polygon);
         partBuilder.build();
         getOwner().getEntitiesList().add(this);
+        Terrain.getDangerousBike().add(entity);
     }
 	
 	public void draw(Canvas canvas) {

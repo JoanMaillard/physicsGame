@@ -62,7 +62,6 @@ public class BikeGame extends ActorGame{
             objectsCollision();
             super.update(deltaTime);
             drawAllObjects();
-            updateAllObjects(deltaTime);
             bike.controls(canvasWindow);
             
         }
