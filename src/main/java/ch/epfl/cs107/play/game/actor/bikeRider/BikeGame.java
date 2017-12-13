@@ -21,8 +21,13 @@ public class BikeGame extends ActorGame{
     @Override
     public void initializeObjects() {
     	terrain = new Terrain(this, true, level);
-        bike = new Bike(this, false, new Vector(0.0f, 5.0f));
-    	setViewCandidate(bike.getEntity());
+        if (!beanIsActive) {
+            bike = new Bike(this, false, new Vector(0.0f, 5.0f));
+            setViewCandidate(bike.getEntity());
+            return;
+        }
+        car = new Car(this, false, new Vector(0.0f, 5.0f));
+        setViewCandidate(car.getEntity());
     }
     
     public static void changeCar() {
@@ -111,7 +116,7 @@ public class BikeGame extends ActorGame{
             }
             if (car.collisions().equals("switchBean")) {
                 Vector carPosition = car.getEntity().getPosition();
-                super.getEntitiesList().remove(car);
+                car.destroy();
                 bike = new Bike(this, false, carPosition);
                 setViewCandidate(bike.getEntity());
                 beanIsActive = true;
@@ -127,7 +132,6 @@ public class BikeGame extends ActorGame{
         switch (getEndFlag()) {
             case "reset":
                 destroyAllObjects();
-                lives = 3;
                 initializeObjects();
                 break;
             case "win":
@@ -155,4 +159,8 @@ public class BikeGame extends ActorGame{
     public String getEndFlag() {
 		return endFlag;
 	}
+    
+    public void setEndFlag(String flag) {
+        endFlag = flag;
+    }
     }

@@ -88,10 +88,10 @@ public class Car extends GameEntity implements Actor{
     	
     	//rotate
     	if (window.getKeyboard().get(KeyEvent.VK_LEFT).isDown()) {
-    		entity.applyAngularForce (50.0f) ;
+    		entity.applyAngularForce (100.0f) ;
     	}
     	if (window.getKeyboard().get(KeyEvent.VK_RIGHT).isDown()) {
-    		entity.applyAngularForce (-50.0f) ;
+    		entity.applyAngularForce (-100.0f) ;
     	}
     	
     }
@@ -104,6 +104,15 @@ public class Car extends GameEntity implements Actor{
     public void draw(Canvas canvas) {
     	carImage.draw(canvas);
         hitBox.draw(canvas);
+    }
+    public void destroy()
+    {
+        leftWheel.destroy();
+        rightWheel.destroy();
+        getOwner().getEntitiesList().remove(leftWheel);
+        getOwner().getEntitiesList().remove(rightWheel);
+        getOwner().getEntitiesList().remove(this);
+        entity.destroy();
     }
     
     @Override
@@ -123,10 +132,9 @@ public class Car extends GameEntity implements Actor{
     	@Override
     	public void beginContact(Contact contact) {
             if (contact.getOther().isGhost()){
-                if (Terrain.getFinish().equals(contact.getOther().getEntity())) { //todo test
+                if (Terrain.getFinish().equals(contact.getOther().getEntity())) { 
                     hit = "win";
                 }
-                return ;
             }
             if (Terrain.getDangerousBike().contains(contact.getOther().getEntity())) {
                 hit = "lose";

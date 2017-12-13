@@ -107,22 +107,22 @@ public class CarWheel extends GameEntity implements Actor {
 	void go(Window window) {
 		if(left && Bike.right) {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED*3) {
-                        entity.applyAngularForce(-30.0f);
+                        entity.applyAngularForce(-60.0f);
                     }
                     
                     
 		}
 		if(!left && !Bike.right) {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() <= Bike.MAX_WHEEL_SPEED*3) {
-                        entity.applyAngularForce(30.0f);
+                        entity.applyAngularForce(60.0f);
                     }
                 }
                 if(window.getKeyboard().get(KeyEvent.VK_DOWN).isDown()) {
                     if (getSpeed() < 0.0f) {
-                        entity.applyAngularForce(10.0f);
+                        entity.applyAngularForce(30.0f);
                     }
                     if (getSpeed() > 0.0f) {
-                        entity.applyAngularForce(-10.0f);
+                        entity.applyAngularForce(-30.0f);
                     }
                 }
         }
