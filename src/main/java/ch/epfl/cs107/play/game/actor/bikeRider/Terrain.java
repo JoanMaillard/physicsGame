@@ -14,12 +14,22 @@ public class Terrain extends GameEntity{
         private static List<Entity> dangerousWheel = new ArrayList<>();
         private static List<Entity> checkPoints = new ArrayList<>();
         private static List<Entity> dangerousBike = new ArrayList<>();
+        private static List<Entity> items = new ArrayList<>();
         private static Entity finish;
         
         protected static void emptyAllDangerous() {
             emptyDangerousWheel();
             emptyCheckpoints();
             emptyDangerousBike();
+            emptyItems();
+        }
+        
+        protected static List<Entity> getItems() {
+            return items;
+        }
+        
+        protected static void emptyItems() {
+            items = new ArrayList<>();
         }
         
         protected static List<Entity> getDangerousWheel() {

@@ -235,6 +235,9 @@ public class Bike extends GameEntity implements Actor{
         if (hit.equals("win")) {
             return "win";
         }
+        if (hit.equals("switchBean")) {
+            return "switchBean";
+        }
         return "";
     }
     
@@ -247,7 +250,9 @@ public class Bike extends GameEntity implements Actor{
                 if (Terrain.getFinish().equals(contact.getOther().getEntity())) { //todo test
                     hit = "win";
                 }
-                return ;
+                if (Terrain.getItems().contains(contact.getOther().getEntity())) {
+                    hit = "switchBean";
+                }
             }
             if (Terrain.getDangerousBike().contains(contact.getOther().getEntity())) {
                 hit = "lose";

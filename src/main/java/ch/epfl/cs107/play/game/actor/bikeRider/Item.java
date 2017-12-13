@@ -22,10 +22,10 @@ public class Item extends GameEntity{
 		partBuilder.setShape(new Polygon (new Vector(0f, 0f), new Vector(1.5f, 0f),
 				new Vector(1.5f, 1.5f), new Vector(0f, 1.5f))) ;
 		partBuilder.setGhost(true);
-	    partBuilder.build() ;
-	    image.setParent(entity);
-        getOwner().getEntitiesList().add(this);
-		}
+                partBuilder.build() ;
+                image.setParent(entity);
+                getOwner().getEntitiesList().add(this);
+	}
 	
 	public void draw(Canvas canvas) {
 		image.draw(canvas);

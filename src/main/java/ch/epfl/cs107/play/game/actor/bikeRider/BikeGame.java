@@ -10,19 +10,23 @@ import java.util.ArrayList;
 public class BikeGame extends ActorGame{
 	
     private Terrain terrain;
+    private boolean beanIsActive;
     private Bike bike;
+    private Car car;
     private Window canvasWindow;
     private String endFlag = "";
     private int level = 1;
     private int lives = 3;
-    private SkinChooser skin;
-    private boolean skinChoosed;
     
     @Override
     public void initializeObjects() {
     	terrain = new Terrain(this, true, level);
         bike = new Bike(this, false, new Vector(0.0f, 5.0f));
     	setViewCandidate(bike.getEntity());
+    }
+    
+    public static void changeCar() {
+        
     }
     
     @Override
@@ -71,15 +75,43 @@ public class BikeGame extends ActorGame{
     
     @Override
     public void objectsCollision() {
-        if (bike.collisions().equals("lose")) {
+        if (!beanIsActive) {
+            if (bike.collisions().equals("lose")) {
                 Terrain.emptyAllDangerous();
                 setEndFlag("lose");
                 end();
             }
-        if (bike.collisions().equals("win")) {
-            Terrain.emptyAllDangerous();
-            setEndFlag("win");
-            end();
+            if (bike.collisions().equals("win")) {
+                Terrain.emptyAllDangerous();
+                setEndFlag("win");
+                end();
+            }
+            if (bike.collisions().equals("switchBean")) {
+                Vector bikePosition = bike.getEntity().getPosition();
+                super.getEntitiesList().remove(bike);
+                car = new Car(this, false, bikePosition);
+                setViewCandidate(car.getEntity());
+                beanIsActive = true;
+            } 
+        }
+        if (beanIsActive) {
+            if (car.collisions().equals("lose")) {
+                Terrain.emptyAllDangerous();
+                setEndFlag("lose");
+                end();
+            }
+            if (car.collisions().equals("win")) {
+                Terrain.emptyAllDangerous();
+                setEndFlag("win");
+                end();
+            }
+            if (car.collisions().equals("switchBean")) {
+                Vector carPosition = car.getEntity().getPosition();
+                super.getEntitiesList().remove(car);
+                bike = new Bike(this, false, carPosition);
+                setViewCandidate(car.getEntity());
+                beanIsActive = true;
+            }
         }
     }
             
@@ -115,15 +147,8 @@ public class BikeGame extends ActorGame{
                 break;
         }
     }
-
-	public String getEndFlag() {
+	
+    public String getEndFlag() {
 		return endFlag;
 	}
-
-	@Override
-    public void setEndFlag(String endFlag) {
-		this.endFlag = endFlag;
-	}
-	
-    
     }
