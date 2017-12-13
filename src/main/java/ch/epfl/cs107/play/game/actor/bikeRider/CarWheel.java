@@ -27,13 +27,14 @@ public class CarWheel extends GameEntity implements Actor {
 	private WheelConstraintBuilder constraintBuilder;
 	private Entity entity;
 	private Circle circle = new Circle(1f);
-	private ImageGraphics image1 = new ImageGraphics("wheel.png", 2f , 2f , new Vector(2f, 1f)) ;
+	private ImageGraphics image1 = new ImageGraphics("wheel.png", 2f , 2f, new Vector(0.5f, 0.5f)) ;
 
 	
 	public CarWheel(ActorGame game, boolean fixed, Vector position, boolean left) {
         super(game, fixed, position);
         entity = super.getEntity();
         this.left = left;
+        
     }
     
     public CarWheel(ActorGame game, boolean fixed, boolean left){
