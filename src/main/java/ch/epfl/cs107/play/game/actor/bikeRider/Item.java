@@ -20,7 +20,7 @@ public class Item extends GameEntity{
 		entity = super.getEntity();	
 		partBuilder = entity.createPartBuilder() ;
 		partBuilder.setShape(new Polygon (new Vector(0f, 0f), new Vector(1.5f, 0f),
-				new Vector(1.5f, 1.5f), new Vector(0f, 1.5f))) ;
+		new Vector(1.5f, 1.5f), new Vector(0f, 1.5f))) ;
 		partBuilder.setGhost(true);
                 partBuilder.build() ;
                 image.setParent(entity);
@@ -31,5 +31,8 @@ public class Item extends GameEntity{
 	public void draw(Canvas canvas) {
 		image.draw(canvas);
 	}	
-	
+	public void destroy() {
+            getOwner().getEntitiesList().remove(this);
+            entity.destroy();
+        }
 }
