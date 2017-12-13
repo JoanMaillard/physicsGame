@@ -44,8 +44,7 @@ public class Bike extends GameEntity implements Actor{
     private Polyline rightLegUp = new Polyline(getWaistLocation (), getRightKneeLocation ());
     private Polyline rightLegDown = new Polyline(getRightKneeLocation (), getRightFootLocation ());
 	
-	
-	
+	//constructors
     public Bike(ActorGame game, boolean fixed) {
 	super(game, fixed);
         entity = super.getEntity();
@@ -60,7 +59,7 @@ public class Bike extends GameEntity implements Actor{
         buildWheels(game, fixed, position);
     }
 
-    private void build() {
+    private void build() { //biker builder, set all necessary properties (constructor submethod)
         PartBuilder partBuilder;		 
         partBuilder = entity.createPartBuilder();
         Polygon polygon = new Polygon(
@@ -79,7 +78,7 @@ public class Bike extends GameEntity implements Actor{
         drawBody();
     }
 
-    private void buildWheels(ActorGame game, boolean fixed, Vector position) {
+    private void buildWheels(ActorGame game, boolean fixed, Vector position) { //wheel builder
         getOwner().getEntitiesList().add(this);
         leftWheel = new Wheel(game, fixed, position.add(new Vector(-1.0f, 0.f)), true);
         leftWheel.attach(entity, new Vector (-1.0f, 0.0f), new Vector (-0.5f, -1.0f));
@@ -89,7 +88,7 @@ public class Bike extends GameEntity implements Actor{
         rightWheel.build();
     }
     
-    void controls(Window window) {
+    void controls(Window window) { //Biker controls
     	
     	//turn
     	if (window.getKeyboard().get(KeyEvent.VK_SPACE).isPressed()) {
@@ -107,7 +106,7 @@ public class Bike extends GameEntity implements Actor{
     	}
     }
     
-    // Head location , in local coordinates
+    // Bodypart locations , in local coordinates
     private Vector getHeadLocation () {
     	if (right) {
     return new Vector (0f, 1.75f) ;
@@ -181,7 +180,7 @@ public class Bike extends GameEntity implements Actor{
         }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas) { //draw the buy's body
     	headImage.draw(canvas);
     	armImage.draw(canvas);
     	shoulderImage.draw(canvas);
@@ -228,7 +227,7 @@ public class Bike extends GameEntity implements Actor{
     }
     
     @Override
-    public String collisions() {
+    public String collisions() { //check if wheels collide and get a lose tag, check if self has a lose / win / switchBean tag
         if (leftWheel.collisions().equals("lose") || rightWheel.collisions().equals("lose") || hit.equals("lose")) {
             return "lose";
         }
@@ -241,7 +240,7 @@ public class Bike extends GameEntity implements Actor{
         return "";
     }
     
-    public void destroy()
+    public void destroy() //rewritten to be destroyed alone
     {
         getOwner().getEntitiesList().remove(leftWheel);
         getOwner().getEntitiesList().remove(rightWheel);
@@ -251,7 +250,7 @@ public class Bike extends GameEntity implements Actor{
         entity.destroy();
     }
     
-    private void contactListener() {
+    private void contactListener() { //modified contactListener for specific use
     
     	ContactListener listener = new ContactListener () {
     	@Override

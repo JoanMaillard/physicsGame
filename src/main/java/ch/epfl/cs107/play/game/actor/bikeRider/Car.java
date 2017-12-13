@@ -1,3 +1,4 @@
+//This class is in all points similar to Bike, except for the skin, size, name and forces
 package ch.epfl.cs107.play.game.actor.bikeRider;
 
 import java.awt.Color;

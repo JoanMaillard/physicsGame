@@ -10,7 +10,7 @@ import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
 public class Item extends GameEntity{
-	
+	//This item is fixed and triggers the car/bike switch when touched
 	private Entity entity;
 	private ImageGraphics image = new ImageGraphics("box.3.enabled.png", 1.5f, 1.5f);
 	private PartBuilder partBuilder;

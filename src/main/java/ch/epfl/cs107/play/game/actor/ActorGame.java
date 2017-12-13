@@ -41,7 +41,7 @@ public abstract class ActorGame implements Game {
         listEntities = list;
     }
     
-    public void setViewCandidate (Positionable candidate) {
+    public void setViewCandidate (Positionable candidate) { // centers view on specified entity
         viewCandidate = candidate;
     }
     
@@ -49,16 +49,16 @@ public abstract class ActorGame implements Game {
     // by default, nothing to initialize
     }
 
-    public void destroyAllObjects() {
+    public void destroyAllObjects() { // destroys everything
         for (int i = 0; i < listEntities.toArray().length; i++) {
             listEntities.get(i).destroy();
         }
     }
     
-    public void objectsCollision() {
+    public void objectsCollision() { //overrided method
     }
     
-    public void drawAllObjects() {
+    public void drawAllObjects() { // draws everything
         for (int i = 0; i < listEntities.toArray().length; i++){
             listEntities.get(i).draw(window);
         }
@@ -81,7 +81,7 @@ public abstract class ActorGame implements Game {
                 
         return true;
     }
-    public void setEndFlag(String endFlag) {
+    public void setEndFlag(String endFlag) { 
 		this.endFlag = endFlag;
 	}
 

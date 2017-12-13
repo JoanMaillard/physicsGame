@@ -9,22 +9,22 @@ import ch.epfl.cs107.play.math.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Terrain extends GameEntity{
+public class Terrain extends GameEntity{ // This class contains the levels
 
-        private static List<Entity> dangerousWheel = new ArrayList<>();
-        private static List<Entity> checkPoints = new ArrayList<>();
-        private static List<Entity> dangerousBike = new ArrayList<>();
-        private static List<Entity> items = new ArrayList<>();
-        private static Entity finish;
+        private static List<Entity> dangerousWheel = new ArrayList<>(); //List of entities which make the player lose if a wheel touches them
+        private static List<Entity> dangerousBike = new ArrayList<>(); // List of entities which make the player lose if the bike / car touches them
+        private static List<Entity> items = new ArrayList<>(); // List of entities which are considered as "items" in colliders (i.e. switch car/bike)
+        private static Entity finish; //Finish line (one per level)
         
-        protected static void emptyAllDangerous() {
+        protected static void emptyAllDangerous() { //Empties all above lists
             emptyDangerousWheel();
-            emptyCheckpoints();
             emptyDangerousBike();
             emptyItems();
         }
         
-        protected static List<Entity> getItems() {
+        
+        //Gets and empties for all above lists
+        protected static List<Entity> getItems() { 
             return items;
         }
         
@@ -40,15 +40,6 @@ public class Terrain extends GameEntity{
             dangerousWheel = new ArrayList<>();
         }
         
-        
-        protected static List<Entity> getCheckPoints() {
-            return checkPoints;
-        }
-        
-        protected static void emptyCheckpoints() {
-            checkPoints = new ArrayList<>();
-        }
-        
         protected static List<Entity> getDangerousBike() {
             return dangerousBike;
         }
@@ -61,7 +52,7 @@ public class Terrain extends GameEntity{
             finish = entity;
         }
         
-        protected static Entity getFinish() {
+        protected static Entity getFinish() { 
             return finish;
         }
 	
@@ -71,7 +62,7 @@ public class Terrain extends GameEntity{
 	}
         
 
-        private void createLevel(int level) {
+        private void createLevel(int level) { //The following switch stores all the levels
             switch (level){
                     case 1:
                         BikeGame.beanIsActive = false;
@@ -196,7 +187,7 @@ public class Terrain extends GameEntity{
                         new Finish(getOwner(), true, new Vector(45f, -59.7f));
                         break;
                         
-                    default:
+                    default: //In case of bad number
                         
                         break;
                 }

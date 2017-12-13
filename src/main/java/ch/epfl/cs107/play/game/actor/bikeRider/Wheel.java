@@ -49,7 +49,7 @@ public class Wheel extends GameEntity implements Actor {
     	return constraintBuilder;
     }
     
-	public void attach(Entity vehicle , Vector anchor , Vector axis) {
+	public void attach(Entity vehicle , Vector anchor , Vector axis) { //method attaching wheel to parent bike
 		
 		constraintBuilder = makeWheelConstraintBuilder();
 		constraintBuilder.setFirstEntity(vehicle) ;
@@ -72,7 +72,7 @@ public class Wheel extends GameEntity implements Actor {
 		
 	}
 	
-	void build() {
+	void build() { //Builds all necessary stuff for the wheel (called after attach method for engine reasons)
 		
             partBuilder = entity.createPartBuilder() ;
 	    partBuilder.setShape(circle) ;
@@ -83,11 +83,11 @@ public class Wheel extends GameEntity implements Actor {
             contactListener();
 	}
         
-        public String collisions() {
+        public String collisions() { //Returns the value of "hit"
             return hit;
         }
         
-        private void contactListener() {
+        private void contactListener() { //Contact listener modified for specific use
     
     	ContactListener listener = new ContactListener () {
     	@Override
@@ -104,7 +104,7 @@ public class Wheel extends GameEntity implements Actor {
         entity.addContactListener(listener);
     }
 	
-	void go(Window window) {
+	void go(Window window) { // Controls for wheels
 		if(left && Bike.right) {
                     if(window.getKeyboard().get(KeyEvent.VK_UP).isDown() && getSpeed() >= -Bike.MAX_WHEEL_SPEED) {
                         entity.applyAngularForce(-10.0f);
@@ -125,13 +125,7 @@ public class Wheel extends GameEntity implements Actor {
                 }
         }
 	
-	public void power(float speed) {}
-	
-	public void relax () {}
-	
-	public void detach () {}
-	
-	public float getSpeed () {
+	public float getSpeed () { //returns wheelspeed
             return entity.getAngularVelocity();
         }
 

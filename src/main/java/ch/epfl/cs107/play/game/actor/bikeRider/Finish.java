@@ -16,7 +16,7 @@ public class Finish extends GameEntity{
 	private Entity entity;
 	private ImageGraphics image = new ImageGraphics("flag.red.png", 1, 1);
 
-	public Finish(ActorGame game, boolean fixed) {
+	public Finish(ActorGame game, boolean fixed) { 
 		super(game, fixed, new Vector(65f, 0.3f));
 		entity = super.getEntity();
 		buildParts();
@@ -32,7 +32,7 @@ public class Finish extends GameEntity{
 		setFinish();
 	}
 
-	private void buildParts() {
+	private void buildParts() { // builds all necessary parts (called in constructor)
         partBuilder = entity.createPartBuilder();
         Polygon polygon = new Polygon(
             new Vector(0.0f, 0.0f), 
@@ -50,7 +50,7 @@ public class Finish extends GameEntity{
         image.draw(canvas);
     }
     
-    public void setFinish() {
+    public void setFinish() { // sets finish line for the level as this' entity
         Terrain.setFinish(entity);
     }
     

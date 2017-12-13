@@ -13,8 +13,6 @@ import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.EntityBuilder;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.RevoluteConstraintBuilder;
-import ch.epfl.cs107.play.math.RopeConstraintBuilder;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.World;
@@ -63,7 +61,7 @@ public class ContactGame implements Game{
         Circle circle = new Circle(0.5f);
         partBuilder.setShape(circle) ;
         partBuilder.setFriction(0.5f) ;
-        partBuilder.build() ;
+        partBuilder.build() ; //create ball
      
      
 

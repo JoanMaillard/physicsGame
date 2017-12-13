@@ -70,7 +70,7 @@ public abstract class GameEntity{
     public void draw(Canvas canvas) {
     }
     
-    public String collisions() {
+    public String collisions() { // overrided
     return "";
     }
 }

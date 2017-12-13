@@ -19,7 +19,7 @@ public class BikeGame extends ActorGame{
     private int lives = 3;
     
     @Override
-    public void initializeObjects() {
+    public void initializeObjects() { //called at begin, initializes all terrain and active actors
     	terrain = new Terrain(this, true, level);
         if (!beanIsActive) {
             bike = new Bike(this, false, new Vector(0.0f, 5.0f));
@@ -30,28 +30,24 @@ public class BikeGame extends ActorGame{
         setViewCandidate(car.getEntity());
     }
     
-    public static void changeCar() {
-        
-    }
-    
     @Override
-    public void destroyAllObjects() {
+    public void destroyAllObjects() { //empty the ArrayList recensing all objects
         super.destroyAllObjects();
         super.setEntitiesList(new ArrayList<>());
     }
     
     @Override
-    public void drawAllObjects() {
+    public void drawAllObjects() { //draw everything
         super.drawAllObjects();
     }
     
-    public int getLevel() {
+    public int getLevel() { //method useful for class Terrain (gives an idea of which level must be generated)
         return level;
     }
     
     
     @Override
-    public boolean begin(Window window, FileSystem fileSystem){
+    public boolean begin(Window window, FileSystem fileSystem){ //engine method
             if (super.begin(window, fileSystem)) {
                 canvasWindow = window;
                 initializeObjects();
@@ -63,7 +59,7 @@ public class BikeGame extends ActorGame{
     }
     
     @Override
-    public void update(float deltaTime) {
+    public void update(float deltaTime) { //engine method, contains reset control for level reinitialization
         //reset
         if (canvasWindow.getKeyboard().get(KeyEvent.VK_R).isPressed()) {
             setEndFlag("reset");
@@ -80,7 +76,7 @@ public class BikeGame extends ActorGame{
     }
     
     @Override
-    public void objectsCollision() {
+    public void objectsCollision() { //Collision control (gets data from listeners)
         if (!beanIsActive) {
             if (bike.collisions().equals("lose")) {
                 Terrain.emptyAllDangerous();
