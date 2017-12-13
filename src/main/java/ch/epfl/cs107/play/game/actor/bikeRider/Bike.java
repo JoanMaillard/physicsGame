@@ -229,7 +229,7 @@ public class Bike extends GameEntity implements Actor{
     
     @Override
     public String collisions() {
-        if (leftWheel.collisions(entity).equals("lose") || rightWheel.collisions(entity).equals("lose") || hit.equals("lose")) {
+        if (leftWheel.collisions().equals("lose") || rightWheel.collisions().equals("lose") || hit.equals("lose")) {
             return "lose";
         }
         if (hit.equals("win")) {
@@ -244,15 +244,14 @@ public class Bike extends GameEntity implements Actor{
     	@Override
     	public void beginContact(Contact contact) {
             if (contact.getOther().isGhost()){
-                if (true) { //todo test
+                if (Terrain.getFinish().equals(contact.getOther().getEntity())) { //todo test
                     hit = "win";
                 }
                 return ;
             }
-            if (contact.getOther().getEntity().equals(leftWheel.getEntity()) || contact.getOther().getEntity().equals(rightWheel.getEntity())){
-                return;
+            if (Terrain.getDangerousBike().contains(contact.getOther().getEntity())) {
+                hit = "lose";
             }
-            hit = "lose";
     	}
     	
     	@Override

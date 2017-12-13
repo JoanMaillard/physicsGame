@@ -21,7 +21,6 @@ public class BikeGame extends ActorGame{
                 terrain = new Terrain(this, true, level);
                 bike = new Bike(this, false, new Vector(0.0f, 5.0f));
                 setViewCandidate(bike.getEntity());
-                
     }
     
     @Override
@@ -70,10 +69,12 @@ public class BikeGame extends ActorGame{
     @Override
     public void objectsCollision() {
         if (bike.collisions().equals("lose")) {
+                Terrain.emptyAllDangerous();
                 setEndFlag("lose");
                 end();
             }
         if (bike.collisions().equals("win")) {
+            Terrain.emptyAllDangerous();
             setEndFlag("win");
             end();
         }

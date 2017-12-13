@@ -21,7 +21,6 @@ public class Spike extends GameEntity{
     private Entity entity;
     private PartBuilder pB;
     private ImageGraphics image;
-    private boolean collision[] = {false, false};
     private BasicContactListener contactListener;
     
     //Constructors
@@ -30,8 +29,7 @@ public class Spike extends GameEntity{
         entity = super.getEntity();
         buildParts();
         setParentToImage();
-        contactListener = new BasicContactListener () ;
-	    entity.addContactListener(contactListener) ;
+        setDangerous();
     }
     
     public Spike(ActorGame game, boolean fixed){
@@ -39,8 +37,7 @@ public class Spike extends GameEntity{
         entity = super.getEntity();
         buildParts();
         setParentToImage();
-        contactListener = new BasicContactListener () ;
-        entity.addContactListener(contactListener) ;
+        setDangerous();
     }
     
     //Additional methods
@@ -66,11 +63,10 @@ public class Spike extends GameEntity{
         image.setParent(entity);
     }
     
-    public void bikeCollisions() {
-    	
-    	if (contactListener.getEntities().getClass() == Wheel.class) {
-           game.setEndFlag("loose");
+    private void setDangerous() {
+    	Terrain.getDangerousWheel().add(entity);
+        Terrain.getDangerousBike().add(entity);
     }
     
-    }
+    
 }

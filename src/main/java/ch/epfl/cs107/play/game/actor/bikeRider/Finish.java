@@ -25,7 +25,7 @@ public class Finish extends GameEntity{
 		entity = super.getEntity();
 		buildParts();
 		image.setParent(entity);
-		
+		setFinish();
 	}
 	
 	public Finish(ActorGame game, boolean fixed, Vector position) {
@@ -33,7 +33,7 @@ public class Finish extends GameEntity{
 		entity = super.getEntity();
 		buildParts();
 		image.setParent(entity);
-		
+		setFinish();
 	}
 
 	private void buildParts() {
@@ -52,6 +52,10 @@ public class Finish extends GameEntity{
 
     public void draw(Canvas canvas) {
         image.draw(canvas);
+    }
+    
+    public void setFinish() {
+        Terrain.setFinish(entity);
     }
     
     

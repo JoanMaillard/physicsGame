@@ -24,11 +24,11 @@ public class Wheel extends GameEntity implements Actor {
 	private PartBuilder partBuilder;
 	private boolean left;
 	private WheelConstraintBuilder constraintBuilder;
-	Entity entity;
+	private Entity entity;
 	private Circle circle = new Circle(0.5f);
 	private ImageGraphics image1 = new ImageGraphics("wheel.png", 1f , 1f , new Vector(0.5f, 0.5f)) ;
 	private ShapeGraphics image = new ShapeGraphics(circle , Color.GRAY , Color.BLACK ,	0.01f, 1f, 0);
-        boolean hit = false;
+        private String hit = "";
 
 	
 	public Wheel(ActorGame game, boolean fixed, Vector position, boolean left) {
@@ -84,25 +84,21 @@ public class Wheel extends GameEntity implements Actor {
 	    partBuilder.build() ;
 	    image1.setParent(entity);
             getOwner().getEntitiesList().add(this);
+            contactListener();
 	}
         
-        public String collisions(Entity bikeEntity) {
-            contactListener(bikeEntity);
-            return "";
+        public String collisions() {
+            return hit;
         }
         
-        private void contactListener(Entity bikeEntity) {
+        private void contactListener() {
     
     	ContactListener listener = new ContactListener () {
     	@Override
     	public void beginContact(Contact contact) {
-            if (contact.getOther().isGhost()){
-                return ;
+            if (Terrain.getDangerousWheel().contains(contact.getOther().getEntity())){
+                hit = "lose";
             }
-            if (contact.getOther().getEntity().equals(bikeEntity)){
-                return;
-            }
-            hit = true;
     	}
     	
     	@Override

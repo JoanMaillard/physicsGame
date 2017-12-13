@@ -7,10 +7,53 @@ import ch.epfl.cs107.play.game.actor.crate.Crate;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.window.Canvas;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Terrain extends GameEntity{
-        boolean collision = false;
+        private static List<Entity> dangerousWheel = new ArrayList<>();
+        private static List<Entity> checkPoints = new ArrayList<>();
+        private static List<Entity> dangerousBike = new ArrayList<>();
+        private static Entity finish;
+        
+        protected static void emptyAllDangerous() {
+            emptyDangerousWheel();
+            emptyCheckpoints();
+            emptyDangerousBike();
+        }
+        
+        protected static List<Entity> getDangerousWheel() {
+            return dangerousWheel;
+        }
+        
+        protected static void emptyDangerousWheel() {
+            dangerousWheel = new ArrayList<>();
+        }
+        
+        
+        protected static List<Entity> getCheckPoints() {
+            return checkPoints;
+        }
+        
+        protected static void emptyCheckpoints() {
+            checkPoints = new ArrayList<>();
+        }
+        
+        protected static List<Entity> getDangerousBike() {
+            return dangerousBike;
+        }
+        
+        protected static void emptyDangerousBike() {
+            dangerousBike = new ArrayList<>();
+        }
+        
+        protected static void setFinish(Entity entity) {
+            finish = entity;
+        }
+        
+        protected static Entity getFinish() {
+            return finish;
+        }
 	
 	public Terrain(ActorGame game, boolean fixed, int level) {
 		super(game, fixed);

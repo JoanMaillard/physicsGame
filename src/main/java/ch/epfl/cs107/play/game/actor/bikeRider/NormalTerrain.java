@@ -21,8 +21,6 @@ public class NormalTerrain extends GameEntity{
     private Entity entity;
     private PartBuilder partBuilder;
     private ShapeGraphics image;
-    private BasicContactListener contactListener;
-    private boolean[] collision = {false, false};
     
     public NormalTerrain(ActorGame game, boolean fixed, Vector position, Polyline polyline) {
         super(game, fixed, position);
@@ -47,9 +45,8 @@ public class NormalTerrain extends GameEntity{
 	    partBuilder.setFriction(1000.0f) ;
 	    partBuilder.build() ;
 	    image.setParent(entity);
-            contactListener = new BasicContactListener () ;
-	    entity.addContactListener(contactListener) ;
             getOwner().getEntitiesList().add(this);
+            setDangerous();
 	}
     
     @Override
@@ -58,14 +55,7 @@ public class NormalTerrain extends GameEntity{
     }
     
         
-    public String collisions(Entity gameEntity, int type) {
-    	
-    if (!collision[type]) {
-        collision[type] = contactListener.hasContactWith(gameEntity);
-    }
-    if (collision[type] && type == 0){
-        return "lose";
-    }
-        return "";
+    public void setDangerous() {
+        Terrain.getDangerousBike().add(entity);
     }
 }
