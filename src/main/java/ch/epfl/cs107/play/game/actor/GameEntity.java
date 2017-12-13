@@ -46,9 +46,6 @@ public abstract class GameEntity{
         }
     }
     //Additional methods
-    public boolean entityIs(Entity myEntity) {
-        return entity.equals(myEntity);
-    }
     
     public void destroy() {
         entity.destroy();
