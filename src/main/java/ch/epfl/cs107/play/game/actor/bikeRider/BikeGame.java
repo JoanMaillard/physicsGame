@@ -133,7 +133,7 @@ public class BikeGame extends ActorGame{
                 break;
             case "win":
                 destroyAllObjects();
-                if (level == 4) {
+                if (level == 5) {
                     level = 0;
                 }
                 level++;

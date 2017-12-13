@@ -36,8 +36,8 @@ public class Finish extends GameEntity{
         partBuilder = entity.createPartBuilder();
         Polygon polygon = new Polygon(
             new Vector(0.0f, 0.0f), 
-            new Vector(0.0f, 100f), 
-            new Vector(1.0f, 100f), 
+            new Vector(0.0f, 20), 
+            new Vector(1.0f, 20), 
             new Vector(1.0f, 0f)
         );
         partBuilder.setShape(polygon);
